@@ -3,4 +3,4 @@ arm-chip-skateboard
 
 ACS **
 
-testyoooo
+[irc link](http://webchat.freenode.net/?channels=armchipskateboard)
