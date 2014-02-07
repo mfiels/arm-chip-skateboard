@@ -1,17 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-	</head>
-	<body>
-		<canvas id="canvas">
-		</canvas>
+<head>
+    <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+    <script>
+        function init() {
+            // code here.
+            var stage = new createjs.Stage("demoCanvas");
 
-		<!-- create.js lib -->
-		<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+            var circle = new createjs.Shape();
+			circle.graphics.beginFill("red").drawCircle(0, 0, 50);
+			circle.x = 100;
+			circle.y = 100;
+			stage.addChild(circle);
 
-		<!-- game stuff -->
-		<script src="js/model.js"></script>
-		<script src="js/canvas.js"></script>
-		<!-- This is Jimmys fucking comment! -->
-	</body>
+			stage.update();
+        }
+    </script>
+</head>
+<body onLoad="init();">
+    <canvas id="demoCanvas" width="500" height="300">
+        alternate content
+    </canvas>
+</body>
 </html>
