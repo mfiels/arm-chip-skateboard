@@ -5,6 +5,12 @@ var Dudes = {
   HEIGHT: 200,
   X: 600,
   Y: 350,
+  UNLOCKED: {
+    Highschooler    : false,
+    NetCafeOwner    : false,
+    ApartmentOwner  : false,
+    AppleGenius     : false,
+  },
 
   init: function() {
     this.surface.x = this.X;
@@ -71,17 +77,22 @@ var Dudes = {
     
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);
-      Textbox.setBody(event.currentTarget.eventID.description);
-	  Resources.modifyGhostResource(event.currentTarget.eventID.resourceGain);
+      if(Dudes.UNLOCKED.Highschooler == false)
+        Textbox.setBody(event.currentTarget.eventID.lockDescription);
+      else
+        Textbox.setBody(event.currentTarget.eventID.description);
+
+	    Resources.modifyGhostResource(event.currentTarget.eventID.resourceGain);
     }
     function handleUnhover(event) {
       Textbox.setTitle('');
       Textbox.setBody('');
-	  Resources.modifyGhostResource(0);
+	    Resources.modifyGhostResource(0);
     }
     function handleClick(event) {
-      console.log('clicked' + event.currentTarget.eventID);
+      console.log('clicked' + event.currentTarget.name);
       Game.addResources(event.currentTarget.eventID.resourceGain);
+      Dudes.UNLOCKED[event.currentTarget.name] = true;
     }
   },
 
