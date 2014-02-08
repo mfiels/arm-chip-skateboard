@@ -9,6 +9,7 @@ var Resources = {
   RESOURCEWIDTH:150,
   color:"#ff7700",
   resourceArrow: new createjs.Shape(),
+  iconContainer: new createjs.Container(),
   
   updateResource: function(){
 	this.resourceText.text = Game.data.resources.toString();
@@ -26,7 +27,17 @@ var Resources = {
   },
   
   updateCurrentActions: function(){
-	
+	this.iconContainer.removeAllChildren();
+	for(var i=0;i<Game.data.currentActions.length;i++){
+		var gfx = new createjs.Shape();
+		var action = Game.data.currentActions[i].action;
+		var location = Game.data.currentActions[i].location;
+		gfx.graphics.beginFill(action.color).drawRect(0,0,this.ICONWIDTH,this.ICONWIDTH);
+		gfx.graphics.beginFill(location.color).drawCircle(this.ICONWIDTH/2, this.ICONWIDTH/2,8);
+		gfx.x =5;
+		gfx.y = 5+ (i*(this.ICONWIDTH+5));
+		this.iconContainer.addChild(gfx);
+	}
   },
   
   
@@ -59,6 +70,7 @@ var Resources = {
 	this.surface.addChild(this.resourceText);
 	this.surface.addChild(this.resourceText2);
 	this.surface.addChild(this.resourceArrow);
+	this.surface.addChild(this.iconContainer);
 	this.updateResource();
 	this.decrementResource(0);
     Game.canvas.addChild(this.surface);

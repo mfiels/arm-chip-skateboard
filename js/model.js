@@ -20,13 +20,16 @@ var Game = {
     createjs.Ticker.addEventListener('tick', this.canvas);
   },
   addAction: function(action, location){
-	var pair = {
-		action:action,
-		location:location
-	};
-	data.currentActions.push(pair);
+	this.data.currentActions.push(new Pair(action,location));
+	Resources.updateCurrentActions();
   }
 };
+
+var Pair = function(initialAction,initialLocation){
+	this.action = initialAction;
+	this.location= initialLocation;
+}
+
 
 var Data = function(){
   this.money= Constants.INITIAL_MONEY;
