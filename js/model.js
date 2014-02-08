@@ -115,6 +115,7 @@ var Data = function(){
     'Scam': 0,
   };
   this.locationUsage= {
+    'Highschool': 0,
     'Library': 0,
     'Netcafe': 0,
     'Apartment': 0,
@@ -138,8 +139,8 @@ var Data = function(){
 			var count = this.currentActions[i].count;
 			for(var j =0;j<count;j++) {
 				this.resources+=action.resources;
-        profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * Math.sqrt(action.risk);
-        risk = action.risk + Game.data.actionUsage[action.parent] / action.riskIncrease;
+        profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * action.scoreMult;
+        risk = action.risk + Game.data.actionUsage[action.parent] * action.riskIncrease;
 				
         r = Math.random() * 100;
         console.log('R = ' + r + 'RISK: ' + risk);
