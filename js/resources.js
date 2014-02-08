@@ -14,7 +14,7 @@ var Resources = {
   updateResource: function(){
 	this.resourceText.text = Game.data.resources.toString();
   },
-  decrementResource: function(num){
+  modifyGhostResource: function(num){
 	if(num==0){
 		this.resourceArrow.visible=false;
 		this.resourceText2.visible=false;
@@ -22,7 +22,7 @@ var Resources = {
 	else{
 		this.resourceArrow.visible=true;
 		this.resourceText2.visible=true;
-		this.resourceText2.text = (Game.data.resources-num).toString();
+		this.resourceText2.text = (Game.data.resources+num).toString();
 	}
   },
   
@@ -80,7 +80,7 @@ var Resources = {
 	
 	//Load play button
 	this.playBtn=ButtonHelper.newButton(
-		Game.data.images['TargetEmployee'],
+		Game.data.images['NetCafeOwner'],
 		'Play',
 		1,
 		this.ICONWIDTH+this.RESOURCEWIDTH/2,
@@ -106,7 +106,7 @@ var Resources = {
 	this.surface.addChild(this.iconContainer);
 	this.surface.addChild(this.playBtn);
 	this.updateResource();
-	this.decrementResource(0);
+	this.modifyGhostResource(0);
     Game.canvas.addChild(this.surface);
   },
 };

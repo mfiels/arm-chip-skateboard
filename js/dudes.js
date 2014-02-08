@@ -70,14 +70,16 @@ var Dudes = {
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);
       Textbox.setBody(event.currentTarget.eventID.description);
+	  Resources.modifyGhostResource(event.currentTarget.eventID.resourceGain);
     }
     function handleUnhover(event) {
       Textbox.setTitle('');
       Textbox.setBody('');
+	  Resources.modifyGhostResource(0);
     }
     function handleClick(event) {
       console.log('clicked' + event.currentTarget.eventID);
-      Game.data.addResources(event.currentTarget.eventID.resourceGain);
+      Game.addResources(event.currentTarget.eventID.resourceGain);
     }
   },
 

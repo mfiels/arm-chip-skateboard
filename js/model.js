@@ -47,6 +47,10 @@ var Game = {
   step: function(){
   
   },
+  addResources: function(deltaResources) {
+    this.resources += deltaResources;
+	Resources.updateResource();
+  },
 };
 
 var Pair = function(initialAction,initialLocation){
@@ -73,6 +77,7 @@ var Data = function(){
   this.useResources = function(deltaResources) {
     if(this.resources - deltaResources >= 0) {
       this.resources -= deltaResources;
+	  Resources.updateResource();
       return true;
     }
     else {
@@ -80,10 +85,6 @@ var Data = function(){
     }
   };
 
-  this.addResources = function(deltaResources) {
-    this.resources += deltaResources;
-    console.log("Resources: " + this.resources);
-  };
 }
 
 var ButtonHelper = {
