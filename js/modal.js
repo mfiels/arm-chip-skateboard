@@ -111,6 +111,12 @@ var Modal = {
     Modal.show('Method 2: Spoofing', new Content(Content.SPOOF), function() {
       Modal.hide();
     });
+  },
+
+  showKeyLoggerMethod: function() {
+    Modal.show('Method 3: Keylogger', new Content(Content.KEY_LOGGER), function() {
+      Modal.hide();
+    });
   }
 };
 
@@ -186,6 +192,28 @@ Content.SPOOF = function(surface) {
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
   text.y = 120;
+  surface.addChild(text);
+};
+
+Content.KEY_LOGGER = function(surface) {
+  var keyLogImage = new createjs.Bitmap(Game.data.images['KeyLoggingKeyboard']);
+  keyLogImage.x = Content.WIDTH / 2.0 - Game.data.images['KeyLoggingKeyboard'].width / 2.0;
+  keyLogImage.y = 60;
+  surface.addChild(keyLogImage);
+
+  var text = new createjs.Text('By installing keyloggers on computers we can target even the more careful users...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  surface.addChild(text);
+
+  text = new createjs.Text('Every keystroke is recorded, so anything they log in to will also be available to us!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 170;
   surface.addChild(text);
 };
 
