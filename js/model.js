@@ -65,12 +65,14 @@ var Game = {
   },
   removeAction: function(index){
 	if(this.data.currentActions.length>index){
+		this.data.resources+=Constants.ALL_ACTIONS[this.data.currentActions[index].action].resources;
 		if(this.data.currentActions[index].count>1)
 			this.data.currentActions[index].count--;
 		else
 			this.data.currentActions.splice(index,1);
 	}
 	else return;
+	Resources.updateResource();
 	Resources.updateCurrentActions();
   },
   step: function(){
@@ -110,7 +112,7 @@ var Data = function(){
 			var location = Constants.ALL_LOCATIONS[this.currentActions[i].location];
 			var count = this.currentActions[i].count;
 			for(var j =0;j<count;j++){
-				this.resources++;
+				this.resources+=action.resources;
 				this.money+=action.resources;
 				action.risk+=.02;
 				location.risk+=.02;
