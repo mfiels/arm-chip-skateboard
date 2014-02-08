@@ -57,6 +57,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'scam.png',
       color: '#af0000',
+      modalMethod: 'showScamMethod',
     },
   },
 
@@ -124,7 +125,8 @@ var Constants = {
     'SpoofBadUrl': 'Spoofed.png',
     'KeyLoggingKeyboard': 'KeyLogging.png',
     'BadWifi': 'BadWifi.png',
-    'BadSsid': 'BadWifi2.png'
+    'BadSsid': 'BadWifi2.png',
+    'EmployeeScam': 'EmployeeScam.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
