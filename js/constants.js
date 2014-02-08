@@ -15,6 +15,7 @@ var Constants = {
   ALL_ACTIONS: {
     'Forgot': {
       risk: 0,
+	  riskModifier: 1,
       resources: 1,
       cost: 1,
       description: 'Someone forgot to log off!',
@@ -57,6 +58,7 @@ var Constants = {
   ALL_LOCATIONS: {
     'Library': {
       risk: 0,
+	  riskModifier: .1,
       reward: 0,
       description: 'Library',
       image: 'hello.png',

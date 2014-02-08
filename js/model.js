@@ -53,7 +53,10 @@ var Game = {
 	Resources.updateCurrentActions();
   },
   step: function(){
-  
+	this.data.stepLogic();
+	Resources.updateResource();
+	Resources.updateCurrentActions();
+	Game.addMoney(0);
   },
   addResources: function(deltaResources) {
     this.data.resources += deltaResources;
@@ -80,7 +83,27 @@ var Data = function(){
   this.currentResources= 0;
   this.currentActions= [];
   this.stepLogic=function(){
-	
+		for(var i=0;i<this.currentActions.length;i++){
+			//
+			var action = Constants.ALL_ACTIONS[this.currentActions[i].action];
+			var location = Constants.ALL_LOCATIONS[this.currentActions[i].location];
+			var count = this.currentActions[i].count;
+			for(var j =0;j<count;j++){
+				this.resources++;
+				this.money+=action.resources;
+				action.risk+=.02;
+				location.risk+=.02;
+				if((action.risk*action.riskModifier+location.risk*location.riskModifier)*Math.random()>1){
+					//UHOH
+					Console.log("Gameover?");
+					//break;
+				}
+			}
+		}
+		
+		
+		
+		this.currentActions.length=0;
 	};
 
   this.useResources = function(deltaResources) {
