@@ -17,7 +17,9 @@ var Dudes = {
     this.surface.y = this.Y;
 
     var background = new createjs.Shape();
-    background.graphics.beginFill("#FFFF00").drawRect(0, 0, this.WIDTH, this.HEIGHT);
+    background.graphics.beginFill("#000000")
+      .beginStroke('#00FF00')
+      .drawRect(0, 0, this.WIDTH, this.HEIGHT);
     this.surface.addChild(background);
 
     //added high schoolers

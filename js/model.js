@@ -56,8 +56,9 @@ var Game = {
   
   },
   addResources: function(deltaResources) {
-    this.resources += deltaResources;
-	 Resources.updateResource();
+    this.data.resources += deltaResources;
+  	Resources.updateResource();
+  	Resources.modifyGhostResource(deltaResources);
   },
 };
 

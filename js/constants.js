@@ -19,7 +19,15 @@ var Constants = {
       cost: 1,
       description: 'Someone forgot to log off!',
       image: 'forgot.png',
-	  color: '#af0000',
+	    color: '#af0000',
+    },
+    'SpoofWebsite': {
+      risk: 0,
+      resources: 1,
+      cost: 2,
+      description: 'Leave a fake website open to lure people into logging in.',
+      image: 'spoof.png',
+      color: '#af0000',
     },
   },
 
@@ -68,12 +76,5 @@ var Constants = {
     },
   },
 
-  MISC_IMAGES: {
-    'ModalClose': {
-      image: 'hello.png'
-    },
-    'ModalOkay': {
-      image: 'hello.png'
-    }
-  }
+  INTRO_STRING: 'Welcome to the Hackmaster 3000!!1 You think you got it what it takes to be a big shot? I don\'t think you do...'
 };
