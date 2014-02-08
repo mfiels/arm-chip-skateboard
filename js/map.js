@@ -48,7 +48,7 @@ var Map = {
 	}
 	var handleUnhover = function(event){
 		Textbox.setTitle("");
-		Textbox.setBody("");
+		Textbox.setBody(Constants.DEFAULT_TEXTBOX_TEXT);
 		Resources.modifyGhostResource(0);
 	};
 	function genClick(act){
@@ -112,7 +112,7 @@ var Map = {
 				-25,
 				-25,
 				setTextboxFunc(key, "Unlock "+Constants.ALL_LOCATIONS[key].unlock+" to use this location."),
-				setTextboxFunc("",""),
+				setTextboxFunc("",Constants.DEFAULT_TEXTBOX_TEXT),
 				function(){}
 			);
 			bound.visible=false;
