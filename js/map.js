@@ -40,7 +40,7 @@ var Map = {
 			act = Constants.ALL_ACTIONS[action];
 
 			profit = (loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath) * act.scoreMult;
-			risk = act.risk + Game.data.actionUsage[action] / act.riskIncrease;
+			risk = act.risk + Game.data.actionUsage[action] * act.riskIncrease * loc.riskModifier;
 			if(risk > 100)
 				risk = 100;
 
