@@ -455,29 +455,29 @@ Content.NEWSPAPER = function(surface){
 	for(var i=0;i<Game.data.currentActions.length;i++){
 		if(Game.data.currentActions[i].action==="Forgot" && !forgot){
 			var ind = Math.floor(Math.random()*ArticleInfo["Forgot"].length);
-			strleft+= ArticleInfo["Forgot"][ind]+"\n";
+			strleft+= ArticleInfo["Forgot"][ind]+"\n\n";
 			forgot=true;
 			}
 		else if(Game.data.currentActions[i].action==="Keylogger" && !keylog){
 		
 			var ind = Math.floor(Math.random()*ArticleInfo["Keylogger"].length);
-			strleft+= ArticleInfo["Keylogger"][ind]+"\n";
+			strleft+= ArticleInfo["Keylogger"][ind]+"\n\n";
 			keylog=true;
 			}
 		else if(Game.data.currentActions[i].action==="SpoofWebsite" && !spoof){
 			var ind = Math.floor(Math.random()*ArticleInfo["SpoofWebsite"].length);
-			strleft+= ArticleInfo["SpoofWebsite"][ind]+"\n";
+			strleft+= ArticleInfo["SpoofWebsite"][ind]+"\n\n";
 			spoof=true;
 			}
 		else if(Game.data.currentActions[i].action==="Wifi" && !wifi){
 			var ind = Math.floor(Math.random()*ArticleInfo["Wifi"].length);
-			strleft+= ArticleInfo["Wifi"][ind]+"\n";
+			strleft+= ArticleInfo["Wifi"][ind]+"\n\n";
 			wifi=true;
 			}
 		else if(Game.data.currentActions[i].action==="Scam" && !scam ){
 		
 			var ind = Math.floor(Math.random()*ArticleInfo["Scam"].length);
-			strleft+= ArticleInfo["Scam"][ind]+"\n";
+			strleft+= ArticleInfo["Scam"][ind]+"\n\n";
 			scam=true;
 			}
 	}
@@ -486,13 +486,13 @@ Content.NEWSPAPER = function(surface){
 	surface.addChild(txtLeft);
 	
 	var rstr="";
-	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n";
-	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n";
-	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n";
-	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n";
-	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n";
-	rstr+= "Profit: $"+Game.data.profitLastTurn+"\n";
-	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n";
+	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n\n";
+	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n\n";
+	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n\n";
+	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n\n";
+	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n\n";
+	rstr+= "Profit: $"+Game.data.profitLastTurn.toFixed(2)+"\n\n";
+	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n\n";
 	
 	var txtRight = new createjs.Text(rstr,"10px GameFont","#00FF00");
 	txtRight.x = Content.WIDTH/2;

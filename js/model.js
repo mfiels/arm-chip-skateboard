@@ -197,16 +197,26 @@ var Data = function(){
 
 var ArticleInfo = {
 	'Forgot':[
-		"im bored blah blah blah blah blah"
+		"Users are becoming more wary about leaving there accounts logged in!",
+		"Recent trends show that 50% of users leave there accounts logged in!",
+		"The most common password used is password!",
+		"Users are urged to never hit 'remember password'",
 	],
 	'SpoofWebsite':[
-		"im bored2 blah blah blah blah blah"
+		"Users are starting to pay attention to the URL's in web browsers.",
+		"Users don't trust tabs left open for them anymore.",
+		"60% of users won't notice a slightly misspelled URL",
+		
 	],
 	'Keylogger':[
-		"im bored3 blah blah blah blah blah"
+		"Users are learning not to input sensitive information when they are on unsecured public machines.",
+		"Most users would not be able to detect a keylogger.",
+		"Some users are utilizing the task or process manager to spot scary looking processes",
+		"34% of users have fallen victim to a keylogger at least once before"
 	],
 	'Wifi':[
-		"im bored4 blah blah blah blah blah"
+		"Users are no longer transmitting sensitive information when using a public wifi connection",
+		
 	],
 	'Scam':[
 		"im bored5 blah blah blah blah blah"
