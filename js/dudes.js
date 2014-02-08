@@ -100,8 +100,8 @@ var Dudes = {
         Game.addResources(event.currentTarget.eventID.resourceGain);
 
         Textbox.setBody(event.currentTarget.eventID.description);   
-        Game.tempMoney(-event.currentTarget.eventID.cost);     
       }
+      Game.tempMoney(-event.currentTarget.eventID.cost);     
     }
   },
 };
