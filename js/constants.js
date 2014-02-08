@@ -38,4 +38,10 @@ var Constants = {
       image: 'hello.png',
     },
   },
+
+  MISC_IMAGES: {
+    'ModalClose': {
+      image: 'hello.png'
+    }
+  }
 };

@@ -8,8 +8,6 @@ var Modal = {
   X: 100,
   Y: 100,
 
-  CLOSE_BUTTON_SIZE: 20,
-
   init: function() {
     this.surface.x = this.X;
     this.surface.y = this.Y;
@@ -31,12 +29,9 @@ var Modal = {
     this.title.x = this.WIDTH / 2;
     this.surface.addChild(this.title);
 
-    var closeButton = new createjs.Shape();
-    closeButton.graphics
-      .beginFill('#00FF00')
-      .drawRect(0, 0, this.CLOSE_BUTTON_SIZE, this.CLOSE_BUTTON_SIZE);
+    var closeButton = new createjs.Bitmap(Game.data.images['ModalClose']);
     this.surface.addChild(closeButton);
-    closeButton.x = this.WIDTH - this.CLOSE_BUTTON_SIZE;
+    closeButton.x = this.WIDTH - Game.data.images['ModalClose'].width;
     closeButton.addEventListener('click', function() {
       Modal.hide();
     });
