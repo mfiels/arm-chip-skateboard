@@ -4,7 +4,7 @@ var Dudes = {
   WIDTH: 200,
   HEIGHT: 200,
   X: 600,
-  Y: 300,
+  Y: 350,
 
   init: function() {
     this.surface.x = this.X;
@@ -40,7 +40,7 @@ var Dudes = {
 
     apartmentOwner = ButtonHelper.newButton(
         Game.data.images['ApartmentOwner'],
-        'ApartmentOwner',
+        'Apartment Owner',
         Constants.ALL_DUDES.ApartmentOwner,
         10,
         105,
@@ -51,7 +51,7 @@ var Dudes = {
 
     targetEmployee = ButtonHelper.newButton(
         Game.data.images['TargetEmployee'],
-        'TargetEmployee',
+        'Target Employee',
         Constants.ALL_DUDES.TargetEmployee,
         105,
         105,
@@ -66,10 +66,6 @@ var Dudes = {
     this.surface.addChild(targetEmployee);
 
     Game.canvas.addChild(this.surface);
-
-
-    var helper = new createjs.ButtonHelper(highschooler);
-    var helper = new createjs.ButtonHelper(netCafeOwner);
     
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);

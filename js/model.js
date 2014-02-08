@@ -57,6 +57,7 @@ var ButtonHelper = {
     newButton.addEventListener("mouseover", overFunc);
     newButton.addEventListener("mouseout", outFunc);
     newButton.addEventListener("click", clickFunc);
+    new createjs.ButtonHelper(newButton);
     return newButton;
   }
 }
