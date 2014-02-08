@@ -72,12 +72,5 @@ var Constants = {
     },
   },
 
-  MISC_IMAGES: {
-    'ModalClose': {
-      image: 'hello.png'
-    },
-    'ModalOkay': {
-      image: 'hello.png'
-    }
-  }
+  INTRO_STRING: 'Welcome to the Hackmaster 3000!!1 You think you got it what it takes to be a big shot? I don\'t think you do...'
 };
