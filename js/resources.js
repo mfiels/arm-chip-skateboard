@@ -7,7 +7,7 @@ var Resources = {
   Y: 0,
   ICONWIDTH:20,
   ICONCOLS:3,
-  ICONROWS:13,
+  ICONROWS:9,
   RESOURCEWIDTH:160,
   color:"#00FF00",
   textcolor:"#00FF00",
@@ -47,8 +47,8 @@ var Resources = {
 	}
 	for(var i=0;i<Game.data.currentActions.length;i++){
 		var container = new createjs.Container();
-		container.x =5 + (Math.floor(i/this.ICONROWS)*(this.ICONWIDTH+5));
-		container.y = 5+ ((i%this.ICONROWS)*(this.ICONWIDTH+5));
+		container.x =10 + (Math.floor(i/this.ICONROWS)*(this.ICONWIDTH+5));
+		container.y = 10+ ((i%this.ICONROWS)*(this.ICONWIDTH+5));
 		var gfx = new createjs.Shape();
 		var action = Constants.ALL_ACTIONS[Game.data.currentActions[i].action];
 		var location = Constants.ALL_LOCATIONS[Game.data.currentActions[i].location];
@@ -72,15 +72,15 @@ var Resources = {
     this.surface.x = this.X;
     this.surface.y = this.Y;
 	//Load resource text and position
-	this.resourceText= new createjs.Text("0","50px GameFont",this.color);
+	this.resourceText= new createjs.Text("0","30px GameFont",this.color);
 	this.resourceText.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2;
 	this.resourceText.y = 20;
 	this.resourceText.textAlign="center";
 	
 	//Load ghost resource text and position
-	this.resourceText2= new createjs.Text("0","50px GameFont",this.color);
+	this.resourceText2= new createjs.Text("0","30px GameFont",this.color);
 	this.resourceText2.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2;
-	this.resourceText2.y = 160;
+	this.resourceText2.y = 150;
 	this.resourceText2.textAlign="center";
 	
 	
@@ -88,11 +88,11 @@ var Resources = {
 	this.resourceArrow.graphics.beginFill(this.color).drawRect(25,0,10,60);
 	this.resourceArrow.graphics.beginFill(this.color).moveTo(0,60).lineTo(60,60).lineTo(30,80);
 	this.resourceArrow.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
-	this.resourceArrow.y = 80;
+	this.resourceArrow.y = 60;
 	this.resourceArrowRed.graphics.beginFill("#ff0000").drawRect(25,0,10,60);
 	this.resourceArrowRed.graphics.beginFill("#ff0000").moveTo(0,60).lineTo(60,60).lineTo(30,80);
 	this.resourceArrowRed.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
-	this.resourceArrowRed.y = 80;
+	this.resourceArrowRed.y = 60;
 	
 	//Load play button
 	this.playBtn=ButtonHelper.newButton(

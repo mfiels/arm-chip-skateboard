@@ -178,7 +178,7 @@ var Data = function(){
     
 		
 		
-
+		Modal.showNewsBlurb();
 		this.currentActions.length=0;
 	};
 
@@ -194,6 +194,28 @@ var Data = function(){
   };
 
 }
+
+var ArticleInfo = {
+	'Forgot':[
+		"im bored blah blah blah blah blah"
+	],
+	'SpoofWebsite':[
+		"im bored2 blah blah blah blah blah"
+	],
+	'Keylogger':[
+		"im bored3 blah blah blah blah blah"
+	],
+	'Wifi':[
+		"im bored4 blah blah blah blah blah"
+	],
+	'Scam':[
+		"im bored5 blah blah blah blah blah"
+	
+	],
+	
+};
+
+
 
 var ButtonHelper = {
   newButton : function(img, name, obj, x, y, overFunc, outFunc, clickFunc) {

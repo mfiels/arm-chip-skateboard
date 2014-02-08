@@ -147,7 +147,12 @@ var Modal = {
     Modal.show('Method 5: Scams', new Content(Content.SCAM), function() {
       Modal.hide();
     });
-  }
+  },
+  showNewsBlurb: function(){
+	Modal.show("REPORT", new Content(Content.NEWSPAPER),function(){
+		Modal.hide();
+	});
+  },
 };
 
 var Content = function(render) {
@@ -438,4 +443,45 @@ Content.withText = function(displayText) {
       surface.addChild(text);
     }
   );
+};
+
+Content.NEWSPAPER = function(surface){
+	var forgot=false;
+	var keylog=false;
+	var spoof = false;
+	var wifi = false;
+	var scam = false;
+	var strleft="";
+	for(var i=0;i<Game.data.currentActions.length;i++){
+		if(Game.data.currentActions[i].action==="Forgot" && !forgot){
+			var ind = Math.floor(Math.random()*ArticleInfo["Forgot"].length);
+			strleft+= ArticleInfo["Forgot"][ind]+"\n";
+			forgot=true;
+			}
+		else if(Game.data.currentActions[i].action==="Keylogger" && !keylog){
+		
+			var ind = Math.floor(Math.random()*ArticleInfo["Keylogger"].length);
+			strleft+= ArticleInfo["Keylogger"][ind]+"\n";
+			keylog=true;
+			}
+		else if(Game.data.currentActions[i].action==="SpoofWebsite" && !spoof){
+			var ind = Math.floor(Math.random()*ArticleInfo["SpoofWebsite"].length);
+			strleft+= ArticleInfo["SpoofWebsite"][ind]+"\n";
+			spoof=true;
+			}
+		else if(Game.data.currentActions[i].action==="Wifi" && !wifi){
+			var ind = Math.floor(Math.random()*ArticleInfo["Wifi"].length);
+			strleft+= ArticleInfo["Wifi"][ind]+"\n";
+			wifi=true;
+			}
+		else if(Game.data.currentActions[i].action==="Scam" && !scam ){
+		
+			var ind = Math.floor(Math.random()*ArticleInfo["Scam"].length);
+			strleft+= ArticleInfo["Scam"][ind]+"\n";
+			scam=true;
+			}
+	}
+	var txtLeft = new createjs.Text(strleft,"10px GameFont","#00FF00");
+	txtLeft.maxWidth = Content.WIDTH/2;
+	surface.addChild(txtLeft);
 };
