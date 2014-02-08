@@ -37,22 +37,10 @@ var Activities = {
     this.surface.addChild(icon);
     
     icon = ButtonHelper.newButton(
-        Game.data.images['Forgot'],
-        'Forgot',
-        Constants.ALL_ACTIONS.Forgot,
+        Game.data.images['SpoofWebsite'],
+        'Spoof Website',
+        Constants.ALL_ACTIONS.SpoofWebsite,
         114,
-        28,
-        handleHover,
-        handleUnhover,
-        handleClick
-    );
-    this.surface.addChild(icon);
-
-    icon = ButtonHelper.newButton(
-        Game.data.images['Forgot'],
-        'Forgot',
-        Constants.ALL_ACTIONS.Forgot,
-        208,
         28,
         handleHover,
         handleUnhover,
@@ -63,7 +51,9 @@ var Activities = {
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);
       Textbox.setBody(event.currentTarget.eventID.description);
-      Game.tempMoney(event.currentTarget.eventID.cost);
+      if (-1==$.inArray(event.currentTarget.name.replace(/ /g,''),Game.data.actions)){
+        Game.tempMoney(event.currentTarget.eventID.cost);
+      }
     }
     function handleUnhover(event) {
       Textbox.setTitle('');
@@ -71,6 +61,10 @@ var Activities = {
       Game.addMoney(0);
     }
     function handleClick(event) {
+      if (-1==$.inArray(event.currentTarget.name.replace(/ /g,''),Game.data.actions)){
+        Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
+        Game.addMoney(-event.currentTarget.eventID.cost);
+      } 
       console.log('clicked' + event.currentTarget.eventID);
     }
 
