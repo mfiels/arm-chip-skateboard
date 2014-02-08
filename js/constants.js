@@ -70,7 +70,7 @@ var Constants = {
       resourceGain: 5,
       lockDescription: 'Unlocks the local cafe.\n\nFree donuts and coffee 4Life!',
       description: 'Hates his customers',
-      image: 'highschooler.png',
+      image: 'netcafe.png',
     },
     'ApartmentOwner': {
       risk: 0,
@@ -78,15 +78,15 @@ var Constants = {
       resourceGain: 10,
       lockDescription: 'I will give you the keys to happiness....',
       description: 'Has acces to lots of things ;)',
-      image: 'highschooler.png',
+      image: 'apartmentowner.png',
     },
-    'AppleGenius': {
+    'Scammer': {
       risk: 0,
       cost: 5000,
       resourceGain: 20,
       lockDescription: 'I will do whatever you want ;)',
       description: 'Hates life and loves money',
-      image: 'highschooler.png',
+      image: 'scammer.png',
     },
   },
   
