@@ -96,10 +96,10 @@ var Resources = {
 	
 	//Load play button
 	this.playBtn=ButtonHelper.newButton(
-		Game.data.images['NetCafeOwner'],
+		Game.data.images['Play'],
 		'Play',
 		1,
-		this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2,
+		60,
 		220,
 		function(event){
 				Textbox.setTitle("Advance Day");
@@ -113,10 +113,7 @@ var Resources = {
 	);
 	
 	//load background
-    var background = new createjs.Shape();
-    background.graphics.beginFill("#000000")
-      .beginStroke('#00FF00')
-      .drawRect(0, 0, this.WIDTH, this.HEIGHT);
+  var background = new createjs.Bitmap(Game.data.images['resources']);
 	this.surface.addChild(background);
 	this.surface.addChild(this.resourceText);
 	this.surface.addChild(this.resourceText2);
