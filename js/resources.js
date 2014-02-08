@@ -47,8 +47,8 @@ var Resources = {
 	}
 	for(var i=0;i<Game.data.currentActions.length;i++){
 		var container = new createjs.Container();
-		container.x =5 + (Math.floor(i/this.ICONROWS)*(this.ICONWIDTH+5));
-		container.y = 5+ ((i%this.ICONROWS)*(this.ICONWIDTH+5));
+		container.x =10 + (Math.floor(i/this.ICONROWS)*(this.ICONWIDTH+5));
+		container.y = 10+ ((i%this.ICONROWS)*(this.ICONWIDTH+5));
 		var gfx = new createjs.Shape();
 		var action = Constants.ALL_ACTIONS[Game.data.currentActions[i].action];
 		var location = Constants.ALL_LOCATIONS[Game.data.currentActions[i].location];
