@@ -1,5 +1,5 @@
 var Constants = {
-  CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
+  CANVAS_WIDTH: 880,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
   INITIAL_MONEY: 50000,
@@ -29,6 +29,7 @@ var Constants = {
     'resources': 'resources.png',
     'Play': 'PlayButton.png',
 	'Unlock':'UnlockIcon.png',
+    'meter': 'meter.png',
   },
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
