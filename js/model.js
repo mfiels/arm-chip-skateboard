@@ -102,6 +102,7 @@ var Data = function(){
   this.days= Constants.INITIAL_DAYS;
   this.locations= Constants.INITIAL_LOCATIONS;
   this.actions= Constants.INITIAL_ACTIONS;
+  this.showTutorial = true;
   this.risk= 0;
   this.images= {};
   this.currentResources= 0;
@@ -123,6 +124,12 @@ var Data = function(){
   this.peopleCaughtLastTurn = 0,
   this.stepLogic=function() {
     this.days-=1;
+    if (this.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
+      Modal.showSecondIntroSequence();
+    }
+    this.profitLastTurn = 0;
+    this.peopleCaughtLastTurn = 0;
+
     Game.updateDays();
 		for(var i=0;i<this.currentActions.length;i++){
 			//
@@ -132,16 +139,20 @@ var Data = function(){
 			for(var j =0;j<count;j++) {
 				this.resources+=action.resources;
         profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * Math.sqrt(action.risk);
-        risk = action.risk + Game.data.actionUsage[action] / action.riskIncrease;
+        risk = action.risk + Game.data.actionUsage[action.parent] / action.riskIncrease;
 				
-        if(Math.random()*100 < risk) {
+        r = Math.random() * 100;
+        console.log('R = ' + r + 'RISK: ' + risk);
+        if(r < risk) {
           //shit hit the fan and this guy got screwed!
           this.risk++;
           console.log('Go to jail and do not collect 200 dollars!');
+          this.peopleCaughtLastTurn++
         }
         else {
           //got away clean!!!
           this.money+=profit;
+          this.profitLastTurn += profit;
         }
 
 				action.risk+=.02;
@@ -158,13 +169,17 @@ var Data = function(){
 				}
 			}
 		}
+
+    console.log("profitLastTurn: " + this.profitLastTurn);
+    console.log("peopleCaughtLastTurn: " + this.peopleCaughtLastTurn);
+
     if (this.days==0 && this.money<Constants.MONEY_GOAL) {
       console.log("Gameover?");
     }
     
 		
 		
-
+		Modal.showNewsBlurb();
 		this.currentActions.length=0;
 	};
 
@@ -180,6 +195,28 @@ var Data = function(){
   };
 
 }
+
+var ArticleInfo = {
+	'Forgot':[
+		"im bored blah blah blah blah blah"
+	],
+	'SpoofWebsite':[
+		"im bored2 blah blah blah blah blah"
+	],
+	'Keylogger':[
+		"im bored3 blah blah blah blah blah"
+	],
+	'Wifi':[
+		"im bored4 blah blah blah blah blah"
+	],
+	'Scam':[
+		"im bored5 blah blah blah blah blah"
+	
+	],
+	
+};
+
+
 
 var ButtonHelper = {
   newButton : function(img, name, obj, x, y, overFunc, outFunc, clickFunc) {
