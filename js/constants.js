@@ -24,9 +24,9 @@ var Constants = {
   ALL_DUDES: {
     'Highscooler': {
       risk: 0,
-      count: 1,
+      count: 0,
       description: 'Shady High School Kid',
-      image: 0,
+      image: 'highschooler.png',
     },
   },
   

@@ -7,6 +7,7 @@ var Game = {
 
   init: function(){
     this.canvas = new createjs.Stage('canvas');
+    this.canvas.enableMouseOver(10);
     this.data = new Data();
     Loader.init();
   },
