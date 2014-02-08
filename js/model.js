@@ -125,9 +125,6 @@ var Data = function(){
   this.peopleCaughtLastTurn = 0,
   this.stepLogic=function() {
     this.days-=1;
-    if (this.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
-      Modal.showSecondIntroSequence();
-    }
     this.profitLastTurn = 0;
     this.peopleCaughtLastTurn = 0;
 
