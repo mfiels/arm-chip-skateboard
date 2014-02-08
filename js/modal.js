@@ -147,6 +147,7 @@ var Modal = {
       case 'money': type = Content.GAME_OVER_MONEY; break;
     }
     Modal.show('', new Content(type), function() {
+		Modal.showStatsGraph();
       // nop
     });
   },
@@ -186,6 +187,11 @@ var Modal = {
       Modal.hide();
     }
 	});
+  },
+  showStatsGraph: function() {
+    Modal.show('Stats', new Content(Content.GRAPH_STATS), function() {
+		//nop
+    });
   },
 };
 
@@ -540,6 +546,22 @@ Content.NEWS = function(surface) {
   text.x = Content.WIDTH / 2.0;
   text.y = 0;
   surface.addChild(text);
+};
+
+Content.GRAPH_STATS = function(surface) {
+	var money = new createjs.Text("Money", "10px GameFont","#00ff00");
+	var profit = new createjs.Text("Profit", "10px GameFont","#ff0000");
+	var resources = new createjs.Text("Resources", "10px GameFont","#0000ff");
+	money.x=500;
+	money.y= 40;
+	profit.x=500;
+	profit.y=60;
+	resources.x=500;
+	resources.y=80;
+	surface.addChild(Game.data.graphs.stats.container);
+	surface.addChild(money);
+	surface.addChild(profit);
+	surface.addChild(resources);
 };
 
 Content.NEWSPAPER = function(surface){

@@ -102,6 +102,10 @@ var Data = function(){
   this.days= Constants.INITIAL_DAYS;
   this.locations= Constants.INITIAL_LOCATIONS;
   this.actions= Constants.INITIAL_ACTIONS;
+  this.graphs= {
+		
+		stats: new GraphUtil.newLineGraph(500,300).addSeries("#00ff00").addSeries("#ff0000").addSeries("#0000ff"),
+  };
   this.showTutorial = true;
   this.risk= 0;
   this.images= {};
@@ -128,7 +132,7 @@ var Data = function(){
     this.days-=1;
     this.profitLastTurn = 0;
     this.peopleCaughtLastTurn = 0;
-
+	
     Game.updateDays();
     Game.data.risk+=2;
     RiskMeter.update();
@@ -173,7 +177,9 @@ var Data = function(){
 
     console.log("profitLastTurn: " + this.profitLastTurn);
     console.log("peopleCaughtLastTurn: " + this.peopleCaughtLastTurn);
-
+	
+		this.graphs.stats.addPoint(0,this.money).addPoint(1,profit).addPoint(2,this.resources);
+		
     if (this.days==0 && this.money<Constants.MONEY_GOAL) {
       console.log("Gameover?");
     }
@@ -224,7 +230,7 @@ var ArticleInfo = {
 	'Scam':[
 		"Administrators will not have to ask you for your password (the server only has your password hash).",
 		"If you go into a store, do not log in to any personal accounts using those machines.",
-		"A sales rep should not need for you to log into your own account, they should there own method of interacting with your account data.",
+		"A sales rep should not need for you to log into your own account, they should have their own method of interacting with your account's data.",
 	
 	],
 	
