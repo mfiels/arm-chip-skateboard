@@ -3,7 +3,7 @@ var Map = {
 
   WIDTH: 600,
   HEIGHT: 350,
-  X: 0,
+  X: 80,
   Y: 0,
   WIN_WIDTH:120,
   WIN_HEIGHT:100,
@@ -39,8 +39,10 @@ var Map = {
 			loc = Constants.ALL_LOCATIONS[Map.currLocation];
 			act = Constants.ALL_ACTIONS[action];
 
-			profit = (loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath) * Math.sqrt(act.risk);
-			risk = act.risk + Game.data.actionUsage[action] / act.riskIncrease;
+			profit = (loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath) * act.scoreMult;
+			risk = act.risk + Game.data.actionUsage[action] * act.riskIncrease * loc.riskModifier;
+			if(risk > 100)
+				risk = 100;
 
 			Textbox.setBody("Profability: $" + profit.toFixed(2) + '\n\nRisk: ' + risk.toFixed(2));
 			Resources.modifyGhostResource(-Constants.ALL_ACTIONS[action].resources);

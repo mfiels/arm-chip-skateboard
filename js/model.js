@@ -19,6 +19,7 @@ var Game = {
     Textbox.init();
     Resources.init();
     Dudes.init();
+    RiskMeter.init();
     Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
     createjs.Ticker.setFPS(60);
@@ -114,6 +115,7 @@ var Data = function(){
     'Scam': 0,
   };
   this.locationUsage= {
+    'Highschool': 0,
     'Library': 0,
     'Netcafe': 0,
     'Apartment': 0,
@@ -123,9 +125,6 @@ var Data = function(){
   this.peopleCaughtLastTurn = 0,
   this.stepLogic=function() {
     this.days-=1;
-    if (this.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
-      Modal.showSecondIntroSequence();
-    }
     this.profitLastTurn = 0;
     this.peopleCaughtLastTurn = 0;
 
@@ -137,16 +136,17 @@ var Data = function(){
 			var count = this.currentActions[i].count;
 			for(var j =0;j<count;j++) {
 				this.resources+=action.resources;
-        profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * Math.sqrt(action.risk);
-        risk = action.risk + Game.data.actionUsage[action.parent] / action.riskIncrease;
-				
+        profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * action.scoreMult;
+        risk = action.risk + Game.data.actionUsage[action.parent] * action.riskIncrease * location.riskModifier;
         r = Math.random() * 100;
         console.log('R = ' + r + 'RISK: ' + risk);
         if(r < risk) {
           //shit hit the fan and this guy got screwed!
-          this.risk++;
           console.log('Go to jail and do not collect 200 dollars!');
           this.peopleCaughtLastTurn++
+
+          Game.data.risk++;
+          RiskMeter.update();
         }
         else {
           //got away clean!!!

@@ -3,7 +3,7 @@ var Resources = {
 
   WIDTH: 200,
   HEIGHT: 350,
-  X: 600,
+  X: 680,
   Y: 0,
   ICONWIDTH:20,
   ICONCOLS:3,

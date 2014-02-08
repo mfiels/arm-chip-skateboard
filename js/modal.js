@@ -7,7 +7,7 @@ var Modal = {
 
   WIDTH: 600,
   HEIGHT: 400,
-  X: 100,
+  X: 140,
   Y: 100,
 
   CONTENT_PADDING_HORIZONTAL: 10,
@@ -104,11 +104,7 @@ var Modal = {
   },
 
   showIntroSequence: function() {
-    Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
-      Modal.show('Tutorial?', new Content(Content.TUTORIAL), function() {
-        Modal.hide();
-      });
-    });
+    this.showSplash();
   },
 
   showSecondIntroSequence: function() {
@@ -143,6 +139,28 @@ var Modal = {
     });
   },
 
+  showGameOver: function(reason) {
+    var type;
+    switch (reason) {
+      case 'awareness': type = Content.GAME_OVER_AWARENESS; break;
+      case 'time': type = Content.GAME_OVER_TIME; break;
+      case 'money': type = Content.GAME_OVER_MONEY; break;
+    }
+    Modal.show('', new Content(type), function() {
+      // nop
+    });
+  },
+
+  showSplash: function() {
+    Modal.show('Splash', new Content(Content.SPLASH), function() {
+      Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
+        Modal.show('Tutorial?', new Content(Content.TUTORIAL), function() {
+          Modal.hide();
+        });
+      });
+    });
+  },
+
   showScamMethod: function() {
     Modal.show('Method 5: Scams', new Content(Content.SCAM), function() {
       Modal.hide();
@@ -150,7 +168,17 @@ var Modal = {
   },
   showNewsBlurb: function(){
 	Modal.show("REPORT", new Content(Content.NEWSPAPER),function(){
-		Modal.hide();
+    if (Game.data.days == 0 && Game.data.money < Constants.MONEY_GOAL) {
+      Modal.showGameOver('time');
+    } else if (Game.data.risk >= 100) {
+      Modal.showGameOver('awareness');
+    } else if (Game.data.money >= Constants.MONEY_GOAL) {
+      Modal.showGameOver('money');
+    } else if (Game.data.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
+      Modal.showSecondIntroSequence();
+    } else {
+      Modal.hide();
+    }
 	});
   },
 };
@@ -429,7 +457,58 @@ Content.TUTORIAL_RISK = function(surface) {
   text.x = Content.WIDTH / 2.0;
   text.y = 0;
   surface.addChild(text);
-}
+};
+
+Content.GAME_OVER_AWARENESS = function(surface) {
+  var go = new createjs.Bitmap(Game.data.images['GameOver']);
+  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
+  var text = new createjs.Text('Your targets have caught on to your attacks and are now no longer logging in on untrusted computers!', '16px GameFont', '#00FF00')
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 50;
+  surface.addChild(text);
+};
+
+Content.GAME_OVER_TIME = function(surface) {
+  var go = new createjs.Bitmap(Game.data.images['GameOver']);
+  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
+  var text = new createjs.Text('You haven\'t paid your rent in time and have been thrown out of your apartment!', '16px GameFont', '#00FF00')
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 50;
+  surface.addChild(text);
+};
+
+Content.GAME_OVER_MONEY = function(surface) {
+  var go = new createjs.Bitmap(Game.data.images['Success']);
+  go.x = (Content.WIDTH - Game.data.images['Success'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
+  var text = new createjs.Text('You managed to pay your rent on time before your targets were able to catch on to you! Now what to do for next month\'s rent...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 50;
+  surface.addChild(text);
+};
+
+Content.SPLASH = function(surface) {
+  var sp = new createjs.Bitmap(Game.data.images['Splash']);
+  sp.x = -20;
+  sp.y = -80;
+  surface.addChild(sp);
+  Modal.surface.removeChild(Modal.okayButton);
+  Modal.surface.addChild(Modal.okayButton);
+};
 
 Content.withText = function(displayText) {
   return new Content(

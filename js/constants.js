@@ -1,12 +1,12 @@
 var Constants = {
-  CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
+  CANVAS_WIDTH: 880,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50000,
-  INITIAL_RESOURCES: 100,
+  INITIAL_MONEY: 0,
+  INITIAL_RESOURCES: 1,
   INITIAL_DAYS: 30,
 
-  MONEY_GOAL: 100000,
+  MONEY_GOAL: 5000,
   
   INITIAL_LOCATIONS: [
     'Library',
@@ -29,6 +29,7 @@ var Constants = {
     'resources': 'resources.png',
     'Play': 'PlayButton.png',
 	'Unlock':'UnlockIcon.png',
+    'meter': 'meter.png',
   },
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
@@ -37,7 +38,8 @@ var Constants = {
     'Forgot': {
       parent: 'Forgot',
       risk: 1,
-      riskIncrease: 10,
+      riskIncrease: 1,
+      scoreMult: 1,
 	    riskModifier: 1,
       resources: 1,
       cost: 1,
@@ -48,10 +50,11 @@ var Constants = {
     },
     'SpoofWebsite': {
       parent: 'SpoofWebsite',
-      risk: 5,
-      riskIncrease: 8,
+      risk: 1.2,
+      scoreMult: 1.2,
+      riskIncrease: 1.1,
       resources: 2,
-      cost: 2,
+      cost: 100,
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'spoof.png',
       color: '#af0000',
@@ -59,10 +62,11 @@ var Constants = {
     },
     'Keylogger': {
       parent: 'Keylogger',
-      risk: 10,
-      riskIncrease: 5,
+      scoreMult: 1.5,
+      risk: 1.5,
+      riskIncrease: 1.3,
       resources: 3,
-      cost: 10,
+      cost: 450,
       description: 'Install keyloggers to capture people\'s log in info.',
       image: 'keylogger.png',
       color: '#af0000',
@@ -70,10 +74,11 @@ var Constants = {
     },
     'Wifi': {
       parent: 'Wifi',
-      risk: 20,
-      riskIncrease: 2,
+      scoreMult: 1.75,
+      risk: 2,
+      riskIncrease: 1.5,
       resources: 6,
-      cost: 20,
+      cost: 500,
       description: 'Setup a fake open wireless access point and record traffic.',
       image: 'wifi.png',
       color: '#af0000',
@@ -81,10 +86,11 @@ var Constants = {
     },
     'Scam': {
       parent: 'Scam',
-      risk: 40,
-      riskIncrease: 2,
+      scoreMult: 2.0,
+      risk: 4,
+      riskIncrease: 1.5,
       resources: 8,
-      cost: 30,
+      cost: 550,
       description: 'Place scammers who can use social engineering to steal passwords.',
       image: 'scam.png',
       color: '#af0000',
@@ -95,14 +101,14 @@ var Constants = {
   ALL_DUDES: {
     'Highschooler': {
       resourceGain: 1,
-      cost: 100,
+      cost: 10,
 	  location: "Highschool",
       lockDescription: 'Gain access to the local high school.\n\nThose poor kids...',
       description: 'Shady high school kid',
       image: 'highschooler.png',
     },
     'NetCafeOwner': {
-      cost: 500,
+      cost: 250,
 	  location: "Netcafe",
       resourceGain: 5,
       lockDescription: 'Unlocks the local cafe.\n\nFree donuts and coffee 4Life!',
@@ -110,7 +116,7 @@ var Constants = {
       image: 'netcafe.png',
     },
     'ApartmentOwner': {
-      cost: 2000,
+      cost: 500,
 	  location: "Apartment",
       resourceGain: 10,
       lockDescription: 'Receive keys to the apartment.\n\nI will give you the keys to happiness....',
@@ -118,7 +124,7 @@ var Constants = {
       image: 'apartmentowner.png',
     },
     'Scammer': {
-      cost: 5000,
+      cost: 700,
 	  location: "Computer Store",
       resourceGain: 20,
       lockDescription: 'Unlock access to the computer score.\n\nI will do whatever you want... For a price ;)',
@@ -131,7 +137,7 @@ var Constants = {
     'Library': {
       parent: 'Library',
       awarness: 0,
-  	  riskModifier: .1,
+  	  riskModifier: 1,
 	    unlock:"none",
       rewardDeath: 100,
       reward: 10,
@@ -144,7 +150,7 @@ var Constants = {
 	'Netcafe': {
     parent: 'Netcafe',
     risk: 0,
-	  riskModifier: .1,
+	  riskModifier: 0.4,
 	  unlock:"NetCafeOwner",
     rewardDeath: 100,
     reward: 20,
@@ -156,9 +162,11 @@ var Constants = {
 	  mapr:50,
     },
 	'Highschool': {
+    parent: 'Highschool',
     risk: 0,
-	  riskModiier: .1,
-    reward: 25,
+	  riskModifier: 0.8,
+    reward: 12,
+    rewardDeath: 100,
 	  unlock:"Highschooler",
     description: 'Netcafe',
     image: 'hello.png',
@@ -170,7 +178,7 @@ var Constants = {
 	'Apartment': {
     parent: 'Apartment',
     risk: 0,
-	  riskModifier: .1,
+	  riskModifier: 0.2,
 	  unlock:"ApartmentOwner",
     rewardDeath: 100,
     reward: 30,
@@ -214,7 +222,10 @@ var Constants = {
     'BadSsid': 'BadWifi2.png',
     'EmployeeScam': 'EmployeeScam.png',
     'MapSmall': 'MapSmall.png',
-    'Clippy': 'Clippy.png'
+    'Clippy': 'Clippy.png',
+    'Splash': 'splash.png',
+    'GameOver': 'GameOver.png',
+    'Success': 'success.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 

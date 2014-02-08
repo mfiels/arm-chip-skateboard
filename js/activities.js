@@ -3,7 +3,7 @@ var Activities = {
 
   WIDTH: 600,
   HEIGHT: 200,
-  X: 0,
+  X: 80,
   Y: 350,
 
   moneyCounter: new createjs.Text('$', '22px GameFont', '#00FF00'),
