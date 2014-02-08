@@ -95,7 +95,7 @@ var Dudes = {
       if(Game.addMoney(-event.currentTarget.eventID.cost)) {
         Dudes.UNLOCKED[nameNoSpaces] = true;
         Game.addResources(event.currentTarget.eventID.resourceGain);
-
+		Map.newLocationUnlocked(event.currentTarget.eventID.location);
         Textbox.setBody(event.currentTarget.eventID.description);   
       }
       Game.tempMoney(-event.currentTarget.eventID.cost);     
