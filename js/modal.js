@@ -128,3 +128,18 @@ Content.INTRO = function(surface) {
   text.x = Content.WIDTH / 2.0;
   surface.addChild(text);
 };
+
+Content.withText = function(displayText) {
+  return new Content(
+    function(surface) {
+      console.log(text);
+      var text = new createjs.Text(displayText, '16px GameFont', '#00FF00');
+      text.lineWidth = Content.WIDTH;
+      text.lineHeight = 30;
+      text.textAlign = 'center';
+      text.x = Content.WIDTH / 2.0;
+      text.y = 1 * Content.HEIGHT / 3.0  - text.getMeasuredHeight() / 2.0;
+      surface.addChild(text);
+    }
+  );
+};

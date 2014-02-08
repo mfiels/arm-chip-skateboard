@@ -23,11 +23,20 @@ var Game = {
   },
 
   addMoney: function(amount){
-    this.data.money += amount;
-    Activities.moneyCounter.text="$"+this.data.money;
+    Activities.moneyCounter.color='#00FF00'
+    if (this.data.money + amount > 0) {
+      this.data.money += amount;
+      Activities.moneyCounter.text="$"+this.data.money;
+      return true;
+    }
+    return false;
   },
   tempMoney: function(amount){
-    Activities.moneyCounter.text="$"+this.data.money+"  ->  "+(this.data.money-amount);
+    if (this.data.money + amount < 0) {
+      console.log(this.data.money, amount);
+      Activities.moneyCounter.color='#FF0000';
+    }
+    Activities.moneyCounter.text="$"+this.data.money+"  ->  $"+(this.data.money+amount);
   },
   addAction: function(action, location){
 	//search model for action and location pair

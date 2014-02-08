@@ -52,7 +52,7 @@ var Activities = {
       Textbox.setTitle(event.currentTarget.name);
       Textbox.setBody(event.currentTarget.eventID.description);
       if (-1==$.inArray(event.currentTarget.name.replace(/ /g,''),Game.data.actions)){
-        Game.tempMoney(event.currentTarget.eventID.cost);
+        Game.tempMoney(-event.currentTarget.eventID.cost);
       }
     }
     function handleUnhover(event) {
@@ -62,8 +62,12 @@ var Activities = {
     }
     function handleClick(event) {
       if (-1==$.inArray(event.currentTarget.name.replace(/ /g,''),Game.data.actions)){
-        Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
-        Game.addMoney(-event.currentTarget.eventID.cost);
+        enoughMoney = Game.addMoney(-event.currentTarget.eventID.cost);
+        if (enoughMoney) {
+          Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
+        } else {
+          Game.tempMoney(-event.currentTarget.eventID.cost);
+        }
       } 
       console.log('clicked' + event.currentTarget.eventID);
     }
