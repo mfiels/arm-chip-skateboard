@@ -18,6 +18,7 @@ var Constants = {
       resources: 1,
       description: 'Someone forgot to log off!',
       image: 'hello.png',
+	  color: '#af0000',
     },
   },
 
@@ -36,6 +37,7 @@ var Constants = {
       reward: 0,
       description: 'Library',
       image: 'hello.png',
+	  color: '#ff0000',
     },
   },
 
