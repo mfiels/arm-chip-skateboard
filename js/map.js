@@ -17,5 +17,3 @@ var Map = {
     Game.canvas.addChild(this.surface);
   }
 };
-
-Map.init();

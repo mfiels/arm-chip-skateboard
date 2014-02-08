@@ -17,5 +17,3 @@ var Textbox = {
     Game.canvas.addChild(this.surface);
   }
 };
-
-Textbox.init();

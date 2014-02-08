@@ -17,5 +17,3 @@ var Activities = {
     Game.canvas.addChild(this.surface);
   }
 };
-
-Activities.init();

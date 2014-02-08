@@ -9,6 +9,8 @@
 
 		<!-- create.js lib -->
 		<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+		<!-- jquery -->
+		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 		<!-- game stuff -->
     <script src="js/constants.js"></script>
@@ -19,7 +21,9 @@
     <script src="js/activities.js"></script>
     <script src="js/textbox.js"></script>
     <script>
-			Game.init();
+			$(document).ready(function(){
+				Game.init();
+			});
 		</script>
 	</body>
 </html>

@@ -17,5 +17,3 @@ var Resources = {
     Game.canvas.addChild(this.surface);
   }
 };
-
-Resources.init();

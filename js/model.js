@@ -9,6 +9,10 @@ var Game = {
     this.canvas = new createjs.Stage('canvas');
     createjs.Ticker.addEventListener('tick', this.canvas);
     this.data = new Data();
+    Map.init();
+    Activities.init();
+    Textbox.init();
+    Resources.init();
   },
 };
 
