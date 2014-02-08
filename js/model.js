@@ -22,10 +22,16 @@ var Game = {
     createjs.Ticker.addEventListener('tick', this.canvas);
   },
   addAction: function(action, location){
-	this.data.currentActions.push(new Pair(action,location));
-	Resources.updateCurrentActions();
-  }
-
+  	this.data.currentActions.push(new Pair(action,location));
+  	Resources.updateCurrentActions();
+  },
+  addMoney: function(amount){
+    this.data.money += amount;
+    Activities.moneyCounter.text="$"+this.data.money;
+  },
+  tempMoney: function(amount){
+    Activities.moneyCounter.text="$"+this.data.money+"  ->  "+(this.data.money-amount);
+  },
 };
 
 var Pair = function(initialAction,initialLocation){

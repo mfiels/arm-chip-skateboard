@@ -4,7 +4,7 @@ var Dudes = {
   WIDTH: 200,
   HEIGHT: 200,
   X: 600,
-  Y: 300,
+  Y: 350,
 
   init: function() {
     this.surface.x = this.X;
