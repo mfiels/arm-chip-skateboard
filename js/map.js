@@ -5,19 +5,32 @@ var Map = {
   HEIGHT: 350,
   X: 0,
   Y: 0,
-  WIN_WIDTH:500,
+  WIN_WIDTH:120,
   WIN_HEIGHT:100,
   color:"#00ff00",
   boundedArea:{},
   hoverWindow: new createjs.Container(),
   currLocation:"",
   numActions:0,
+  newLocationUnlocked: function(location){
+	if(this.boundedArea[location]){
+		this.boundedArea[location].lock.visible=false;
+		this.boundedArea[location].area.visible=true;
+	}
+  },
   newActionUnlocked: function(action){
 	var act = Constants.ALL_ACTIONS[action];
 	function genHover(action){
 		return function(event){
 			Textbox.setTitle(action);
-			Textbox.setBody("use description for action?");
+
+			loc = Constants.ALL_LOCATIONS[Map.currLocation];
+			act = Constants.ALL_ACTIONS[action];
+
+			profit = loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath;
+			risk = act.risk - Game.data.locationUsage[action] / act.riskDeath;
+
+			Textbox.setBody("Profability: $" + profit.toFixed(2) + '\n\nRisk: ' + risk.toFixed(2));
 			Resources.modifyGhostResource(-Constants.ALL_ACTIONS[action].resources);
 		};
 	}
@@ -33,11 +46,11 @@ var Map = {
 		};
 	}
 	var btn = ButtonHelper.newButtonSpecial(
-		Game.data.images[action],
+		Game.data.images[action+"_sm"],
         action,
         1,
-        10+this.numActions*80,
-        15,
+        10+(Math.floor(this.numActions/2))*35,
+        15+(this.numActions%2)*35,
         genHover(action),
         handleUnhover,
         genClick(action));
@@ -49,9 +62,6 @@ var Map = {
     this.surface.y = this.Y;
     var background = new createjs.Bitmap(Game.data.images['map']);
 	  this.surface.addChild(background);
-	
-	
-	
 	
 	var hoveron=function(event){
 		Map.hoverWindow.visible=true;
@@ -69,16 +79,42 @@ var Map = {
 	for(var key in Constants.ALL_LOCATIONS){
 		var loc = Constants.ALL_LOCATIONS[key];
 		var container = new createjs.Container();
+		
 		container.x=loc.mapx;
 		container.y=loc.mapy;
 		var boundShape = new createjs.Shape();
 		var innerShape = new createjs.Shape();
+		function setTextboxFunc(title,body){
+			return function(){
+				Textbox.setTitle(title);
+				Textbox.setBody(body);
+			};
+		}
+		this.boundedArea[key]={};
+		if(Constants.INITIAL_LOCATIONS.indexOf(key)==-1){
+			var lock =  ButtonHelper.newButton(
+				Game.data.images["Lock"],
+				'Scammer',
+				1,
+				-25,
+				-25,
+				setTextboxFunc(key, "Unlock "+Constants.ALL_LOCATIONS[key].unlock+" to use this location."),
+				setTextboxFunc("",""),
+				function(){}
+			);
+			this.boundedArea[key].lock = lock;
+			container.addChild(lock);
+			innerShape.visible=false;
+		}
+		
+
 		innerShape.alpha=.01;
-		innerShape.graphics.beginFill(this.color).drawRect(0,0,loc.mapw,loc.maph);
-		boundShape.graphics.beginStroke(this.color).setStrokeStyle(4).drawRect(0,0,loc.mapw,loc.maph);
+		innerShape.graphics.beginFill(this.color).drawCircle(0,0,loc.mapr);
+		//boundShape.graphics.beginStroke(this.color).setStrokeStyle(4).drawCircle(0,0,loc.mapr);
 		ButtonHelper.newButtonObj(innerShape,key,genHoverFunc(key),hoverout,click);
 		innerShape.locx = loc.mapx;
 		innerShape.locy = loc.mapy;
+		this.boundedArea[key].area=innerShape;
 		container.addChild(boundShape);
 		container.addChild(innerShape);
 		this.surface.addChild(container);
