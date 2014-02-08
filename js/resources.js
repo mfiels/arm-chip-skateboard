@@ -99,15 +99,15 @@ var Resources = {
 		Game.data.images['Play'],
 		'Play',
 		1,
-		60,
-		220,
+		20,
+		250,
 		function(event){
 				Textbox.setTitle("Advance Day");
 				Textbox.setBody("Performs all actions queued up.");
 		},
 		function (event) {
 		  Textbox.setTitle('');
-		  Textbox.setBody('');
+		  Textbox.setBody(Constants.DEFAULT_TEXTBOX_TEXT);
 		},
 		function(){Game.step()}
 	);
