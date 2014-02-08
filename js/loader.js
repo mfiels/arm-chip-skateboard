@@ -17,7 +17,9 @@ var Loader = {
     $.each(Constants.LESSON_IMAGES, function(key,val){
       q.loadFile({id: key, src: "images/"+val});
     });
-    q.loadFile({id: 'map', src: "images/"+Constants.MAP_IMAGE});
+    $.each(Constants.MISC_IMAGES, function(key,val){
+      q.loadFile({id: key, src: "images/"+val});
+    });
     q.load();
 
   },
