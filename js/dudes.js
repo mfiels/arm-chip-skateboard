@@ -2,7 +2,7 @@ var Dudes = {
   surface: new createjs.Container(),
 
   WIDTH: 200,
-  HEIGHT: 150,
+  HEIGHT: 200,
   X: 600,
   Y: 350,
 
@@ -15,19 +15,68 @@ var Dudes = {
     this.surface.addChild(background);
 
     //added high schoolers
-    var highschooler = new createjs.Bitmap(Game.data.images['Highschooler']);
-    highschooler.x = 10;
-    highschooler.y = 10;
+    highschooler = ButtonHelper.newButton(
+        Game.data.images['Highschooler'],
+        'Highschooler',
+        Constants.ALL_DUDES.Highschooler,
+        10,
+        10,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
     this.surface.addChild(highschooler);
 
+    netCafeOwner = ButtonHelper.newButton(
+        Game.data.images['NetCafeOwner'],
+        'Net Cafe Owner',
+        Constants.ALL_DUDES.NetCafeOwner,
+        105,
+        10,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+
+    apartmentOwner = ButtonHelper.newButton(
+        Game.data.images['ApartmentOwner'],
+        'Apartment Owner',
+        Constants.ALL_DUDES.ApartmentOwner,
+        10,
+        105,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+
+    targetEmployee = ButtonHelper.newButton(
+        Game.data.images['TargetEmployee'],
+        'Target Employee',
+        Constants.ALL_DUDES.TargetEmployee,
+        105,
+        105,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+
+    this.surface.addChild(apartmentOwner);
+    this.surface.addChild(highschooler);
+    this.surface.addChild(netCafeOwner);
+    this.surface.addChild(targetEmployee);
+
     Game.canvas.addChild(this.surface);
-
-
-    var helper = new createjs.ButtonHelper(this.surface);
-    this.surface.addEventListener("click", handleClick);
     
+    function handleHover(event) {
+      Textbox.setTitle(event.currentTarget.name);
+      Textbox.setBody(event.currentTarget.eventID.description);
+    }
+    function handleUnhover(event) {
+      Textbox.setTitle('');
+      Textbox.setBody('');
+    }
     function handleClick(event) {
-       console.log("Button Clicked");
+      console.log('clicked' + event.currentTarget.eventID);
     }
   },
 
