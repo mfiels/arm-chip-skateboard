@@ -231,21 +231,20 @@ Content.KEY_LOGGER = function(surface) {
 
 Content.WIFI = function(surface) {
   var wifiImage = new createjs.Bitmap(Game.data.images['BadWifi']);
-  wifiImage.x = Content.WIDTH / 2.0 - Game.data.images['BadWifi'].width / 2.0;
-  wifiImage.y = 165;
+  wifiImage.x = Content.WIDTH / 2.0 - Game.data.images['BadWifi'].width / 2.0 + 80;
+  wifiImage.y = 65;
   surface.addChild(wifiImage);
 
   var ssidImage = new createjs.Bitmap(Game.data.images['BadSsid']);
-  ssidImage.x = Content.WIDTH / 2.0 - Game.data.images['BadSsid'].width / 2.0;
-  ssidImage.y = 50;
+  ssidImage.x = Content.WIDTH / 2.0 - Game.data.images['BadSsid'].width / 2.0 - 80;
+  ssidImage.y = 70;
   surface.addChild(ssidImage);
 
-  var text = new createjs.Text('People tend to be more willing to connect to free and open public wifi, let\'s exploit this...', '16px GameFont', '#00FF00');
+  var text = new createjs.Text('People tend to be willing to connect to free and open public wifi, let\'s exploit this...', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = -10;
   surface.addChild(text);
 
   text = new createjs.Text('By planting an \'innocent\' open wireless network in public we can record connected web traffic!', '16px GameFont', '#00FF00');
@@ -253,7 +252,7 @@ Content.WIFI = function(surface) {
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = 110;
+  text.y = 150;
   surface.addChild(text);
 };
 
