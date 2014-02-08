@@ -7,13 +7,17 @@ var Game = {
 
   init: function(){
     this.canvas = new createjs.Stage('canvas');
-    createjs.Ticker.addEventListener('tick', this.canvas);
     this.data = new Data();
+    Loader.init();
+  },
+
+  start: function(){
     Map.init();
     Activities.init();
     Textbox.init();
     Resources.init();
     Dudes.init();
+    createjs.Ticker.addEventListener('tick', this.canvas);
   },
 };
 
@@ -24,6 +28,7 @@ var Data = function(){
   this.locations= Constants.INITIAL_LOCATIONS;
   this.actions= Constants.INITIAL_ACTIONS;
   this.risk= 0;
+  this.images= {};
 
   this.currentResources= 0;
   this.currentActions= [];
