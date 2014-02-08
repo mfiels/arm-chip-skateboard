@@ -20,6 +20,7 @@ var Constants = {
       description: 'Someone forgot to log off!',
       image: 'forgot.png',
 	    color: '#af0000',
+      modalMethod: 'showForgotMethod',
     },
     'SpoofWebsite': {
       risk: 0,
@@ -80,5 +81,13 @@ var Constants = {
     'SpoofLocked' : 'SpoofLocked.png',
   },
 
-  INTRO_STRING: 'Welcome to the Hackmaster 69,000!!! You think you got it what it takes to be a big shot? I don\'t think you do...'
+  LESSON_IMAGES: {
+    'ForgotDontSave': 'DontSave.png',
+    'ForgotSignOut': 'SignOut.png',
+    'ForgotStaySignedIn': 'StaySignedIn.png'
+  },
+
+  INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
+                ' There are plenty of uneducated computer users in this town,' +
+                ' let\'s see how much $$$ we can make off of them...'
 };
