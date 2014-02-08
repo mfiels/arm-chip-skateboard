@@ -217,11 +217,14 @@ var ArticleInfo = {
 		"34% of users have fallen victim to a keylogger at least once before"
 	],
 	'Wifi':[
-		"Users are no longer transmitting sensitive information when using a public wifi connection",
-		
+		"Users are no longer transmitting sensitive information when using a public/unencrypted wifi connection",
+		"IEEE releases new wifi protocol which enforces encrypted traffic.",
+		"15% of users still transmit sensitive information over open wifi without any encryption at all."
 	],
 	'Scam':[
-		"im bored5 blah blah blah blah blah"
+		"Administrators will not have to ask you for your password (the server only has your password hash).",
+		"If you go into a store, do not log in to any personal accounts using those machines.",
+		"A sales rep should not need for you to log into your own account, they should there own method of interacting with your account data.",
 	
 	],
 	
