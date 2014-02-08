@@ -40,7 +40,7 @@ var Dudes = {
 
     apartmentOwner = ButtonHelper.newButton(
         Game.data.images['ApartmentOwner'],
-        'ApartmentOwner',
+        'Apartment Owner',
         Constants.ALL_DUDES.ApartmentOwner,
         10,
         105,
@@ -50,9 +50,9 @@ var Dudes = {
     );
 
     targetEmployee = ButtonHelper.newButton(
-        Game.data.images['TargetEmployee'],
-        'TargetEmployee',
-        Constants.ALL_DUDES.TargetEmployee,
+        Game.data.images['AppleGenius'],
+        'Apple Genius',
+        Constants.ALL_DUDES.AppleGenius,
         105,
         105,
         handleHover,
@@ -66,10 +66,6 @@ var Dudes = {
     this.surface.addChild(targetEmployee);
 
     Game.canvas.addChild(this.surface);
-
-
-    var helper = new createjs.ButtonHelper(highschooler);
-    var helper = new createjs.ButtonHelper(netCafeOwner);
     
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);
@@ -81,6 +77,7 @@ var Dudes = {
     }
     function handleClick(event) {
       console.log('clicked' + event.currentTarget.eventID);
+      Game.data.addResources(event.currentTarget.eventID.resourceGain);
     }
   },
 

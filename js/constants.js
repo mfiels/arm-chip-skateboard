@@ -26,29 +26,29 @@ var Constants = {
   ALL_DUDES: {
     'Highschooler': {
       risk: 0,
-      count: 0,
+      resourceGain: 1,
       cost: 100,
-      description: 'Shady High School Kid',
+      description: 'Shady high school kid',
       image: 'highschooler.png',
     },
     'NetCafeOwner': {
       risk: 0,
       cost: 500,
-      count: 0,
+      resourceGain: 5,
       description: 'Hates his customers',
       image: 'highschooler.png',
     },
     'ApartmentOwner': {
       risk: 0,
       cost: 2000,
-      count: 0,
+      resourceGain: 10,
       description: 'Has acces to lots of things ;)',
       image: 'highschooler.png',
     },
-    'TargetEmployee': {
+    'AppleGenius': {
       risk: 0,
       cost: 5000,
-      count: 0,
+      resourceGain: 20,
       description: 'Hates life and loves money',
       image: 'highschooler.png',
     },
@@ -66,6 +66,9 @@ var Constants = {
 
   MISC_IMAGES: {
     'ModalClose': {
+      image: 'hello.png'
+    },
+    'ModalOkay': {
       image: 'hello.png'
     }
   }

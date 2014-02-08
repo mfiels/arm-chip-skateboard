@@ -8,9 +8,9 @@ var Resources = {
   ICONWIDTH:50,
   RESOURCEWIDTH:150,
   color:"#ff7700",
+  textcolor:"#ff7700",
   resourceArrow: new createjs.Shape(),
   iconContainer: new createjs.Container(),
-  
   updateResource: function(){
 	this.resourceText.text = Game.data.resources.toString();
   },
@@ -19,7 +19,7 @@ var Resources = {
 		this.resourceArrow.visible=false;
 		this.resourceText2.visible=false;
 	}
-	else{	
+	else{
 		this.resourceArrow.visible=true;
 		this.resourceText2.visible=true;
 		this.resourceText2.text = (Game.data.resources-num).toString();
@@ -28,15 +28,30 @@ var Resources = {
   
   updateCurrentActions: function(){
 	this.iconContainer.removeAllChildren();
+	function removeIndexCallback(index){
+		return function(){
+			Game.removeAction(index);
+		};
+	}
 	for(var i=0;i<Game.data.currentActions.length;i++){
+		var container = new createjs.Container();
 		var gfx = new createjs.Shape();
-		var action = Game.data.currentActions[i].action;
-		var location = Game.data.currentActions[i].location;
+		var action = Constants.ALL_ACTIONS[Game.data.currentActions[i].action];
+		var location = Constants.ALL_LOCATIONS[Game.data.currentActions[i].location];
 		gfx.graphics.beginFill(action.color).drawRect(0,0,this.ICONWIDTH,this.ICONWIDTH);
-		gfx.graphics.beginFill(location.color).drawCircle(this.ICONWIDTH/2, this.ICONWIDTH/2,8);
+		gfx.graphics.beginFill(location.color).drawCircle(10, 10,8);
 		gfx.x =5;
 		gfx.y = 5+ (i*(this.ICONWIDTH+5));
-		this.iconContainer.addChild(gfx);
+		container.addChild(gfx);
+		if(Game.data.currentActions[i].count>1){
+			var text = new createjs.Text(Game.data.currentActions[i].count.toString(),"20px GameFont",this.textcolor);
+			text.x=55;
+			text.y=35;
+			text.textAlign="right";
+			container.addChild(text);
+		}
+		this.iconContainer.addChild(container);
+		gfx.addEventListener("click",removeIndexCallback(i));
 	}
   },
   
@@ -63,6 +78,24 @@ var Resources = {
 	this.resourceArrow.x = this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
 	this.resourceArrow.y = 80;
 	
+	//Load play button
+	this.playBtn=ButtonHelper.newButton(
+		Game.data.images['TargetEmployee'],
+		'Play',
+		1,
+		this.ICONWIDTH+this.RESOURCEWIDTH/2,
+		220,
+		function(event){
+				Textbox.setTitle("Advance Day");
+				Textbox.setBody("Performs all actions queued up.");
+		},
+		function (event) {
+		  Textbox.setTitle('');
+		  Textbox.setBody('');
+		},
+		function(){Game.step()}
+	);
+	
 	//load background
     var background = new createjs.Shape();
     background.graphics.beginFill("#00FF00").drawRect(0, 0, this.WIDTH, this.HEIGHT);
@@ -71,6 +104,7 @@ var Resources = {
 	this.surface.addChild(this.resourceText2);
 	this.surface.addChild(this.resourceArrow);
 	this.surface.addChild(this.iconContainer);
+	this.surface.addChild(this.playBtn);
 	this.updateResource();
 	this.decrementResource(0);
     Game.canvas.addChild(this.surface);
