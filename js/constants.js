@@ -34,6 +34,24 @@ var Constants = {
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
 
+  NEWS_STORIES: {
+    'Forgot': {
+      text: 'Someone forgot there password and was robbed of hundreds of dollars.',
+    },
+    'SpoofWebsite': {
+      text: 'Angads grandmother logs onto a spoof gmail site and immidiatley enters credit card information ending in Angads withdrawal from SBU.',
+    },
+    'Keylogger': {
+      text: 'Angads grandmother got key logged!',
+    },
+    'Wifi': {
+     text: 'Angad logged onto Feel Bigs unsecure wifi network and her entire session was tracked by Mr Feels himself',
+    },
+    'Scam': {
+      text: 'Andriy is a scam lover',
+    },
+  },
+
   ALL_ACTIONS: {
     'Forgot': {
       parent: 'Forgot',

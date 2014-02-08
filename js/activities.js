@@ -100,6 +100,9 @@ var Activities = {
       if (-1==$.inArray(event.currentTarget.name.replace(/ /g,''),Game.data.actions)){
         enoughMoney = Game.addMoney(-event.currentTarget.eventID.cost);
         if (enoughMoney) {
+          Game.data.currentStory = event.currentTarget.eventID.parent;
+          console.log('currentStory = ' + Game.data.currentStory);
+
           Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
           Map.newActionUnlocked(event.currentTarget.name.replace(/ /g,''));
 		  event.currentTarget.image = Game.data.images[event.currentTarget.name.replace(/ /g,'')]
