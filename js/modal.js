@@ -37,32 +37,34 @@ var Modal = {
     this.surface.addChild(this.title);
 
     var OKAY_BUTTON_WIDTH = 150;
+    this.okayButton = this.makeTextButton('OK', OKAY_BUTTON_WIDTH);
 
-    var okayButton = new createjs.Container();
-    var okayButtonBackground = new createjs.Shape();
-    okayButtonBackground.graphics
-      .beginFill('#000000')
-      .beginStroke('#00FF00')
-      .drawRect(0, 0, OKAY_BUTTON_WIDTH, 30);
-    var okayButtonText = new createjs.Text('OK', '20px GameFont', '#00FF00');
-    okayButtonText.textAlign = 'center';
-    okayButtonText.x = OKAY_BUTTON_WIDTH / 2.0;
-    okayButtonText.y = 3;
-    this.okayButton.x = this.WIDTH / 2 - OKAY_BUTTON_WIDTH / 2;
-    this.okayButton.y = this.HEIGHT - 80;
-    this.okayButton.addChild(okayButtonBackground);
-    this.okayButton.addChild(okayButtonText);
-    new createjs.ButtonHelper(this.okayButton);
     this.surface.addChild(this.okayButton);
 
     this.content.x = this.CONTENT_PADDING_HORIZONTAL;
     this.content.y = this.CONTENT_PADDING_VERTICAL;
     this.surface.addChild(this.content);
 
-    // Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
-    //   Modal.hide();
-    //   Modal.showForgotMethod();
-    // });
+    //Modal.showIntroSequence();
+  },
+
+  makeTextButton: function(text, width) {
+    var okayButton = new createjs.Container();
+    var okayButtonBackground = new createjs.Shape();
+    okayButtonBackground.graphics
+      .beginFill('#000000')
+      .beginStroke('#00FF00')
+      .drawRect(0, 0, width, 30);
+    var okayButtonText = new createjs.Text(text, '20px GameFont', '#00FF00');
+    okayButtonText.textAlign = 'center';
+    okayButtonText.x = width / 2.0;
+    okayButtonText.y = 3;
+    okayButton.x = this.WIDTH / 2 - width / 2;
+    okayButton.y = this.HEIGHT - 80;
+    okayButton.addChild(okayButtonBackground);
+    okayButton.addChild(okayButtonText);
+    new createjs.ButtonHelper(okayButton);
+    return okayButton;
   },
 
   hide: function() {
@@ -99,6 +101,14 @@ var Modal = {
   setContent: function(content) {
     this.content.removeAllChildren();
     this.content.addChild(content.surface);
+  },
+
+  showIntroSequence: function() {
+    Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
+      Modal.show('Tutorial?', new Content(Content.TUTORIAL), function() {
+        Modal.hide();
+      });
+    });
   },
 
   showForgotMethod: function() {
@@ -278,6 +288,47 @@ Content.SCAM = function(surface) {
   text.y = 150;
   surface.addChild(text);
 };
+
+Content.TUTORIAL = function(surface) {
+  Modal.surface.removeChild(Modal.okayButton);
+  var text = new createjs.Text('Looks like this is your first time using the Hackmaster 3000, would you like a tutorial?', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+  var yesButton = Modal.makeTextButton('Yes', 75);
+  yesButton.y = 200;
+  yesButton.x -= 80;
+  surface.addChild(yesButton);
+  var noButton = Modal.makeTextButton('No', 75);
+  noButton.y = 200;
+  noButton.x += 80;
+  surface.addChild(noButton);
+
+  noButton.addEventListener('click', function() {
+    Modal.surface.addChild(Modal.okayButton);
+    Modal.hide();
+  });
+
+  yesButton.addEventListener('click', function() {
+    Modal.surface.addChild(Modal.okayButton);
+    Modal.show('The Town', new Content(Content.TUTORIAL_2), function() {
+      Modal.hide();
+    });
+  });
+};
+
+Content.TUTORIAL_2 = function(surface) {
+  var text = new createjs.Text('Hey there...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+}
 
 Content.withText = function(displayText) {
   return new Content(

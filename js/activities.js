@@ -12,11 +12,7 @@ var Activities = {
     this.surface.x = this.X;
     this.surface.y = this.Y;
 
-    var background = new createjs.Shape();
-    background.graphics
-      .beginFill("#000000")
-      .beginStroke('#00FF00')
-      .drawRect(0, 0, this.WIDTH, this.HEIGHT);
+    var background = new createjs.Bitmap(Game.data.images['activities']);
     this.surface.addChild(background);
 
     this.moneyCounter.x=30;
@@ -103,14 +99,18 @@ var Activities = {
           Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
           Map.newActionUnlocked(event.currentTarget.name.replace(/ /g,''));
 		  event.currentTarget.image = Game.data.images[event.currentTarget.name.replace(/ /g,'')]
-		  
+		      showActivityModal(event.currentTarget.eventID);
         } else {
           Game.tempMoney(-event.currentTarget.eventID.cost);
         }
+      } else {
+        showActivityModal(event.currentTarget.eventID); 
       }
-      if (Modal[event.currentTarget.eventID.modalMethod]) {
+    }
+    function showActivityModal(eventID) {
+      if (Modal[eventID.modalMethod]) {
         // deal with it
-        Modal[event.currentTarget.eventID.modalMethod]();
+        Modal[eventID.modalMethod]();
       } else {
         console.log('need to implement a modal for this');
       }

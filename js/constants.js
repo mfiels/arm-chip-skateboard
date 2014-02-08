@@ -12,7 +12,19 @@ var Constants = {
     'Forgot',
   ],
 
-  MAP_IMAGE: 'map.png',
+  MISC_IMAGES: {
+    'map': 'map.png',
+    'dudes': 'dudes.png',
+    'activities': 'activities.png',
+    'text_bg': 'text_bg.png',
+    'resources': 'resources.png',
+    'Play': 'PlayButton.png',
+    'Forgot_sm': 'forgot_sm.png',
+    'Spoof_sm': 'spoof_sm.png',
+    'Keylogger_sm': 'keylogger_sm.png',
+    'Wifi_sm': 'wifi_sm.png',
+    'Scam_sm': 'scam_sm.png',
+  },
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
 
