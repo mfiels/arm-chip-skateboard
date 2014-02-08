@@ -161,5 +161,17 @@ var ButtonHelper = {
     newButton.addEventListener("click", clickFunc);
     new createjs.ButtonHelper(newButton);
     return newButton;
-  }
+  },
+  newButtonSpecial : function(img, name, obj, x, y, overFunc, outFunc, clickFunc) {
+    var newButton = new createjs.Bitmap(img);
+    newButton.name = name;
+    newButton.eventID = obj;
+    newButton.x = x;
+    newButton.y = y;
+    newButton.addEventListener("mouseover", overFunc,false);
+    newButton.addEventListener("mouseout", outFunc,false);
+    newButton.addEventListener("click", clickFunc);
+    new createjs.ButtonHelper(newButton);
+    return newButton;
+  },
 }
