@@ -2,7 +2,7 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50,
+  INITIAL_MONEY: 50000,
   INITIAL_RESOURCES: 3,
 
   INITIAL_LOCATIONS: [
@@ -98,11 +98,11 @@ var Constants = {
   
   ALL_LOCATIONS: {
     'Library': {
-      risk: 0,
+    awarness: 0,
 	  riskModifier: .1,
-      reward: 0,
-      description: 'Library',
-      image: 'hello.png',
+    reward: 0,
+    description: 'Library',
+    image: 'hello.png',
 	  color: '#ff0000',
 	  mapx:50,
 	  mapy:50,

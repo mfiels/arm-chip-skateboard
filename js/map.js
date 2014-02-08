@@ -5,7 +5,7 @@ var Map = {
   HEIGHT: 350,
   X: 0,
   Y: 0,
-  WIN_WIDTH:300,
+  WIN_WIDTH:500,
   WIN_HEIGHT:100,
   color:"#00ff00",
   boundedArea:{},
@@ -34,8 +34,8 @@ var Map = {
 		};
 	}
 	var btn = ButtonHelper.newButtonSpecial(
-		Game.data.images['Highschooler'],
-        'Highschooler',
+		Game.data.images[action],
+        action,
         1,
         10+this.numActions*80,
         15,
