@@ -7,6 +7,7 @@ var Activities = {
   Y: 350,
 
   moneyCounter: new createjs.Text('$', '22px GameFont', '#00FF00'),
+  dayCounter: new createjs.Text('', '22px GameFont', '#00FF00'),
 
   init: function() {
     this.surface.x = this.X;
@@ -19,7 +20,10 @@ var Activities = {
     this.moneyCounter.y=18;
     this.surface.addChild(this.moneyCounter);
     Game.addMoney(0);
-
+    this.dayCounter.x=380;
+    this.dayCounter.y=18;
+    this.surface.addChild(this.dayCounter);
+    Game.updateDays();
     var icon = ButtonHelper.newButton(
         Game.data.images['Forgot'],
         'Forgot',
