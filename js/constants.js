@@ -31,8 +31,8 @@ var Constants = {
   ALL_ACTIONS: {
     'Forgot': {
       parent: 'Forgot',
-      risk: 0,
-      riskDeath: 100,
+      risk: 1,
+      riskIncrease: 10,
 	    riskModifier: 1,
       resources: 1,
       cost: 1,
@@ -43,8 +43,8 @@ var Constants = {
     },
     'SpoofWebsite': {
       parent: 'SpoofWebsite',
-      risk: 0,
-      riskDeath: 200,
+      risk: 5,
+      riskIncrease: 8,
       resources: 2,
       cost: 2,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -54,8 +54,8 @@ var Constants = {
     },
     'Keylogger': {
       parent: 'Keylogger',
-      risk: 0,
-      riskDeath: 300,
+      risk: 10,
+      riskIncrease: 5,
       resources: 3,
       cost: 10,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -65,8 +65,8 @@ var Constants = {
     },
     'Wifi': {
       parent: 'Wifi',
-      risk: 0,
-      riskDeath: 400,
+      risk: 20,
+      riskIncrease: 2,
       resources: 6,
       cost: 20,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -76,8 +76,8 @@ var Constants = {
     },
     'Scam': {
       parent: 'Scam',
-      risk: 0,
-      riskDeath: 500,
+      risk: 40,
+      riskIncrease: 2,
       resources: 8,
       cost: 30,
       description: 'Leave a fake website open to lure people into logging in.',

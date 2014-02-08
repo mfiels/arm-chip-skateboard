@@ -21,8 +21,8 @@ var Map = {
 			loc = Constants.ALL_LOCATIONS[Map.currLocation];
 			act = Constants.ALL_ACTIONS[action];
 
-			profit = loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath;
-			risk = act.risk - Game.data.locationUsage[action] / act.riskDeath;
+			profit = (loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath) * Math.sqrt(act.risk);
+			risk = act.risk + Game.data.actionUsage[action] / act.riskIncrease;
 
 			Textbox.setBody("Profability: $" + profit.toFixed(2) + '\n\nRisk: ' + risk.toFixed(2));
 			Resources.modifyGhostResource(-Constants.ALL_ACTIONS[action].resources);
