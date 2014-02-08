@@ -21,6 +21,7 @@ var Game = {
     Dudes.init();
     Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
+    createjs.Ticker.setFPS(60);
 	for(var key in Constants.INITIAL_ACTIONS){
 		Map.newActionUnlocked(Constants.INITIAL_ACTIONS[key]);
 	}
