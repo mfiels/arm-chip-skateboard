@@ -101,7 +101,9 @@ var Activities = {
         enoughMoney = Game.addMoney(-event.currentTarget.eventID.cost);
         if (enoughMoney) {
           Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
-          event.currentTarget.image = Game.data.images[event.currentTarget.name.replace(/ /g,'')]
+          Map.newActionUnlocked(event.currentTarget.name.replace(/ /g,''));
+		  event.currentTarget.image = Game.data.images[event.currentTarget.name.replace(/ /g,'')]
+		  
         } else {
           Game.tempMoney(-event.currentTarget.eventID.cost);
         }

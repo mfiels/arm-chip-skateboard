@@ -18,11 +18,14 @@ var Map = {
 		return function(event){
 			Textbox.setTitle(action);
 			Textbox.setBody("use description for action?");
+			if(Constants.ALL_ACTIONS[action].resources<=Game.data.resources)
+				Resources.modifyGhostResource(-Constants.ALL_ACTIONS[action].resources);
 		};
 	}
 	var handleUnhover = function(event){
 		Textbox.setTitle("");
 		Textbox.setBody("");
+		Resources.modifyGhostResource(0);
 	};
 	function genClick(act){
 		return function(){

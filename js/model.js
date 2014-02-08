@@ -42,17 +42,26 @@ var Game = {
     Activities.moneyCounter.text="$"+this.data.money+"  ->  $"+(this.data.money+amount);
   },
   addAction: function(action, location){
-	//search model for action and location pair
-	var added=false;
-	for(var i=0;i<this.data.currentActions.length;i++){
-		if(this.data.currentActions[i].action===action && this.data.currentActions[i].location===location){
-			this.data.currentActions[i].count++;
-			added=true;
+	var act = Constants.ALL_ACTIONS[action];
+	if(act.resources<=this.data.resources){
+		this.data.resources-=act.resources;
+		//search model for action and location pair
+		var added=false;
+		for(var i=0;i<this.data.currentActions.length;i++){
+			if(this.data.currentActions[i].action===action && this.data.currentActions[i].location===location){
+				this.data.currentActions[i].count++;
+				added=true;
+			}
 		}
+		if(!added)
+			this.data.currentActions.push(new Pair(action,location));
+		Resources.updateCurrentActions();
+		Resources.updateResource();
+		if(this.data.resources-act.resources<0)
+			Resources.modifyGhostResource(0);
+		else
+			Resources.modifyGhostResource(-act.resources);
 	}
-	if(!added)
-		this.data.currentActions.push(new Pair(action,location));
-	Resources.updateCurrentActions();
   },
   removeAction: function(index){
 	if(this.data.currentActions.length>index){
