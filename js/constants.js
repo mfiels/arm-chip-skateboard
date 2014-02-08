@@ -209,7 +209,9 @@ var Constants = {
     'KeyLoggingKeyboard': 'KeyLogging.png',
     'BadWifi': 'BadWifi.png',
     'BadSsid': 'BadWifi2.png',
-    'EmployeeScam': 'EmployeeScam.png'
+    'EmployeeScam': 'EmployeeScam.png',
+    'MapSmall': 'MapSmall.png',
+    'Clippy': 'Clippy.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
