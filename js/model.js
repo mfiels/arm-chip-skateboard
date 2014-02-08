@@ -9,6 +9,7 @@ var Game = {
     this.canvas = new createjs.Stage('canvas');
     this.canvas.enableMouseOver(10);
     this.data = new Data();
+	
     Loader.init();
   },
 
@@ -20,6 +21,9 @@ var Game = {
     Dudes.init();
     Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
+	for(var key in Constants.INITIAL_ACTIONS){
+		Map.newActionUnlocked(Constants.INITIAL_ACTIONS[key]);
+	}
   },
 
   addMoney: function(amount){
@@ -135,6 +139,15 @@ var ButtonHelper = {
     newButton.eventID = obj;
     newButton.x = x;
     newButton.y = y;
+    newButton.addEventListener("mouseover", overFunc);
+    newButton.addEventListener("mouseout", outFunc);
+    newButton.addEventListener("click", clickFunc);
+    new createjs.ButtonHelper(newButton);
+    return newButton;
+  },
+  newButtonObj : function(obj, name, overFunc, outFunc, clickFunc) {
+    var newButton = obj;
+    newButton.name = name;
     newButton.addEventListener("mouseover", overFunc);
     newButton.addEventListener("mouseout", outFunc);
     newButton.addEventListener("click", clickFunc);

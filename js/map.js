@@ -5,14 +5,94 @@ var Map = {
   HEIGHT: 350,
   X: 0,
   Y: 0,
-
+  WIN_WIDTH:300,
+  WIN_HEIGHT:100,
+  color:"#00ff00",
+  boundedArea:{},
+  hoverWindow: new createjs.Container(),
+  currLocation:"",
+  numActions:0,
+  newActionUnlocked: function(action){
+	var act = Constants.ALL_ACTIONS[action];
+	function genHover(action){
+		return function(event){
+			Textbox.setTitle(action);
+			Textbox.setBody("use description for action?");
+		};
+	}
+	var handleUnhover = function(event){
+		Textbox.setTitle("");
+		Textbox.setBody("");
+	};
+	function genClick(act){
+		return function(){
+			Game.addAction(act,Map.currLocation);
+			
+		};
+	}
+	var btn = ButtonHelper.newButton(
+		Game.data.images['Highschooler'],
+        'Highschooler',
+        1,
+        5+this.numActions*20,
+        5,
+        genHover(action),
+        handleUnhover,
+        genClick(action));
+	this.hoverWindow.addChild(btn);
+	this.numActions++;
+  },
   init: function() {
     this.surface.x = this.X;
     this.surface.y = this.Y;
-
-    var background = new createjs.Shape();
+	var background = new createjs.Shape();
     background.graphics.beginFill("#FF0000").drawRect(0, 0, this.WIDTH, this.HEIGHT);
     this.surface.addChild(background);
+	
+	
+	
+	
+	var hoveron=function(event){
+		Map.hoverWindow.visible=true;
+		Map.hoverWindow.x = event.currentTarget.locx;
+		Map.hoverWindow.y = event.currentTarget.locy;
+	}
+	var hoverout =function(event){}
+	var click = function (event){}
+	var genHoverFunc = function(loc){
+		return function(event){
+			hoveron(event);
+			Map.currLocation=loc;
+		}
+	}
+	for(var key in Constants.ALL_LOCATIONS){
+		var loc = Constants.ALL_LOCATIONS[key];
+		var container = new createjs.Container();
+		container.x=loc.mapx;
+		container.y=loc.mapy;
+		var boundShape = new createjs.Shape();
+		var innerShape = new createjs.Shape();
+		innerShape.alpha=.01;
+		innerShape.graphics.beginFill(this.color).drawRect(0,0,loc.mapw,loc.maph);
+		boundShape.graphics.beginStroke(this.color).setStrokeStyle(4).drawRect(0,0,loc.mapw,loc.maph);
+		ButtonHelper.newButtonObj(innerShape,key,genHoverFunc(key),hoverout,click);
+		innerShape.locx = loc.mapx;
+		innerShape.locy = loc.mapy;
+		container.addChild(boundShape);
+		container.addChild(innerShape);
+		this.surface.addChild(container);
+	}
+    
+	var box = new createjs.Shape();
+	box.graphics.beginFill("#000000").beginStroke("#00ff00").drawRect(0,0,this.WIN_WIDTH,this.WIN_HEIGHT);
+	ButtonHelper.newButtonObj(this.hoverWindow,"",function(){},function(){Map.hoverWindow.visible=false;},click);
+	this.hoverWindow.visible=false;
+	
+	//add action buttons
+	
+	
+	this.hoverWindow.addChild(box);
+	this.surface.addChild(this.hoverWindow);
     var icon = new createjs.Bitmap(Game.data.images['Library']);
     icon.x = 200;
     icon.y = 200;

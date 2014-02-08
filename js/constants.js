@@ -75,6 +75,10 @@ var Constants = {
       description: 'Library',
       image: 'hello.png',
 	  color: '#ff0000',
+	  mapx:50,
+	  mapy:50,
+	  mapw:80,
+	  maph:80,
     },
   },
 
