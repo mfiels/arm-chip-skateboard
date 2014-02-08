@@ -23,7 +23,7 @@ var Constants = {
   },
 
   ALL_DUDES: {
-    'Highscooler': {
+    'Highschooler': {
       risk: 0,
       count: 0,
       description: 'Shady High School Kid',
@@ -40,4 +40,10 @@ var Constants = {
 	  color: '#ff0000',
     },
   },
+
+  MISC_IMAGES: {
+    'ModalClose': {
+      image: 'hello.png'
+    }
+  }
 };

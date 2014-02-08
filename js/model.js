@@ -18,6 +18,7 @@ var Game = {
     Textbox.init();
     Resources.init();
     Dudes.init();
+    Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
   },
   addAction: function(action, location){
