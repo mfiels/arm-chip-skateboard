@@ -2,8 +2,8 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50000,
-  INITIAL_RESOURCES: 3,
+  INITIAL_MONEY: 50,
+  INITIAL_RESOURCES: 100,
 
   INITIAL_LOCATIONS: [
     'Library',
@@ -25,6 +25,7 @@ var Constants = {
 
   ALL_ACTIONS: {
     'Forgot': {
+      parent: 'Forgot',
       risk: 0,
 	  riskModifier: 1,
       resources: 1,
@@ -35,6 +36,7 @@ var Constants = {
       modalMethod: 'showForgotMethod',
     },
     'SpoofWebsite': {
+      parent: 'SpoofWebsite',
       risk: 0,
       resources: 2,
       cost: 2,
@@ -44,6 +46,7 @@ var Constants = {
       modalMethod: 'showSpoofMethod',
     },
     'Keylogger': {
+      parent: 'Keylogger',
       risk: 0,
       resources: 3,
       cost: 10,
@@ -53,6 +56,7 @@ var Constants = {
       modalMethod: 'showKeyLoggerMethod',
     },
     'Wifi': {
+      parent: 'Wifi',
       risk: 0,
       resources: 6,
       cost: 20,
@@ -62,6 +66,7 @@ var Constants = {
       modalMethod: 'showWifiMethod',
     },
     'Scam': {
+      parent: 'Scam',
       risk: 0,
       resources: 8,
       cost: 30,
@@ -118,6 +123,42 @@ var Constants = {
   	  mapy:50,
   	  mapw:80,
   	  maph:80,
+    },
+	'Netcafe': {
+      risk: 0,
+	  riskModifier: .1,
+      reward: 0,
+      description: 'Netcafe',
+      image: 'hello.png',
+	  color: '#ff0000',
+	  mapx:340,
+	  mapy:80,
+	  mapw:80,
+	  maph:80,
+    },
+	'Apartment': {
+      risk: 0,
+	  riskModifier: .1,
+      reward: 0,
+      description: 'Apartment',
+      image: 'hello.png',
+	  color: '#ff0000',
+	  mapx:30,
+	  mapy:210,
+	  mapw:80,
+	  maph:80,
+    },
+	'Computer Store': {
+      risk: 0,
+	  riskModifier: .1,
+      reward: 0,
+      description: 'Computer Store',
+      image: 'hello.png',
+	  color: '#ff0000',
+	  mapx:320,
+	  mapy:230,
+	  mapw:80,
+	  maph:80,
     },
   },
 

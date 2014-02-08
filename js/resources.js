@@ -5,8 +5,10 @@ var Resources = {
   HEIGHT: 350,
   X: 600,
   Y: 0,
-  ICONWIDTH:50,
-  RESOURCEWIDTH:150,
+  ICONWIDTH:20,
+  ICONCOLS:3,
+  ICONROWS:13,
+  RESOURCEWIDTH:160,
   color:"#00FF00",
   textcolor:"#00FF00",
   resourceArrow: new createjs.Shape(),
@@ -35,18 +37,18 @@ var Resources = {
 	}
 	for(var i=0;i<Game.data.currentActions.length;i++){
 		var container = new createjs.Container();
+		container.x =5 + (Math.floor(i/this.ICONROWS)*(this.ICONWIDTH+5));
+		container.y = 5+ ((i%this.ICONROWS)*(this.ICONWIDTH+5));
 		var gfx = new createjs.Shape();
 		var action = Constants.ALL_ACTIONS[Game.data.currentActions[i].action];
 		var location = Constants.ALL_LOCATIONS[Game.data.currentActions[i].location];
 		gfx.graphics.beginFill(action.color).drawRect(0,0,this.ICONWIDTH,this.ICONWIDTH);
 		gfx.graphics.beginFill(location.color).drawCircle(10, 10,8);
-		gfx.x =5;
-		gfx.y = 5+ (i*(this.ICONWIDTH+5));
 		container.addChild(gfx);
 		if(Game.data.currentActions[i].count>1){
-			var text = new createjs.Text(Game.data.currentActions[i].count.toString(),"20px GameFont",this.textcolor);
-			text.x=55;
-			text.y=35;
+			var text = new createjs.Text(Game.data.currentActions[i].count.toString(),"12px GameFont",this.textcolor);
+			text.x=this.ICONWIDTH;
+			text.y=this.ICONWIDTH-12;
 			text.textAlign="right";
 			container.addChild(text);
 		}
@@ -61,13 +63,13 @@ var Resources = {
     this.surface.y = this.Y;
 	//Load resource text and position
 	this.resourceText= new createjs.Text("0","50px GameFont",this.color);
-	this.resourceText.x = this.ICONWIDTH+this.RESOURCEWIDTH/2;
+	this.resourceText.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2;
 	this.resourceText.y = 20;
 	this.resourceText.textAlign="center";
 	
 	//Load ghost resource text and position
 	this.resourceText2= new createjs.Text("0","50px GameFont",this.color);
-	this.resourceText2.x = this.ICONWIDTH+this.RESOURCEWIDTH/2;
+	this.resourceText2.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2;
 	this.resourceText2.y = 160;
 	this.resourceText2.textAlign="center";
 	
@@ -75,7 +77,7 @@ var Resources = {
 	//Load resource arrow
 	this.resourceArrow.graphics.beginFill(this.color).drawRect(25,0,10,60);
 	this.resourceArrow.graphics.beginFill(this.color).moveTo(0,60).lineTo(60,60).lineTo(30,80);
-	this.resourceArrow.x = this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
+	this.resourceArrow.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
 	this.resourceArrow.y = 80;
 	
 	//Load play button
@@ -83,7 +85,7 @@ var Resources = {
 		Game.data.images['NetCafeOwner'],
 		'Play',
 		1,
-		this.ICONWIDTH+this.RESOURCEWIDTH/2,
+		this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2,
 		220,
 		function(event){
 				Textbox.setTitle("Advance Day");
