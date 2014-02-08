@@ -37,7 +37,7 @@ var Activities = {
     this.surface.addChild(icon);
     
     icon = ButtonHelper.newButton(
-        Game.data.images['SpoofWebsite'],
+        Game.data.images['SpoofLocked'],
         'Spoof Website',
         Constants.ALL_ACTIONS.SpoofWebsite,
         114,
@@ -47,7 +47,43 @@ var Activities = {
         handleClick
     );
     this.surface.addChild(icon);
-    
+
+    icon = ButtonHelper.newButton(
+        Game.data.images['KeyloggerLocked'],
+        'Keylogger',
+        Constants.ALL_ACTIONS.Keylogger,
+        208,
+        28,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+    this.surface.addChild(icon);
+
+    icon = ButtonHelper.newButton(
+        Game.data.images['WifiLocked'],
+        'Wifi',
+        Constants.ALL_ACTIONS.Wifi,
+        302,
+        28,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+    this.surface.addChild(icon);
+
+    icon = ButtonHelper.newButton(
+        Game.data.images['ScamLocked'],
+        'Scam',
+        Constants.ALL_ACTIONS.Scam,
+        396,
+        28,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+    this.surface.addChild(icon);
+ 
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);
       Textbox.setBody(event.currentTarget.eventID.description);
@@ -65,11 +101,18 @@ var Activities = {
         enoughMoney = Game.addMoney(-event.currentTarget.eventID.cost);
         if (enoughMoney) {
           Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
+          event.currentTarget.image = Game.data.images[event.currentTarget.name.replace(/ /g,'')]
         } else {
           Game.tempMoney(-event.currentTarget.eventID.cost);
         }
+      } else {
+        if (Modal[event.currentTarget.eventID.modalMethod]) {
+          // deal with it
+          Modal[event.currentTarget.eventID.modalMethod]();
+        } else {
+          console.log('need to implement a modal for this');
+        }
       } 
-      console.log('clicked' + event.currentTarget.eventID);
     }
 
     Game.canvas.addChild(this.surface);

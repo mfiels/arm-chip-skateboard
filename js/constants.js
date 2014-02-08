@@ -2,7 +2,7 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 1,
+  INITIAL_MONEY: 50,
   INITIAL_RESOURCES: 3,
 
   INITIAL_LOCATIONS: [
@@ -21,13 +21,38 @@ var Constants = {
       description: 'Someone forgot to log off!',
       image: 'forgot.png',
 	    color: '#af0000',
+      modalMethod: 'showForgotMethod',
     },
     'SpoofWebsite': {
       risk: 0,
-      resources: 1,
+      resources: 2,
       cost: 2,
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'spoof.png',
+      color: '#af0000',
+    },
+    'Keylogger': {
+      risk: 0,
+      resources: 3,
+      cost: 10,
+      description: 'Leave a fake website open to lure people into logging in.',
+      image: 'keylogger.png',
+      color: '#af0000',
+    },
+    'Wifi': {
+      risk: 0,
+      resources: 6,
+      cost: 20,
+      description: 'Leave a fake website open to lure people into logging in.',
+      image: 'wifi.png',
+      color: '#af0000',
+    },
+    'Scam': {
+      risk: 0,
+      resources: 8,
+      cost: 30,
+      description: 'Leave a fake website open to lure people into logging in.',
+      image: 'scam.png',
       color: '#af0000',
     },
   },
@@ -82,5 +107,20 @@ var Constants = {
     },
   },
 
-  INTRO_STRING: 'Welcome to the Hackmaster 3000!!1 You think you got it what it takes to be a big shot? I don\'t think you do...'
+  LOCK_IMAGES: {
+    'SpoofLocked' : 'SpoofLocked.png',
+    'KeyloggerLocked' : 'KeyloggerLocked.png',
+    'WifiLocked' : 'WifiLocked.png',
+    'ScamLocked' : 'ScamLocked.png',
+  },
+
+  LESSON_IMAGES: {
+    'ForgotDontSave': 'DontSave.png',
+    'ForgotSignOut': 'SignOut.png',
+    'ForgotStaySignedIn': 'StaySignedIn.png'
+  },
+
+  INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
+                ' There are plenty of uneducated computer users in this town,' +
+                ' let\'s see how much $$$ we can make off of them...'
 };

@@ -28,7 +28,7 @@ var Game = {
 
   addMoney: function(amount){
     Activities.moneyCounter.color='#00FF00'
-    if (this.data.money + amount > 0) {
+    if (this.data.money + amount >= 0) {
       this.data.money += amount;
       Activities.moneyCounter.text="$"+this.data.money;
       return true;
@@ -37,7 +37,6 @@ var Game = {
   },
   tempMoney: function(amount){
     if (this.data.money + amount < 0) {
-      console.log(this.data.money, amount);
       Activities.moneyCounter.color='#FF0000';
     }
     Activities.moneyCounter.text="$"+this.data.money+"  ->  $"+(this.data.money+amount);
@@ -73,8 +72,8 @@ var Game = {
   },
   addResources: function(deltaResources) {
     this.data.resources += deltaResources;
-  	Resources.updateResource();
-  	Resources.modifyGhostResource(deltaResources);
+	Resources.updateResource();
+	Resources.modifyGhostResource(deltaResources);
   },
 };
 
