@@ -13,6 +13,7 @@ var Game = {
     Activities.init();
     Textbox.init();
     Resources.init();
+    Dudes.init();
   },
 };
 
