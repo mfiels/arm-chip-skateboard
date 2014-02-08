@@ -18,6 +18,7 @@ var Constants = {
 
   ALL_ACTIONS: {
     'Forgot': {
+      parent: 'Forgot',
       risk: 0,
 	  riskModifier: 1,
       resources: 1,
@@ -28,6 +29,7 @@ var Constants = {
       modalMethod: 'showForgotMethod',
     },
     'SpoofWebsite': {
+      parent: 'SpoofWebsite',
       risk: 0,
       resources: 2,
       cost: 2,
@@ -37,6 +39,7 @@ var Constants = {
       modalMethod: 'showSpoofMethod',
     },
     'Keylogger': {
+      parent: 'Keylogger',
       risk: 0,
       resources: 3,
       cost: 10,
@@ -46,6 +49,7 @@ var Constants = {
       modalMethod: 'showKeyLoggerMethod',
     },
     'Wifi': {
+      parent: 'Wifi',
       risk: 0,
       resources: 6,
       cost: 20,
@@ -55,6 +59,7 @@ var Constants = {
       modalMethod: 'showWifiMethod',
     },
     'Scam': {
+      parent: 'Scam',
       risk: 0,
       resources: 8,
       cost: 30,
