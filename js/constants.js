@@ -2,7 +2,7 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50,
+  INITIAL_MONEY: 50000,
   INITIAL_RESOURCES: 3,
 
   INITIAL_LOCATIONS: [
@@ -43,6 +43,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'keylogger.png',
       color: '#af0000',
+      modalMethod: 'showKeyLoggerMethod',
     },
     'Wifi': {
       risk: 0,
@@ -51,6 +52,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'wifi.png',
       color: '#af0000',
+      modalMethod: 'showWifiMethod',
     },
     'Scam': {
       risk: 0,
@@ -59,6 +61,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'scam.png',
       color: '#af0000',
+      modalMethod: 'showScamMethod',
     },
   },
 
@@ -99,11 +102,11 @@ var Constants = {
   
   ALL_LOCATIONS: {
     'Library': {
-      risk: 0,
-	    riskModifier: .1,
+      awarness: 0,
+  	  riskModifier: .1,
       reward: 0,
       description: 'Library',
-  	  color: '#ff0000',
+      image: 'hello.png',
   	  mapx:50,
   	  mapy:50,
   	  mapw:80,
@@ -122,7 +125,11 @@ var Constants = {
     'ForgotDontSave': 'DontSave.png',
     'ForgotSignOut': 'SignOut.png',
     'ForgotStaySignedIn': 'StaySignedIn.png',
-    'SpoofBadUrl': 'Spoofed.png'
+    'SpoofBadUrl': 'Spoofed.png',
+    'KeyLoggingKeyboard': 'KeyLogging.png',
+    'BadWifi': 'BadWifi.png',
+    'BadSsid': 'BadWifi2.png',
+    'EmployeeScam': 'EmployeeScam.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 

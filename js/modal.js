@@ -111,6 +111,24 @@ var Modal = {
     Modal.show('Method 2: Spoofing', new Content(Content.SPOOF), function() {
       Modal.hide();
     });
+  },
+
+  showKeyLoggerMethod: function() {
+    Modal.show('Method 3: Keylogger', new Content(Content.KEY_LOGGER), function() {
+      Modal.hide();
+    });
+  },
+
+  showWifiMethod: function() {
+    Modal.show('Method 4: Compromised Wifi', new Content(Content.WIFI), function() {
+      Modal.hide();
+    });
+  },
+
+  showScamMethod: function() {
+    Modal.show('Method 5: Scams', new Content(Content.SCAM), function() {
+      Modal.hide();
+    });
   }
 };
 
@@ -186,6 +204,78 @@ Content.SPOOF = function(surface) {
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
   text.y = 120;
+  surface.addChild(text);
+};
+
+Content.KEY_LOGGER = function(surface) {
+  var keyLogImage = new createjs.Bitmap(Game.data.images['KeyLoggingKeyboard']);
+  keyLogImage.x = Content.WIDTH / 2.0 - Game.data.images['KeyLoggingKeyboard'].width / 2.0;
+  keyLogImage.y = 60;
+  surface.addChild(keyLogImage);
+
+  var text = new createjs.Text('By installing keyloggers on computers we can target even the more careful users...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  surface.addChild(text);
+
+  text = new createjs.Text('Every keystroke is recorded, so anything they log in to will also be available to us!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 170;
+  surface.addChild(text);
+};
+
+Content.WIFI = function(surface) {
+  var wifiImage = new createjs.Bitmap(Game.data.images['BadWifi']);
+  wifiImage.x = Content.WIDTH / 2.0 - Game.data.images['BadWifi'].width / 2.0 + 80;
+  wifiImage.y = 65;
+  surface.addChild(wifiImage);
+
+  var ssidImage = new createjs.Bitmap(Game.data.images['BadSsid']);
+  ssidImage.x = Content.WIDTH / 2.0 - Game.data.images['BadSsid'].width / 2.0 - 80;
+  ssidImage.y = 70;
+  surface.addChild(ssidImage);
+
+  var text = new createjs.Text('People tend to be willing to connect to free and open public wifi, let\'s exploit this...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  surface.addChild(text);
+
+  text = new createjs.Text('By planting an \'innocent\' open wireless network in public we can record connected web traffic!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 150;
+  surface.addChild(text);
+};
+
+Content.SCAM = function(surface) {
+  var scamImage = new createjs.Bitmap(Game.data.images['EmployeeScam']);
+  scamImage.x = Content.WIDTH / 2.0 - Game.data.images['BadWifi'].width / 2.0;
+  scamImage.y = 75;
+  surface.addChild(scamImage);
+
+  var text = new createjs.Text('Many customers don\'t think twice before entering their passwords on store computers when a \'trained professional\' instructs them to...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = -20;
+  surface.addChild(text);
+
+  text = new createjs.Text('Let\'s dress some attackers up in company colors and send them out on the front line to harvest customer information!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 150;
   surface.addChild(text);
 };
 
