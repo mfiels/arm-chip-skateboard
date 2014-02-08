@@ -47,6 +47,20 @@ var Modal = {
     );
     this.surface.addChild(closeButton);
 
+    var okayButton = ButtonHelper.newButton(
+      Game.data.images['ModalOkay'],
+      'ModalOkay',
+      0,
+      (this.WIDTH - Game.data.images['ModalOkay'].width) / 2.0,
+      this.HEIGHT - Game.data.images['ModalOkay'].height - 10,
+      function() {},
+      function() {},
+      function() {
+        Modal.hide();
+      }
+    );
+    this.surface.addChild(okayButton);
+
     this.content.x = this.CONTENT_PADDING_HORIZONTAL;
     this.content.y = this.CONTENT_PADDING_VERTICAL;
     this.surface.addChild(this.content);
