@@ -25,6 +25,7 @@ var Constants = {
     'text_bg': 'text_bg.png',
     'resources': 'resources.png',
     'Play': 'PlayButton.png',
+	'Unlock':'UnlockIcon.png',
   },
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',

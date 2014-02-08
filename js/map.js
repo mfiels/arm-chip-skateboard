@@ -11,22 +11,33 @@ var Map = {
   boundedArea:{},
   hoverWindow: new createjs.Container(),
   currLocation:"",
+  numLocs:1,
   numActions:0,
   newLocationUnlocked: function(location){
 	if(this.boundedArea[location]){
+		this.numLocs++;
+		if(this.numLocs>Constants.ALL_LOCATIONS.length)
+			this.numLocs=Constants.ALL_LOCATIONS.length;
+		
 		this.boundedArea[location].lock.visible=false;
 		this.boundedArea[location].area.visible=true;
+		this.boundedArea[location].bound.visible=true;
 	}
+  },
+  resizeWin:function(){
+	this.WIN_WIDTH= Math.ceil((this.numActions+1)/2) * 40;
+	this.WIN_HEIGHT = ((this.numActions+1)>1)?80:40;
+	this.box.graphics.clear().beginFill("#000000").beginStroke("#00ff00").drawRect(0,0,this.WIN_WIDTH,this.WIN_HEIGHT);
   },
   newActionUnlocked: function(action){
 	var act = Constants.ALL_ACTIONS[action];
+	this.resizeWin();
 	function genHover(action){
 		return function(event){
 			Textbox.setTitle(action);
 
 			loc = Constants.ALL_LOCATIONS[Map.currLocation];
 			act = Constants.ALL_ACTIONS[action];
-
 			profit = loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath;
 			risk = act.risk - Game.data.locationUsage[action] / act.riskDeath;
 
@@ -49,8 +60,8 @@ var Map = {
 		Game.data.images[action+"_sm"],
         action,
         1,
-        10+(Math.floor(this.numActions/2))*35,
-        15+(this.numActions%2)*35,
+        5+(Math.floor(this.numActions/2))*35,
+        5+(this.numActions%2)*35,
         genHover(action),
         handleUnhover,
         genClick(action));
@@ -65,8 +76,8 @@ var Map = {
 	
 	var hoveron=function(event){
 		Map.hoverWindow.visible=true;
-		Map.hoverWindow.x = event.currentTarget.locx;
-		Map.hoverWindow.y = event.currentTarget.locy;
+		Map.hoverWindow.x = event.currentTarget.locx-Map.WIN_WIDTH/2;
+		Map.hoverWindow.y = event.currentTarget.locy-Map.WIN_HEIGHT/2;
 	}
 	var hoverout =function(event){}
 	var click = function (event){}
@@ -82,7 +93,8 @@ var Map = {
 		
 		container.x=loc.mapx;
 		container.y=loc.mapy;
-		var boundShape = new createjs.Shape();
+		var bound = new createjs.Bitmap(Game.data.images['Unlock']);
+		bound.x=bound.y=-25;
 		var innerShape = new createjs.Shape();
 		function setTextboxFunc(title,body){
 			return function(){
@@ -102,6 +114,7 @@ var Map = {
 				setTextboxFunc("",""),
 				function(){}
 			);
+			bound.visible=false;
 			this.boundedArea[key].lock = lock;
 			container.addChild(lock);
 			innerShape.visible=false;
@@ -114,14 +127,15 @@ var Map = {
 		ButtonHelper.newButtonObj(innerShape,key,genHoverFunc(key),hoverout,click);
 		innerShape.locx = loc.mapx;
 		innerShape.locy = loc.mapy;
+		this.boundedArea[key].bound = bound;
 		this.boundedArea[key].area=innerShape;
-		container.addChild(boundShape);
+		container.addChild(bound);
 		container.addChild(innerShape);
 		this.surface.addChild(container);
 	}
     
-	var box = new createjs.Shape();
-	box.graphics.beginFill("#000000").beginStroke("#00ff00").drawRect(0,0,this.WIN_WIDTH,this.WIN_HEIGHT);
+	this.box = new createjs.Shape();
+	this.resizeWin();
 	ButtonHelper.newButtonObj(this.hoverWindow,"",function(){},function(evt){
 		var pt=Map.hoverWindow.globalToLocal(evt.stageX,evt.stageY);
 		if(pt.x>0 && pt.y>0 && pt.x<Map.WIN_WIDTH && pt.y < Map.WIN_HEIGHT);
@@ -133,7 +147,7 @@ var Map = {
 	//add action buttons
 	
 	
-	this.hoverWindow.addChild(box);
+	this.hoverWindow.addChild(this.box);
 	this.surface.addChild(this.hoverWindow);
     var icon = new createjs.Bitmap(Game.data.images['Library']);
     icon.x = 200;
