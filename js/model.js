@@ -9,9 +9,6 @@ var Game = {
   init: function(){
     this.canvas = new createjs.Stage('canvas');
     createjs.Ticker.addEventListener('tick', this.canvas);
-
-    // Add the different panels...
-    this.canvas.addChild(Map.surface);
   }
 };
 
