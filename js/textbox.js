@@ -3,7 +3,7 @@ var Textbox = {
 
   WIDTH: 800,
   HEIGHT: 100,
-  X: 0,
+  X: 80,
   Y: 550,
 
   titleTextBox: new createjs.Text('', '20px GameFont', '#00FF00'),
