@@ -20,6 +20,16 @@ var Constants = {
       Image: 0,
     },
   },
+
+  ALL_DUDES: {
+    'Highscooler': {
+      Risk: 0,
+      Resources: 1,
+      Description: 'Shady High School Kid',
+      Image: 0,
+    },
+  },
+  
   ALL_LOCATIONS: {
     'Library': {
       Risk: 0,

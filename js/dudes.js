@@ -15,5 +15,16 @@ var Dudes = {
     this.surface.addChild(background);
 
     Game.canvas.addChild(this.surface);
-  }
+
+
+    var helper = new createjs.ButtonHelper(background, "out", "over", "down", false);
+    this.surface.addEventListener("click", handleClick);
+    function handleClick(event) {
+       console.log("Button Clicked");
+    }
+  },
+
+  purchaseDude: function(dudeType) {
+    console.log("purchaseDude");
+  },
 };
