@@ -14,25 +14,17 @@ var Constants = {
 
   MISC_IMAGES: {
     'map': 'map.png',
-<<<<<<< HEAD
     'Forgot_sm': 'forgot_sm.png',
     'SpoofWebsite_sm': 'spoof_sm.png',
     'Keylogger_sm': 'keylogger_sm.png',
     'Wifi_sm': 'wifi_sm.png',
     'Scam_sm': 'scam_sm.png',
 	'Lock' : 'LockIcon.png',
-=======
     'dudes': 'dudes.png',
     'activities': 'activities.png',
     'text_bg': 'text_bg.png',
     'resources': 'resources.png',
     'Play': 'PlayButton.png',
-    'Forgot_sm': 'forgot_sm.png',
-    'Spoof_sm': 'spoof_sm.png',
-    'Keylogger_sm': 'keylogger_sm.png',
-    'Wifi_sm': 'wifi_sm.png',
-    'Scam_sm': 'scam_sm.png',
->>>>>>> 85af9766b6638c1985ca5d1cdc70a98eab4a12eb
   },
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
