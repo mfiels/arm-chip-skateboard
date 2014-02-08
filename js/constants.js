@@ -2,8 +2,8 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50000,
-  INITIAL_RESOURCES: 3,
+  INITIAL_MONEY: 50,
+  INITIAL_RESOURCES: 100,
 
   INITIAL_LOCATIONS: [
     'Library',
@@ -11,6 +11,10 @@ var Constants = {
   INITIAL_ACTIONS: [
     'Forgot',
   ],
+
+  MAP_IMAGE: 'map.png',
+
+  DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
 
   ALL_ACTIONS: {
     'Forgot': {
@@ -62,6 +66,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'scam.png',
       color: '#af0000',
+      modalMethod: 'showScamMethod',
     },
   },
 
@@ -102,14 +107,49 @@ var Constants = {
   
   ALL_LOCATIONS: {
     'Library': {
-    awarness: 0,
+      awarness: 0,
+  	  riskModifier: .1,
+      reward: 0,
+      description: 'Library',
+      image: 'hello.png',
+  	  mapx:50,
+  	  mapy:50,
+  	  mapw:80,
+  	  maph:80,
+    },
+	'Netcafe': {
+      risk: 0,
 	  riskModifier: .1,
-    reward: 0,
-    description: 'Library',
-    image: 'hello.png',
+      reward: 0,
+      description: 'Netcafe',
+      image: 'hello.png',
 	  color: '#ff0000',
-	  mapx:50,
-	  mapy:50,
+	  mapx:340,
+	  mapy:80,
+	  mapw:80,
+	  maph:80,
+    },
+	'Apartment': {
+      risk: 0,
+	  riskModifier: .1,
+      reward: 0,
+      description: 'Apartment',
+      image: 'hello.png',
+	  color: '#ff0000',
+	  mapx:30,
+	  mapy:210,
+	  mapw:80,
+	  maph:80,
+    },
+	'Computer Store': {
+      risk: 0,
+	  riskModifier: .1,
+      reward: 0,
+      description: 'Computer Store',
+      image: 'hello.png',
+	  color: '#ff0000',
+	  mapx:320,
+	  mapy:230,
 	  mapw:80,
 	  maph:80,
     },
@@ -129,7 +169,8 @@ var Constants = {
     'SpoofBadUrl': 'Spoofed.png',
     'KeyLoggingKeyboard': 'KeyLogging.png',
     'BadWifi': 'BadWifi.png',
-    'BadSsid': 'BadWifi2.png'
+    'BadSsid': 'BadWifi2.png',
+    'EmployeeScam': 'EmployeeScam.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 

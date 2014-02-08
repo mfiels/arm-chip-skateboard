@@ -48,9 +48,8 @@ var Map = {
   init: function() {
     this.surface.x = this.X;
     this.surface.y = this.Y;
-	var background = new createjs.Shape();
-    background.graphics.beginFill("#FF0000").drawRect(0, 0, this.WIDTH, this.HEIGHT);
-    this.surface.addChild(background);
+    var background = new createjs.Bitmap(Game.data.images['map']);
+	  this.surface.addChild(background);
 	
 	
 	

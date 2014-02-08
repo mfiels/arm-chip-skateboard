@@ -93,7 +93,7 @@ var Activities = {
     }
     function handleUnhover(event) {
       Textbox.setTitle('');
-      Textbox.setBody('');
+      Textbox.setBody(Constants.DEFAULT_TEXTBOX_TEXT);
       Game.addMoney(0);
     }
     function handleClick(event) {
