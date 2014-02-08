@@ -33,12 +33,12 @@ var Map = {
 			
 		};
 	}
-	var btn = ButtonHelper.newButton(
+	var btn = ButtonHelper.newButtonSpecial(
 		Game.data.images['Highschooler'],
         'Highschooler',
         1,
-        5+this.numActions*20,
-        5,
+        10+this.numActions*80,
+        15,
         genHover(action),
         handleUnhover,
         genClick(action));
@@ -88,7 +88,12 @@ var Map = {
     
 	var box = new createjs.Shape();
 	box.graphics.beginFill("#000000").beginStroke("#00ff00").drawRect(0,0,this.WIN_WIDTH,this.WIN_HEIGHT);
-	ButtonHelper.newButtonObj(this.hoverWindow,"",function(){},function(){Map.hoverWindow.visible=false;},click);
+	ButtonHelper.newButtonObj(this.hoverWindow,"",function(){},function(evt){
+		var pt=Map.hoverWindow.globalToLocal(evt.stageX,evt.stageY);
+		if(pt.x>0 && pt.y>0 && pt.x<Map.WIN_WIDTH && pt.y < Map.WIN_HEIGHT);
+		else
+			Map.hoverWindow.visible=false;
+	},click);
 	this.hoverWindow.visible=false;
 	
 	//add action buttons
