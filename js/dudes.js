@@ -50,9 +50,9 @@ var Dudes = {
     );
 
     targetEmployee = ButtonHelper.newButton(
-        Game.data.images['TargetEmployee'],
-        'Target Employee',
-        Constants.ALL_DUDES.TargetEmployee,
+        Game.data.images['AppleGenius'],
+        'Apple Genius',
+        Constants.ALL_DUDES.AppleGenius,
         105,
         105,
         handleHover,

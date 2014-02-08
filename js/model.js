@@ -45,6 +45,20 @@ var Data = function(){
 
   this.currentResources= 0;
   this.currentActions= [];
+
+  this.useResources = function(deltaResources) {
+    if(this.resources - deltaResources >= 0) {
+      this.resources -= deltaResources;
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
+
+  this.addResources = function(deltaResources) {
+    this.resources += deltaResources;
+  };
 }
 
 var ButtonHelper = {
