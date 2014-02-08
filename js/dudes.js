@@ -16,8 +16,8 @@ var Dudes = {
 
     //added high schoolers
     var highschooler = new createjs.Bitmap(Game.data.images['Highschooler']);
-    highschooler.x = 100;
-    highschooler.y = 200;
+    highschooler.x = 10;
+    highschooler.y = 10;
     this.surface.addChild(highschooler);
 
     Game.canvas.addChild(this.surface);
