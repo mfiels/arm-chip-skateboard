@@ -101,6 +101,7 @@ var Data = function(){
   this.days= Constants.INITIAL_DAYS;
   this.locations= Constants.INITIAL_LOCATIONS;
   this.actions= Constants.INITIAL_ACTIONS;
+  this.showTutorial = true;
   this.risk= 0;
   this.images= {};
   this.currentResources= 0;
@@ -122,6 +123,9 @@ var Data = function(){
   this.peopleCaughtLastTurn = 0,
   this.stepLogic=function() {
     this.days-=1;
+    if (this.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
+      Modal.showSecondIntroSequence();
+    }
     this.profitLastTurn = 0;
     this.peopleCaughtLastTurn = 0;
 

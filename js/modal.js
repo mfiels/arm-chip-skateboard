@@ -111,6 +111,14 @@ var Modal = {
     });
   },
 
+  showSecondIntroSequence: function() {
+    Modal.show('Awareness', new Content(Content.TUTORIAL_RISK), function() {
+      Modal.show('Buying Workers', new Content(Content.TUTORIAL_RESOURCES), function() {
+        Modal.hide();
+      });
+    });
+  },
+
   showForgotMethod: function() {
     Modal.show('Method 1: Forgetfulness', new Content(Content.FORGOT), function() {
       Modal.hide();
@@ -309,6 +317,7 @@ Content.TUTORIAL = function(surface) {
 
   noButton.addEventListener('click', function() {
     Modal.surface.addChild(Modal.okayButton);
+    Game.data.showTutorial = false;
     Modal.hide();
   });
 
@@ -379,6 +388,43 @@ Content.TUTORIAL_ACTIVITIES = function(surface) {
   text.y = 160;
   surface.addChild(text);
 };
+
+Content.TUTORIAL_RESOURCES = function(surface) {
+  var text = new createjs.Text('Now you can buy more workers. Workers let you perform more attacks per turn and will also unlock new attack locations. Mouse over the highschooler and buy one!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+
+  var resource = new createjs.Bitmap(Game.data.images['Highschooler']);
+  resource.x = 0 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+  var resource = new createjs.Bitmap(Game.data.images['NetCafeOwner']);
+  resource.x = 80 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+  var resource = new createjs.Bitmap(Game.data.images['ApartmentOwner']);
+  resource.x = 160 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+  var resource = new createjs.Bitmap(Game.data.images['Scammer']);
+  resource.x = 240 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+};
+
+Content.TUTORIAL_RISK = function(surface) {
+  var text = new createjs.Text('The more money you steal the more aware your targets will become of your actions. Keep an eye on the risk meter, as it grows your attacks become less effective!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+}
 
 Content.withText = function(displayText) {
   return new Content(
