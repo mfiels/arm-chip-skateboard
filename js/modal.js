@@ -63,6 +63,12 @@ var Modal = {
   },
 
   hide: function() {
+    Map.surface.mouseEnabled = true;
+    Resources.surface.mouseEnabled = true;
+    Activities.surface.mouseEnabled = true;
+    Dudes.surface.mouseEnabled = true;
+    Textbox.surface.mouseEnabled = true;
+
     Game.canvas.removeChild(this.underlay);
     Game.canvas.removeChild(this.surface);
   },
@@ -72,6 +78,13 @@ var Modal = {
     this.setContent(content);
     this.okayButton.removeAllEventListeners();
     this.okayButton.addEventListener('click', onOkayClicked);
+
+    Map.surface.mouseEnabled = false;
+    Resources.surface.mouseEnabled = false;
+    Activities.surface.mouseEnabled = false;
+    Dudes.surface.mouseEnabled = false;
+    Textbox.surface.mouseEnabled = false;
+
     Game.canvas.addChild(this.underlay);
     Game.canvas.addChild(this.surface);
   },
