@@ -148,7 +148,7 @@ var Data = function(){
           console.log('Go to jail and do not collect 200 dollars!');
           this.peopleCaughtLastTurn++
 
-          Game.data.risk++;
+          Game.data.risk += 4.0/(count);
           RiskMeter.update();
         }
         else {
