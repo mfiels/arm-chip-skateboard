@@ -20,7 +20,7 @@ var Activities = {
     this.moneyCounter.y=18;
     this.surface.addChild(this.moneyCounter);
     Game.addMoney(0);
-    this.dayCounter.x=400;
+    this.dayCounter.x=380;
     this.dayCounter.y=18;
     this.surface.addChild(this.dayCounter);
     Game.updateDays();

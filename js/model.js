@@ -118,6 +118,8 @@ var Data = function(){
     'Computer Store': 0,
   };
   this.stepLogic=function() {
+    this.days-=1;
+    Game.updateDays();
 		for(var i=0;i<this.currentActions.length;i++){
 			//
 			var action = Constants.ALL_ACTIONS[this.currentActions[i].action];
@@ -133,13 +135,15 @@ var Data = function(){
         this.locationUsage[location.parent]++;
 				if((action.risk*action.riskModifier+location.risk*location.riskModifier)*Math.random()>1){
 					//UHOH
-					Console.log("Gameover?");
+					console.log("Gameover?");
 					//break;
 				}
 			}
 		}
-    this.data.days-=1;
-    this.updateDays();
+    if (this.days==0 && this.money<Constants.MONEY_GOAL) {
+      console.log("Gameover?");
+    }
+    
 		
 		
 

@@ -5,6 +5,8 @@ var Constants = {
   INITIAL_MONEY: 50000,
   INITIAL_RESOURCES: 100,
   INITIAL_DAYS: 30,
+
+  MONEY_GOAL: 100000,
   
   INITIAL_LOCATIONS: [
     'Library',
