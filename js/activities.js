@@ -37,7 +37,7 @@ var Activities = {
     this.surface.addChild(icon);
     
     icon = ButtonHelper.newButton(
-        Game.data.images['SpoofWebsite'],
+        Game.data.images['SpoofLocked'],
         'Spoof Website',
         Constants.ALL_ACTIONS.SpoofWebsite,
         114,
@@ -65,11 +65,11 @@ var Activities = {
         enoughMoney = Game.addMoney(-event.currentTarget.eventID.cost);
         if (enoughMoney) {
           Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
+          event.currentTarget.image = Game.data.images[event.currentTarget.name.replace(/ /g,'')]
         } else {
           Game.tempMoney(-event.currentTarget.eventID.cost);
         }
       } 
-      console.log('clicked' + event.currentTarget.eventID);
     }
 
     Game.canvas.addChild(this.surface);
