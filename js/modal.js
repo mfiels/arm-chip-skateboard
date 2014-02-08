@@ -45,7 +45,7 @@ var Modal = {
     this.content.y = this.CONTENT_PADDING_VERTICAL;
     this.surface.addChild(this.content);
 
-    //Modal.showIntroSequence();
+    Modal.showIntroSequence();
   },
 
   makeTextButton: function(text, width) {
@@ -179,7 +179,7 @@ Content.FORGOT = function(surface) {
   dontSaveImage.y = 180;
   surface.addChild(dontSaveImage);
 
-  var text = new createjs.Text('These people often forget to sign out of their accounts when they are finished...', '16px GameFont', '#00FF00');
+  var text = new createjs.Text('Your targets often forget to sign out of their accounts when they are finished...', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
@@ -292,19 +292,19 @@ Content.SCAM = function(surface) {
 Content.TUTORIAL = function(surface) {
   Modal.surface.removeChild(Modal.okayButton);
   var text = new createjs.Text('Looks like this is your first time using the Hackmaster 3000, would you like a tutorial?', '16px GameFont', '#00FF00');
-  text.lineWidth = Content.WIDTH;
+  text.lineWidth = Content.WIDTH - 100;
   text.lineHeight = 30;
-  text.textAlign = 'center';
-  text.x = Content.WIDTH / 2.0;
-  text.y = 0;
+  text.textAlign = 'left';
+  text.x = 100;
+  text.y = 50;
   surface.addChild(text);
   var yesButton = Modal.makeTextButton('Yes', 75);
   yesButton.y = 200;
-  yesButton.x -= 80;
+  yesButton.x -= 50;
   surface.addChild(yesButton);
   var noButton = Modal.makeTextButton('No', 75);
   noButton.y = 200;
-  noButton.x += 80;
+  noButton.x += 50;
   surface.addChild(noButton);
 
   noButton.addEventListener('click', function() {
@@ -314,21 +314,71 @@ Content.TUTORIAL = function(surface) {
 
   yesButton.addEventListener('click', function() {
     Modal.surface.addChild(Modal.okayButton);
-    Modal.show('The Town', new Content(Content.TUTORIAL_2), function() {
-      Modal.hide();
+    Modal.show('The Town', new Content(Content.TUTORIAL_MAP), function() {
+      Modal.show('Attacks', new Content(Content.TUTORIAL_ACTIVITIES), function() {
+        Modal.showForgotMethod();
+      });
     });
   });
+
+  var clippy = new createjs.Bitmap(Game.data.images['Clippy']);
+  clippy.y = 30;
+  surface.addChild(clippy);
 };
 
-Content.TUTORIAL_2 = function(surface) {
-  var text = new createjs.Text('Hey there...', '16px GameFont', '#00FF00');
+Content.TUTORIAL_MAP = function(surface) {
+  var text = new createjs.Text('In the upper left is a map of the town. The Library is our first target. You can mouse over buildings to see how we can attack them.', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
   text.y = 0;
   surface.addChild(text);
+
+  var map = new createjs.Bitmap(Game.data.images['MapSmall']);
+  map.x = Content.WIDTH / 2 - Game.data.images['MapSmall'].width / 2;
+  map.y = 100;
+  surface.addChild(map);
 }
+
+Content.TUTORIAL_ACTIVITIES = function(surface) {
+  var text = new createjs.Text('There are different types of attacks we can deploy, you can mouse over them to learn more.', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+
+  var activity = new createjs.Bitmap(Game.data.images['Forgot']);
+  activity.y = 65;
+  activity.x = 0 + 80;
+  surface.addChild(activity);
+  var activity = new createjs.Bitmap(Game.data.images['SpoofWebsite']);
+  activity.y = 65;
+  activity.x = 80 + 80;
+  surface.addChild(activity);
+  var activity = new createjs.Bitmap(Game.data.images['Keylogger']);
+  activity.y = 65;
+  activity.x = 160 + 80;
+  surface.addChild(activity);
+  var activity = new createjs.Bitmap(Game.data.images['Wifi']);
+  activity.y = 65;
+  activity.x = 240 + 80;
+  surface.addChild(activity);
+  var activity = new createjs.Bitmap(Game.data.images['Scam']);
+  activity.y = 65;
+  activity.x = 320 + 80;
+  surface.addChild(activity);
+
+  text = new createjs.Text('New attacks can be unlocked by purchasing them, but to start you rely on... ', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 160;
+  surface.addChild(text);
+};
 
 Content.withText = function(displayText) {
   return new Content(

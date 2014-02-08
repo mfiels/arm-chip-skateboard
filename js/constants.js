@@ -26,6 +26,7 @@ var Constants = {
     'text_bg': 'text_bg.png',
     'resources': 'resources.png',
     'Play': 'PlayButton.png',
+	'Unlock':'UnlockIcon.png',
   },
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
@@ -160,8 +161,8 @@ var Constants = {
       description: 'Netcafe',
       image: 'hello.png',
 	  color: '#ff0000',
-	  mapx:300,
-	  mapy:100,
+	  mapx:340,
+	  mapy:110,
 	  mapr:50,
     },
 	'Apartment': {
@@ -174,8 +175,8 @@ var Constants = {
     description: 'Apartment',
     image: 'hello.png',
 	  color: '#ff0000',
-	  mapx:30,
-	  mapy:210,
+	  mapx:395,
+	  mapy:240,
 	  mapr:50,
     },
 	'Computer Store': {
@@ -188,7 +189,7 @@ var Constants = {
     description: 'Computer Store',
     image: 'hello.png',
 	  color: '#ff0000',
-	  mapx:320,
+	  mapx:165,
 	  mapy:230,
 	  mapr:50,
     },
@@ -209,7 +210,9 @@ var Constants = {
     'KeyLoggingKeyboard': 'KeyLogging.png',
     'BadWifi': 'BadWifi.png',
     'BadSsid': 'BadWifi2.png',
-    'EmployeeScam': 'EmployeeScam.png'
+    'EmployeeScam': 'EmployeeScam.png',
+    'MapSmall': 'MapSmall.png',
+    'Clippy': 'Clippy.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
