@@ -143,6 +143,18 @@ var Modal = {
     });
   },
 
+  showGameOver: function(reason) {
+    var type;
+    switch (reason) {
+      case 'awareness': type = Content.GAME_OVER_AWARENESS; break;
+      case 'time': type = Content.GAME_OVER_TIME; break;
+      case 'money': type = Content.GAME_OVER_MONEY; break;
+    }
+    Modal.show('Game Over!', new Content(type), function() {
+      // nop
+    });
+  },
+
   showScamMethod: function() {
     Modal.show('Method 5: Scams', new Content(Content.SCAM), function() {
       Modal.hide();
@@ -150,7 +162,13 @@ var Modal = {
   },
   showNewsBlurb: function(){
 	Modal.show("REPORT", new Content(Content.NEWSPAPER),function(){
-    if (Game.data.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
+    if (Game.data.days == 0 && Game.data.money < Constants.MONEY_GOAL) {
+      Modal.showGameOver('time');
+    } else if (Game.data.risk >= 100) {
+      Modal.showGameOver('awareness');
+    } else if (Game.data.money >= Constants.MONEY_GOAL) {
+      Modal.showGameOver('money');
+    } else if (Game.data.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
       Modal.showSecondIntroSequence();
     } else {
       Modal.hide();
@@ -433,7 +451,37 @@ Content.TUTORIAL_RISK = function(surface) {
   text.x = Content.WIDTH / 2.0;
   text.y = 0;
   surface.addChild(text);
-}
+};
+
+Content.GAME_OVER_AWARENESS = function(surface) {
+  var text = new createjs.Text('Your targets have caught on to your attacks and are now no longer logging in on untrusted computers!', '16px GameFont', '#00FF00')
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+};
+
+Content.GAME_OVER_TIME = function(surface) {
+  var text = new createjs.Text('You have been thrown out of your apartment!', '16px GameFont', '#00FF00')
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+};
+
+Content.GAME_OVER_MONEY = function(surface) {
+  var text = new createjs.Text('You managed to pay your rent on time, now what to do for next month\'s rent...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+};
 
 Content.withText = function(displayText) {
   return new Content(
