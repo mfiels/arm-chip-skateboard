@@ -7,6 +7,7 @@ var Game = {
 
   init: function(){
     this.canvas = new createjs.Stage('canvas');
+    createjs.Ticker.addEventListener('tick', this.canvas);
     this.data = new Data();
   },
 };
@@ -22,4 +23,3 @@ var Data = function(){
   this.currentResources= 0;
   this.currentActions= [];
 }
-

@@ -1,17 +1,17 @@
 var Constants = {
+  CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
+  CANVAS_HEIGHT: 600,    // NOTE: Same as above
+
   INITIAL_MONEY: 100,
   INITIAL_RESOURCES: 3,
-  ALL_LOCATIONS: {
-    'Library': {
-      Risk: 0,
-      Reward: 0,
-      Description: 'Library',
-      Image: 0,
-    },
-  },
+
   INITIAL_LOCATIONS: [
     'Library',
   ],
+  INITIAL_ACTIONS: [
+    'Forgot',
+  ],
+
   ALL_ACTIONS: {
     'Forgot': {
       Risk: 0,
@@ -20,7 +20,12 @@ var Constants = {
       Image: 0,
     },
   },
-  INITIAL_ACTIONS: [
-    'Forgot',
-  ],
+  ALL_LOCATIONS: {
+    'Library': {
+      Risk: 0,
+      Reward: 0,
+      Description: 'Library',
+      Image: 0,
+    },
+  },
 };
