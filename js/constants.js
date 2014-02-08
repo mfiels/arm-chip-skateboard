@@ -19,7 +19,15 @@ var Constants = {
       cost: 1,
       description: 'Someone forgot to log off!',
       image: 'forgot.png',
-	  color: '#af0000',
+	    color: '#af0000',
+    },
+    'SpoofWebsite': {
+      risk: 0,
+      resources: 1,
+      cost: 2,
+      description: 'Leave a fake website open to lure people into logging in.',
+      image: 'spoof.png',
+      color: '#af0000',
     },
   },
 
