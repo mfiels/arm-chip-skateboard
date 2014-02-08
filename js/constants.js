@@ -30,6 +30,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'spoof.png',
       color: '#af0000',
+      modalMethod: 'showSpoofMethod',
     },
     'Keylogger': {
       risk: 0,
@@ -38,6 +39,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'keylogger.png',
       color: '#af0000',
+      modalMethod: 'showKeyLoggerMethod',
     },
     'Wifi': {
       risk: 0,
@@ -78,7 +80,7 @@ var Constants = {
       risk: 0,
       cost: 2000,
       resourceGain: 10,
-      lockDescription: 'I will give you the keys to happiness....',
+      lockDescription: 'Receive keys to the apartment.\n\nI will give you the keys to happiness....',
       description: 'Has acces to lots of things ;)',
       image: 'apartmentowner.png',
     },
@@ -86,7 +88,7 @@ var Constants = {
       risk: 0,
       cost: 5000,
       resourceGain: 20,
-      lockDescription: 'I will do whatever you want ;)',
+      lockDescription: 'Unlock access to the computer score.\n\nI will do whatever you want... For a price ;)',
       description: 'Hates life and loves money',
       image: 'scammer.png',
     },
@@ -117,7 +119,9 @@ var Constants = {
   LESSON_IMAGES: {
     'ForgotDontSave': 'DontSave.png',
     'ForgotSignOut': 'SignOut.png',
-    'ForgotStaySignedIn': 'StaySignedIn.png'
+    'ForgotStaySignedIn': 'StaySignedIn.png',
+    'SpoofBadUrl': 'Spoofed.png',
+    'KeyLoggingKeyboard': 'KeyLogging.png' 
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
