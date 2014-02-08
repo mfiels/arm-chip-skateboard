@@ -179,7 +179,7 @@ var Data = function(){
     console.log("profitLastTurn: " + this.profitLastTurn);
     console.log("peopleCaughtLastTurn: " + this.peopleCaughtLastTurn);
 	
-		this.graphs.stats.addPoint(0,this.money).addPoint(1,this.profit).addPoint(2,this.resources);
+		this.graphs.stats.addPoint(0,this.money).addPoint(1,this.profitLastTurn).addPoint(2,this.resources);
 		
     if (this.days==0 && this.money<Constants.MONEY_GOAL) {
       console.log("Gameover?");
