@@ -12,7 +12,7 @@
         RiskMeter.update();
         break;
       case 109:
-        Game.data.money += 100000;
+        Game.addMoney(1000);
         break;
       default: 
         break;
