@@ -17,7 +17,13 @@ var Map = {
 	function genHover(action){
 		return function(event){
 			Textbox.setTitle(action);
-			Textbox.setBody("use description for action?");
+			loc = Constants.ALL_LOCATIONS[Map.currLocation];
+			act = Constants.ALL_ACTIONS[action];
+
+			profit = loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath;
+			risk = act.risk - Game.data.locationUsage[action] / act.riskDeath;
+
+			Textbox.setBody("Profability: $" + profit.toFixed(2) + '\n\nRisk: ' + risk.toFixed(2));
 			if(Constants.ALL_ACTIONS[action].resources<=Game.data.resources)
 				Resources.modifyGhostResource(-Constants.ALL_ACTIONS[action].resources);
 		};

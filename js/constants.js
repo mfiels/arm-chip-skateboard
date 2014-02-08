@@ -2,7 +2,7 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50,
+  INITIAL_MONEY: 50000,
   INITIAL_RESOURCES: 100,
 
   INITIAL_LOCATIONS: [
@@ -20,7 +20,8 @@ var Constants = {
     'Forgot': {
       parent: 'Forgot',
       risk: 0,
-	  riskModifier: 1,
+      riskDeath: 100,
+	    riskModifier: 1,
       resources: 1,
       cost: 1,
       description: 'Someone forgot to log off!',
@@ -31,6 +32,7 @@ var Constants = {
     'SpoofWebsite': {
       parent: 'SpoofWebsite',
       risk: 0,
+      riskDeath: 200,
       resources: 2,
       cost: 2,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -41,6 +43,7 @@ var Constants = {
     'Keylogger': {
       parent: 'Keylogger',
       risk: 0,
+      riskDeath: 300,
       resources: 3,
       cost: 10,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -51,6 +54,7 @@ var Constants = {
     'Wifi': {
       parent: 'Wifi',
       risk: 0,
+      riskDeath: 400,
       resources: 6,
       cost: 20,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -61,6 +65,7 @@ var Constants = {
     'Scam': {
       parent: 'Scam',
       risk: 0,
+      riskDeath: 500,
       resources: 8,
       cost: 30,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -72,7 +77,6 @@ var Constants = {
 
   ALL_DUDES: {
     'Highschooler': {
-      risk: 0,
       resourceGain: 1,
       cost: 100,
       lockDescription: 'Gain access to the local high school.\n\nThose poor kids...',
@@ -80,7 +84,6 @@ var Constants = {
       image: 'highschooler.png',
     },
     'NetCafeOwner': {
-      risk: 0,
       cost: 500,
       resourceGain: 5,
       lockDescription: 'Unlocks the local cafe.\n\nFree donuts and coffee 4Life!',
@@ -88,7 +91,6 @@ var Constants = {
       image: 'netcafe.png',
     },
     'ApartmentOwner': {
-      risk: 0,
       cost: 2000,
       resourceGain: 10,
       lockDescription: 'Receive keys to the apartment.\n\nI will give you the keys to happiness....',
@@ -96,7 +98,6 @@ var Constants = {
       image: 'apartmentowner.png',
     },
     'Scammer': {
-      risk: 0,
       cost: 5000,
       resourceGain: 20,
       lockDescription: 'Unlock access to the computer score.\n\nI will do whatever you want... For a price ;)',
@@ -107,9 +108,11 @@ var Constants = {
   
   ALL_LOCATIONS: {
     'Library': {
+      parent: 'Library',
       awarness: 0,
   	  riskModifier: .1,
-      reward: 0,
+      rewardDeath: 100,
+      reward: 10,
       description: 'Library',
       image: 'hello.png',
   	  mapx:50,
@@ -118,11 +121,13 @@ var Constants = {
   	  maph:80,
     },
 	'Netcafe': {
-      risk: 0,
+    parent: 'Netcafe',
+    risk: 0,
 	  riskModifier: .1,
-      reward: 0,
-      description: 'Netcafe',
-      image: 'hello.png',
+    rewardDeath: 100,
+    reward: 20,
+    description: 'Netcafe',
+    image: 'hello.png',
 	  color: '#ff0000',
 	  mapx:340,
 	  mapy:80,
@@ -130,11 +135,13 @@ var Constants = {
 	  maph:80,
     },
 	'Apartment': {
-      risk: 0,
+    parent: 'Apartment',
+    risk: 0,
 	  riskModifier: .1,
-      reward: 0,
-      description: 'Apartment',
-      image: 'hello.png',
+    rewardDeath: 100,
+    reward: 30,
+    description: 'Apartment',
+    image: 'hello.png',
 	  color: '#ff0000',
 	  mapx:30,
 	  mapy:210,
@@ -142,11 +149,13 @@ var Constants = {
 	  maph:80,
     },
 	'Computer Store': {
-      risk: 0,
+    parent: 'Computer Store',
+    risk: 0,
 	  riskModifier: .1,
-      reward: 0,
-      description: 'Computer Store',
-      image: 'hello.png',
+    rewardDeath: 100,
+    reward: 50,
+    description: 'Computer Store',
+    image: 'hello.png',
 	  color: '#ff0000',
 	  mapx:320,
 	  mapy:230,

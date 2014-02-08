@@ -30,7 +30,7 @@ var Game = {
     Activities.moneyCounter.color='#00FF00'
     if (this.data.money + amount >= 0) {
       this.data.money += amount;
-      Activities.moneyCounter.text="$"+this.data.money;
+      Activities.moneyCounter.text="$"+this.data.money.toFixed(2);
       return true;
     }
     return false;
@@ -112,20 +112,26 @@ var Data = function(){
     'Wifi': 0,
     'Scam': 0,
   };
+  this.locationUsage= {
+    'Library': 0,
+    'Netcafe': 0,
+    'Apartment': 0,
+    'Computer Store': 0,
+  };
   this.stepLogic=function() {
 		for(var i=0;i<this.currentActions.length;i++){
 			//
 			var action = Constants.ALL_ACTIONS[this.currentActions[i].action];
 			var location = Constants.ALL_LOCATIONS[this.currentActions[i].location];
 			var count = this.currentActions[i].count;
-			for(var j =0;j<count;j++){
+			for(var j =0;j<count;j++) {
 				this.resources+=action.resources;
-				this.money+=action.resources;
+        profit = location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath;
+				this.money+=profit;
 				action.risk+=.02;
 				location.risk+=.02;
         this.actionUsage[action.parent]++;
-        console.log('Number of actions used for ' + action.parent + ': ' + this.actionUsage[action.parent]);
-
+        this.locationUsage[location.parent]++;
 				if((action.risk*action.riskModifier+location.risk*location.riskModifier)*Math.random()>1){
 					//UHOH
 					Console.log("Gameover?");
