@@ -19,6 +19,13 @@ var Game = {
     Dudes.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
   },
+  addAction: function(action, location){
+	var pair = {
+		action:action,
+		location:location
+	};
+	data.currentActions.push(pair);
+  }
 };
 
 var Data = function(){

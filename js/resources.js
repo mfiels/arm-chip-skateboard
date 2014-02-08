@@ -27,13 +27,13 @@ var Resources = {
     this.surface.x = this.X;
     this.surface.y = this.Y;
 	//Load resource text and position
-	this.resourceText= new createjs.Text("0","50px Arial",this.color);
+	this.resourceText= new createjs.Text("0","50px GameFont",this.color);
 	this.resourceText.x = this.WIDTH/2;
 	this.resourceText.y = 20;
 	this.resourceText.textAlign="center";
 	
 	//Load ghost resource text and position
-	this.resourceText2= new createjs.Text("0","50px Arial",this.color);
+	this.resourceText2= new createjs.Text("0","50px GameFont",this.color);
 	this.resourceText2.x = this.WIDTH/2;
 	this.resourceText2.y = 160;
 	this.resourceText2.textAlign="center";
