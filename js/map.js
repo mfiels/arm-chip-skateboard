@@ -3,7 +3,7 @@ var Map = {
 
   WIDTH: 600,
   HEIGHT: 350,
-  X: 0,
+  X: 80,
   Y: 0,
   WIN_WIDTH:120,
   WIN_HEIGHT:100,

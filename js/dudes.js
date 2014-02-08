@@ -3,7 +3,7 @@ var Dudes = {
 
   WIDTH: 200,
   HEIGHT: 200,
-  X: 600,
+  X: 680,
   Y: 350,
   UNLOCKED: {
     'Highschooler'    : false,

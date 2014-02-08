@@ -7,7 +7,7 @@ var Modal = {
 
   WIDTH: 600,
   HEIGHT: 400,
-  X: 100,
+  X: 140,
   Y: 100,
 
   CONTENT_PADDING_HORIZONTAL: 10,
@@ -150,7 +150,11 @@ var Modal = {
   },
   showNewsBlurb: function(){
 	Modal.show("REPORT", new Content(Content.NEWSPAPER),function(){
-		Modal.hide();
+    if (Game.data.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
+      Modal.showSecondIntroSequence();
+    } else {
+      Modal.hide();
+    }
 	});
   },
 };

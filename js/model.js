@@ -125,9 +125,6 @@ var Data = function(){
   this.peopleCaughtLastTurn = 0,
   this.stepLogic=function() {
     this.days-=1;
-    if (this.days == Constants.INITIAL_DAYS - 1 && Game.data.showTutorial) {
-      Modal.showSecondIntroSequence();
-    }
     this.profitLastTurn = 0;
     this.peopleCaughtLastTurn = 0;
 
@@ -141,12 +138,12 @@ var Data = function(){
 				this.resources+=action.resources;
         profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * action.scoreMult;
         risk = action.risk + Game.data.actionUsage[action.parent] * action.riskIncrease;
-				
+				Game.data.risk = risk;
+        RiskMeter.update();
         r = Math.random() * 100;
         console.log('R = ' + r + 'RISK: ' + risk);
         if(r < risk) {
           //shit hit the fan and this guy got screwed!
-          this.risk++;
           console.log('Go to jail and do not collect 200 dollars!');
           this.peopleCaughtLastTurn++
         }
