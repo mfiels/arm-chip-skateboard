@@ -77,6 +77,7 @@ var Data = function(){
 
   this.addResources = function(deltaResources) {
     this.resources += deltaResources;
+    console.log("Resources: " + this.resources);
   };
 }
 

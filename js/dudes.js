@@ -77,6 +77,7 @@ var Dudes = {
     }
     function handleClick(event) {
       console.log('clicked' + event.currentTarget.eventID);
+      Game.data.addResources(event.currentTarget.eventID.resourceGain);
     }
   },
 
