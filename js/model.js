@@ -199,8 +199,8 @@ var Data = function(){
 
 var ArticleInfo = {
 	'Forgot':[
-		"Users are becoming more wary about leaving there accounts logged in!",
-		"Recent trends show that 50% of users leave there accounts logged in!",
+		"Users are becoming more wary about leaving their accounts logged in!",
+		"Recent trends show that 50% of users leave their accounts logged in!",
 		"The most common password used is password!",
 		"Users are urged to never hit 'remember password'",
 	],
@@ -208,7 +208,6 @@ var ArticleInfo = {
 		"Users are starting to pay attention to the URL's in web browsers.",
 		"Users don't trust tabs left open for them anymore.",
 		"60% of users won't notice a slightly misspelled URL",
-		
 	],
 	'Keylogger':[
 		"Users are learning not to input sensitive information when they are on unsecured public machines.",
@@ -221,8 +220,8 @@ var ArticleInfo = {
 		
 	],
 	'Scam':[
-		"im bored5 blah blah blah blah blah"
-	
+		"Users are getting wise to scammers that are impersonating employees.",
+    "Computer store employees start cracking down on their display models."
 	],
 	
 };
