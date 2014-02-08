@@ -6,7 +6,7 @@ var Constants = {
   INITIAL_RESOURCES: 1,
   INITIAL_DAYS: 30,
 
-  MONEY_GOAL: 100000,
+  MONEY_GOAL: 5000,
   
   INITIAL_LOCATIONS: [
     'Library',
@@ -52,7 +52,7 @@ var Constants = {
       parent: 'SpoofWebsite',
       risk: 1.2,
       scoreMult: 1.2,
-      riskIncrease: 1.2,
+      riskIncrease: 1.1,
       resources: 2,
       cost: 100,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -63,10 +63,10 @@ var Constants = {
     'Keylogger': {
       parent: 'Keylogger',
       scoreMult: 1.5,
-      risk: 10,
+      risk: 1.5,
       riskIncrease: 1.3,
       resources: 3,
-      cost: 750,
+      cost: 450,
       description: 'Install keyloggers to capture people\'s log in info.',
       image: 'keylogger.png',
       color: '#af0000',
@@ -75,10 +75,10 @@ var Constants = {
     'Wifi': {
       parent: 'Wifi',
       scoreMult: 1.75,
-      risk: 20,
-      riskIncrease: 2,
+      risk: 2,
+      riskIncrease: 1.5,
       resources: 6,
-      cost: 20,
+      cost: 500,
       description: 'Setup a fake open wireless access point and record traffic.',
       image: 'wifi.png',
       color: '#af0000',
@@ -87,10 +87,10 @@ var Constants = {
     'Scam': {
       parent: 'Scam',
       scoreMult: 2.0,
-      risk: 40,
-      riskIncrease: 2,
+      risk: 4,
+      riskIncrease: 1.5,
       resources: 8,
-      cost: 30,
+      cost: 550,
       description: 'Place scammers who can use social engineering to steal passwords.',
       image: 'scam.png',
       color: '#af0000',
@@ -108,7 +108,7 @@ var Constants = {
       image: 'highschooler.png',
     },
     'NetCafeOwner': {
-      cost: 500,
+      cost: 250,
 	  location: "Netcafe",
       resourceGain: 5,
       lockDescription: 'Unlocks the local cafe.\n\nFree donuts and coffee 4Life!',
@@ -116,7 +116,7 @@ var Constants = {
       image: 'netcafe.png',
     },
     'ApartmentOwner': {
-      cost: 2000,
+      cost: 500,
 	  location: "Apartment",
       resourceGain: 10,
       lockDescription: 'Receive keys to the apartment.\n\nI will give you the keys to happiness....',
@@ -124,7 +124,7 @@ var Constants = {
       image: 'apartmentowner.png',
     },
     'Scammer': {
-      cost: 5000,
+      cost: 700,
 	  location: "Computer Store",
       resourceGain: 20,
       lockDescription: 'Unlock access to the computer score.\n\nI will do whatever you want... For a price ;)',
@@ -137,7 +137,7 @@ var Constants = {
     'Library': {
       parent: 'Library',
       awarness: 0,
-  	  riskModifier: .1,
+  	  riskModifier: 1,
 	    unlock:"none",
       rewardDeath: 100,
       reward: 10,
@@ -150,7 +150,7 @@ var Constants = {
 	'Netcafe': {
     parent: 'Netcafe',
     risk: 0,
-	  riskModifier: .1,
+	  riskModifier: 0.4,
 	  unlock:"NetCafeOwner",
     rewardDeath: 100,
     reward: 20,
@@ -164,7 +164,7 @@ var Constants = {
 	'Highschool': {
     parent: 'Highschool',
     risk: 0,
-	  riskModiier: .1,
+	  riskModifier: 0.8,
     reward: 12,
     rewardDeath: 100,
 	  unlock:"Highschooler",
@@ -178,7 +178,7 @@ var Constants = {
 	'Apartment': {
     parent: 'Apartment',
     risk: 0,
-	  riskModifier: .1,
+	  riskModifier: 0.2,
 	  unlock:"ApartmentOwner",
     rewardDeath: 100,
     reward: 30,

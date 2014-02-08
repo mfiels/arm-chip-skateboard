@@ -137,15 +137,16 @@ var Data = function(){
 			for(var j =0;j<count;j++) {
 				this.resources+=action.resources;
         profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * action.scoreMult;
-        risk = action.risk + Game.data.actionUsage[action.parent] * action.riskIncrease;
-				Game.data.risk = risk;
-        RiskMeter.update();
+        risk = action.risk + Game.data.actionUsage[action.parent] * action.riskIncrease * location.riskModifier;
         r = Math.random() * 100;
         console.log('R = ' + r + 'RISK: ' + risk);
         if(r < risk) {
           //shit hit the fan and this guy got screwed!
           console.log('Go to jail and do not collect 200 dollars!');
           this.peopleCaughtLastTurn++
+
+          Game.data.risk++;
+          RiskMeter.update();
         }
         else {
           //got away clean!!!
