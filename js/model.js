@@ -123,12 +123,15 @@ var Data = function(){
   };
   this.profitLastTurn = 0,
   this.peopleCaughtLastTurn = 0,
+  this.currentStory = '',
   this.stepLogic=function() {
     this.days-=1;
     this.profitLastTurn = 0;
     this.peopleCaughtLastTurn = 0;
 
     Game.updateDays();
+    Game.data.risk+=2;
+    RiskMeter.update();
 		for(var i=0;i<this.currentActions.length;i++){
 			//
 			var action = Constants.ALL_ACTIONS[this.currentActions[i].action];
@@ -159,7 +162,7 @@ var Data = function(){
         this.actionUsage[action.parent]++;
         this.locationUsage[location.parent]++;
 
-
+        Game.data.currentStory = 'Forgot';
         //I am not sure if we need this.
 				if((action.risk*action.riskModifier+location.risk*location.riskModifier)*Math.random()>1){
 					//UHOH

@@ -155,6 +155,12 @@ var Modal = {
     });
   },
 
+  showNewsStory: function() {
+    Modal.show('BREAKING NEWS', new Content(Content.NEWS), function() {
+      Modal.hide();
+    });
+  },
+
   showScamMethod: function() {
     Modal.show('Method 5: Scams', new Content(Content.SCAM), function() {
       Modal.hide();
@@ -495,6 +501,18 @@ Content.withText = function(displayText) {
       surface.addChild(text);
     }
   );
+};
+
+Content.NEWS = function(surface) {
+  console.log('Constants.NEWS_STORIES: ' + Constants.NEWS_STORIES);
+  console.log('Game.data.currentStory: ' + Game.data.currentStory);
+  var text = new createjs.Text(Constants.NEWS_STORIES[Game.data.currentStory]['text'], '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
 };
 
 Content.NEWSPAPER = function(surface){
