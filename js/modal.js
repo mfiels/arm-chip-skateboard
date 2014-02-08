@@ -104,11 +104,7 @@ var Modal = {
   },
 
   showIntroSequence: function() {
-    Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
-      Modal.show('Tutorial?', new Content(Content.TUTORIAL), function() {
-        Modal.hide();
-      });
-    });
+    this.showSplash();
   },
 
   showSecondIntroSequence: function() {
@@ -152,6 +148,16 @@ var Modal = {
     }
     Modal.show('', new Content(type), function() {
       // nop
+    });
+  },
+
+  showSplash: function() {
+    Modal.show('Splash', new Content(Content.SPLASH), function() {
+      Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
+        Modal.show('Tutorial?', new Content(Content.TUTORIAL), function() {
+          Modal.hide();
+        });
+      });
     });
   },
 
@@ -482,17 +488,26 @@ Content.GAME_OVER_TIME = function(surface) {
 };
 
 Content.GAME_OVER_MONEY = function(surface) {
-  var go = new createjs.Bitmap(Game.data.images['GameOver']);
-  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  var go = new createjs.Bitmap(Game.data.images['Success']);
+  go.x = (Content.WIDTH - Game.data.images['Success'].width) / 2.0;
   go.y = -50;
   surface.addChild(go);
-  var text = new createjs.Text('You managed to pay your rent on time, now what to do for next month\'s rent...', '16px GameFont', '#00FF00');
+  var text = new createjs.Text('You managed to pay your rent on time before your targets were able to catch on to you! Now what to do for next month\'s rent...', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
   text.y = 50;
   surface.addChild(text);
+};
+
+Content.SPLASH = function(surface) {
+  var sp = new createjs.Bitmap(Game.data.images['Splash']);
+  sp.x = -20;
+  sp.y = -80;
+  surface.addChild(sp);
+  Modal.surface.removeChild(Modal.okayButton);
+  Modal.surface.addChild(Modal.okayButton);
 };
 
 Content.withText = function(displayText) {
