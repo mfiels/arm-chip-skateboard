@@ -290,6 +290,7 @@ Content.SCAM = function(surface) {
 };
 
 Content.TUTORIAL = function(surface) {
+  Modal.surface.removeChild(Modal.okayButton);
   var text = new createjs.Text('Looks like this is your first time using the Hackmaster 3000, would you like a tutorial?', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
@@ -297,7 +298,37 @@ Content.TUTORIAL = function(surface) {
   text.x = Content.WIDTH / 2.0;
   text.y = 0;
   surface.addChild(text);
+  var yesButton = Modal.makeTextButton('Yes', 75);
+  yesButton.y = 200;
+  yesButton.x -= 80;
+  surface.addChild(yesButton);
+  var noButton = Modal.makeTextButton('No', 75);
+  noButton.y = 200;
+  noButton.x += 80;
+  surface.addChild(noButton);
+
+  noButton.addEventListener('click', function() {
+    Modal.surface.addChild(Modal.okayButton);
+    Modal.hide();
+  });
+
+  yesButton.addEventListener('click', function() {
+    Modal.surface.addChild(Modal.okayButton);
+    Modal.show('The Town', new Content(Content.TUTORIAL_2), function() {
+      Modal.hide();
+    });
+  });
 };
+
+Content.TUTORIAL_2 = function(surface) {
+  var text = new createjs.Text('Hey there...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+}
 
 Content.withText = function(displayText) {
   return new Content(
