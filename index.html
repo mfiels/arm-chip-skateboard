@@ -1,36 +1,39 @@
 <!doctype html>
 <html>
 	<head>
-    <style>
-      @font-face {
-        font-family: GameFont;
-        src: url(fonts/pixelmix.ttf);
-      }
-    </style>
+        <style>
+            @font-face {
+                font-family: GameFont;
+                src: url(fonts/pixelmix.ttf);
+            }
+            body {
+                background: #222222;
+            }
+        </style>
 	</head>
 	<body>
-    <div id="wrapper" style="text-align: center;">
-		  <canvas id="canvas" width="800" height="600"></canvas>
-    </div>
+        <div id="wrapper" style="text-align: center;">
+    		<canvas id="canvas" width="800" height="600"></canvas>
+        </div>
 
-		<!-- create.js lib -->
+    	<!-- create.js lib -->
 		<script src="js/lib/createjs-2013.12.12.min.js"></script> 
 		<!-- jquery -->
 		<script src="js/lib/jquery-1.10.2.min.js"></script>
 
 		<!-- game stuff -->
-    <script src="js/constants.js"></script>
-		<script src="js/canvas.js"></script>
-    <script src="js/model.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/resources.js"></script>
-    <script src="js/activities.js"></script>
-    <script src="js/textbox.js"></script>
-    <script src="js/dudes.js"></script>
-    <script>
-			$(document).ready(function(){
-				Game.init();
-			});
+        <script src="js/constants.js"></script>
+    	<script src="js/canvas.js"></script>
+        <script src="js/model.js"></script>
+        <script src="js/map.js"></script>
+        <script src="js/resources.js"></script>
+        <script src="js/activities.js"></script>
+        <script src="js/textbox.js"></script>
+        <script src="js/dudes.js"></script>
+        <script>
+    		$(document).ready(function(){
+    			Game.init();
+    		});
 		</script>
 	</body>
 </html>
