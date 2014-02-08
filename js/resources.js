@@ -7,8 +7,8 @@ var Resources = {
   Y: 0,
   ICONWIDTH:50,
   RESOURCEWIDTH:150,
-  color:"#ff7700",
-  textcolor:"#ff7700",
+  color:"#00FF00",
+  textcolor:"#00FF00",
   resourceArrow: new createjs.Shape(),
   iconContainer: new createjs.Container(),
   updateResource: function(){
@@ -98,7 +98,9 @@ var Resources = {
 	
 	//load background
     var background = new createjs.Shape();
-    background.graphics.beginFill("#00FF00").drawRect(0, 0, this.WIDTH, this.HEIGHT);
+    background.graphics.beginFill("#000000")
+      .beginStroke('#00FF00')
+      .drawRect(0, 0, this.WIDTH, this.HEIGHT);
 	this.surface.addChild(background);
 	this.surface.addChild(this.resourceText);
 	this.surface.addChild(this.resourceText2);

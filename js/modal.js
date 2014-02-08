@@ -2,7 +2,8 @@ var Modal = {
   underlay: new createjs.Container(),
   surface: new createjs.Container(),
   content: new createjs.Container(),
-  title: new createjs.Text('Title', '20px GameFont', 'white'),
+  title: new createjs.Text('Title', '20px GameFont', '#00FF00'),
+  okayButton: new createjs.Container(),
 
   WIDTH: 600,
   HEIGHT: 400,
@@ -10,7 +11,7 @@ var Modal = {
   Y: 100,
 
   CONTENT_PADDING_HORIZONTAL: 10,
-  CONTENT_PADDING_VERTICAL: 20,
+  CONTENT_PADDING_VERTICAL: 40,
 
   init: function() {
     this.surface.x = this.X;
@@ -25,55 +26,65 @@ var Modal = {
 
     background = new createjs.Shape();
     background.graphics
-      .beginFill('#FF0000')
+      .beginStroke("#00FF00")
+      .beginFill('#000000')
       .drawRect(0, 0, this.WIDTH, this.HEIGHT);
     this.surface.addChild(background);
 
     this.title.textAlign = 'center';
     this.title.x = this.WIDTH / 2;
+    this.title.y = 30;
     this.surface.addChild(this.title);
 
-    var closeButton = ButtonHelper.newButton(
-      Game.data.images['ModalClose'],
-      'ModalClose',
-      0,
-      this.WIDTH - Game.data.images['ModalClose'].width,
-      0,
-      function() {},
-      function() {},
-      function() {
-        Modal.hide();
-      }
-    );
-    this.surface.addChild(closeButton);
-
-    var okayButton = ButtonHelper.newButton(
-      Game.data.images['ModalOkay'],
-      'ModalOkay',
-      0,
-      (this.WIDTH - Game.data.images['ModalOkay'].width) / 2.0,
-      this.HEIGHT - Game.data.images['ModalOkay'].height - 10,
-      function() {},
-      function() {},
-      function() {
-        Modal.hide();
-      }
-    );
-    this.surface.addChild(okayButton);
+    var okayButton = new createjs.Container();
+    var okayButtonBackground = new createjs.Shape();
+    okayButtonBackground.graphics
+      .beginFill('#000000')
+      .beginStroke('#00FF00')
+      .drawRect(0, 0, 75, 30);
+    var okayButtonText = new createjs.Text('OK', '20px GameFont', '#00FF00');
+    okayButtonText.textAlign = 'center';
+    okayButtonText.x = 75 / 2.0;
+    okayButtonText.y = 3;
+    this.okayButton.x = this.WIDTH / 2 - 75 / 2;
+    this.okayButton.y = this.HEIGHT - 80;
+    this.okayButton.addChild(okayButtonBackground);
+    this.okayButton.addChild(okayButtonText);
+    new createjs.ButtonHelper(this.okayButton);
+    this.surface.addChild(this.okayButton);
 
     this.content.x = this.CONTENT_PADDING_HORIZONTAL;
     this.content.y = this.CONTENT_PADDING_VERTICAL;
     this.surface.addChild(this.content);
+
+    Modal.show('Omg!!!', new Content(Content.INTRO), function() {
+      Modal.hide();
+    });
   },
 
   hide: function() {
+    Map.surface.mouseEnabled = true;
+    Resources.surface.mouseEnabled = true;
+    Activities.surface.mouseEnabled = true;
+    Dudes.surface.mouseEnabled = true;
+    Textbox.surface.mouseEnabled = true;
+
     Game.canvas.removeChild(this.underlay);
     Game.canvas.removeChild(this.surface);
   },
 
-  show: function(title, content) {
+  show: function(title, content, onOkayClicked) {
     this.setTitle(title);
     this.setContent(content);
+    this.okayButton.removeAllEventListeners();
+    this.okayButton.addEventListener('click', onOkayClicked);
+
+    Map.surface.mouseEnabled = false;
+    Resources.surface.mouseEnabled = false;
+    Activities.surface.mouseEnabled = false;
+    Dudes.surface.mouseEnabled = false;
+    Textbox.surface.mouseEnabled = false;
+
     Game.canvas.addChild(this.underlay);
     Game.canvas.addChild(this.surface);
   },
@@ -100,11 +111,20 @@ Content.HEIGHT = Modal.HEIGHT - 4 * Modal.CONTENT_PADDING_VERTICAL;
 Content.X = Modal.CONTENT_PADDING_HORIZONTAL;
 Content.Y = Modal.CONTENT_PADDING_VERTICAL;
 
-Content.RESULTS = function renderResults(surface) {
+Content.RESULTS = function(surface) {
   var background = new createjs.Shape();
   background.graphics
     .beginFill('#00FF00')
     .drawRect(0, 0, Content.WIDTH, Content.HEIGHT);
   surface.addChild(background);
   // Render stuff for the results screen here...
+};
+
+Content.INTRO = function(surface) {
+  var text = new createjs.Text(Constants.INTRO_STRING, '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  surface.addChild(text);
 };
