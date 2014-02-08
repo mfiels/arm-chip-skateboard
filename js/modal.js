@@ -578,21 +578,24 @@ Content.NEWSPAPER = function(surface){
 			scam=true;
 			}
 	}
-	var txtLeft = new createjs.Text(strleft,"10px GameFont","#00FF00");
-	txtLeft.maxWidth = Content.WIDTH/2;
-	surface.addChild(txtLeft);
 	
 	var rstr="";
-	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n\n";
-	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n\n";
-	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n\n";
-	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n\n";
-	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n\n";
-	rstr+= "Profit: $"+Game.data.profitLastTurn.toFixed(2)+"\n\n";
-	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n\n";
-	
-	var txtRight = new createjs.Text(rstr,"10px GameFont","#00FF00");
-	txtRight.x = Content.WIDTH/2;
-	txtRight.maxWidth=Content.WIDTH/2;
+	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n";
+	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n";
+	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n";
+	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n";
+	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n";
+	rstr+= "Profit: $"+Game.data.profitLastTurn.toFixed(2)+"\n";
+	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n";
+	 
+  var txtLeft = new createjs.Text(rstr,"12px GameFont","#00FF00");
+  txtLeft.lineWidth = 2*Content.WIDTH/3;
+  txtLeft.lineHeight = 30;
+  surface.addChild(txtLeft);
+
+	var txtRight = new createjs.Text(strleft,"16px GameFont","#00FF00");
+	txtRight.x = 2*Content.WIDTH/3;
+	txtRight.lineWidth=1*Content.WIDTH/3;
+  txtRight.lineHeight = 30;
 	surface.addChild(txtRight);
 };
