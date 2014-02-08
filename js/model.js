@@ -24,7 +24,7 @@ var Game = {
 
   addMoney: function(amount){
     Activities.moneyCounter.color='#00FF00'
-    if (this.data.money + amount > 0) {
+    if (this.data.money + amount >= 0) {
       this.data.money += amount;
       Activities.moneyCounter.text="$"+this.data.money;
       return true;
