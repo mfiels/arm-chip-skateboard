@@ -111,6 +111,14 @@ var Modal = {
     });
   },
 
+  showSecondIntroSequence: function() {
+    Modal.show('Awareness', new Content(Content.TUTORIAL_RISK), function() {
+      Modal.show('Buying Workers', new Content(Content.TUTORIAL_RESOURCES), function() {
+        Modal.hide();
+      });
+    });
+  },
+
   showForgotMethod: function() {
     Modal.show('Method 1: Forgetfulness', new Content(Content.FORGOT), function() {
       Modal.hide();
@@ -139,7 +147,12 @@ var Modal = {
     Modal.show('Method 5: Scams', new Content(Content.SCAM), function() {
       Modal.hide();
     });
-  }
+  },
+  showNewsBlurb: function(){
+	Modal.show("REPORT", new Content(Content.NEWSPAPER),function(){
+		Modal.hide();
+	});
+  },
 };
 
 var Content = function(render) {
@@ -309,6 +322,7 @@ Content.TUTORIAL = function(surface) {
 
   noButton.addEventListener('click', function() {
     Modal.surface.addChild(Modal.okayButton);
+    Game.data.showTutorial = false;
     Modal.hide();
   });
 
@@ -380,6 +394,43 @@ Content.TUTORIAL_ACTIVITIES = function(surface) {
   surface.addChild(text);
 };
 
+Content.TUTORIAL_RESOURCES = function(surface) {
+  var text = new createjs.Text('Now you can buy more workers. Workers let you perform more attacks per turn and will also unlock new attack locations. Mouse over the highschooler and buy one!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+
+  var resource = new createjs.Bitmap(Game.data.images['Highschooler']);
+  resource.x = 0 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+  var resource = new createjs.Bitmap(Game.data.images['NetCafeOwner']);
+  resource.x = 80 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+  var resource = new createjs.Bitmap(Game.data.images['ApartmentOwner']);
+  resource.x = 160 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+  var resource = new createjs.Bitmap(Game.data.images['Scammer']);
+  resource.x = 240 + 120;
+  resource.y = 135;
+  surface.addChild(resource);
+};
+
+Content.TUTORIAL_RISK = function(surface) {
+  var text = new createjs.Text('The more money you steal the more aware your targets will become of your actions. Keep an eye on the risk meter, as it grows your attacks become less effective!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+}
+
 Content.withText = function(displayText) {
   return new Content(
     function(surface) {
@@ -392,4 +443,59 @@ Content.withText = function(displayText) {
       surface.addChild(text);
     }
   );
+};
+
+Content.NEWSPAPER = function(surface){
+	var forgot=false;
+	var keylog=false;
+	var spoof = false;
+	var wifi = false;
+	var scam = false;
+	var strleft="";
+	for(var i=0;i<Game.data.currentActions.length;i++){
+		if(Game.data.currentActions[i].action==="Forgot" && !forgot){
+			var ind = Math.floor(Math.random()*ArticleInfo["Forgot"].length);
+			strleft+= ArticleInfo["Forgot"][ind]+"\n";
+			forgot=true;
+			}
+		else if(Game.data.currentActions[i].action==="Keylogger" && !keylog){
+		
+			var ind = Math.floor(Math.random()*ArticleInfo["Keylogger"].length);
+			strleft+= ArticleInfo["Keylogger"][ind]+"\n";
+			keylog=true;
+			}
+		else if(Game.data.currentActions[i].action==="SpoofWebsite" && !spoof){
+			var ind = Math.floor(Math.random()*ArticleInfo["SpoofWebsite"].length);
+			strleft+= ArticleInfo["SpoofWebsite"][ind]+"\n";
+			spoof=true;
+			}
+		else if(Game.data.currentActions[i].action==="Wifi" && !wifi){
+			var ind = Math.floor(Math.random()*ArticleInfo["Wifi"].length);
+			strleft+= ArticleInfo["Wifi"][ind]+"\n";
+			wifi=true;
+			}
+		else if(Game.data.currentActions[i].action==="Scam" && !scam ){
+		
+			var ind = Math.floor(Math.random()*ArticleInfo["Scam"].length);
+			strleft+= ArticleInfo["Scam"][ind]+"\n";
+			scam=true;
+			}
+	}
+	var txtLeft = new createjs.Text(strleft,"10px GameFont","#00FF00");
+	txtLeft.maxWidth = Content.WIDTH/2;
+	surface.addChild(txtLeft);
+	
+	var rstr="";
+	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n";
+	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n";
+	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n";
+	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n";
+	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n";
+	rstr+= "Profit: $"+Game.data.profitLastTurn+"\n";
+	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n";
+	
+	var txtRight = new createjs.Text(rstr,"10px GameFont","#00FF00");
+	txtRight.x = Content.WIDTH/2;
+	txtRight.maxWidth=Content.WIDTH/2;
+	surface.addChild(txtRight);
 };

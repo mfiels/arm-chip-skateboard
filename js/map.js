@@ -25,8 +25,8 @@ var Map = {
 	}
   },
   resizeWin:function(){
-	this.WIN_WIDTH= Math.ceil((this.numActions+1)/2) * 40;
-	this.WIN_HEIGHT = ((this.numActions+1)>1)?80:40;
+	this.WIN_WIDTH= Math.ceil((this.numActions+1)/2) * 37;
+	this.WIN_HEIGHT = ((this.numActions+1)>1)?74:38;
 	this.box.graphics.clear().beginFill("#000000").beginStroke("#00ff00").drawRect(0,0,this.WIN_WIDTH,this.WIN_HEIGHT);
   },
   newActionUnlocked: function(action){
@@ -63,8 +63,8 @@ var Map = {
 		Game.data.images[action+"_sm"],
         action,
         1,
-        5+(Math.floor(this.numActions/2))*35,
-        5+(this.numActions%2)*35,
+        3+(Math.floor(this.numActions/2))*35,
+        3+(this.numActions%2)*35,
         genHover(action),
         handleUnhover,
         genClick(action));
