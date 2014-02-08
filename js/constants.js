@@ -1,6 +1,6 @@
 var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
-  CANVAS_HEIGHT: 600,    // NOTE: Same as above
+  CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
   INITIAL_MONEY: 100,
   INITIAL_RESOURCES: 3,
@@ -17,7 +17,7 @@ var Constants = {
       risk: 0,
       resources: 1,
       description: 'Someone forgot to log off!',
-      image: 'hello.png',
+      image: 'forgot.png',
 	  color: '#af0000',
     },
   },
