@@ -10,7 +10,7 @@ var Modal = {
   Y: 100,
 
   CONTENT_PADDING_HORIZONTAL: 10,
-  CONTENT_PADDING_VERTICAL: 30,
+  CONTENT_PADDING_VERTICAL: 20,
 
   init: function() {
     this.surface.x = this.X;
@@ -57,7 +57,9 @@ var Modal = {
     Game.canvas.removeChild(this.surface);
   },
 
-  show: function() {
+  show: function(title, content) {
+    this.setTitle(title);
+    this.setContent(content);
     Game.canvas.addChild(this.underlay);
     Game.canvas.addChild(this.surface);
   },
@@ -66,8 +68,29 @@ var Modal = {
     this.title.text = text;
   },
 
-  setContent: function(displayObject) {
+  setContent: function(content) {
     this.content.removeAllChildren();
-    this.content.addChild(displayObject);
+    this.content.addChild(content.surface);
   }
+};
+
+var Content = function(render) {
+  this.surface = new createjs.Container();
+  this.surface.x = Content.X;
+  this.surface.y = Content.Y;
+  render(this.surface);
+};
+
+Content.WIDTH = Modal.WIDTH - 4 * Modal.CONTENT_PADDING_HORIZONTAL;
+Content.HEIGHT = Modal.HEIGHT - 4 * Modal.CONTENT_PADDING_VERTICAL;
+Content.X = Modal.CONTENT_PADDING_HORIZONTAL;
+Content.Y = Modal.CONTENT_PADDING_VERTICAL;
+
+Content.RESULTS = function renderResults(surface) {
+  var background = new createjs.Shape();
+  background.graphics
+    .beginFill('#00FF00')
+    .drawRect(0, 0, Content.WIDTH, Content.HEIGHT);
+  surface.addChild(background);
+  // Render stuff for the results screen here...
 };
