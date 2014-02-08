@@ -162,7 +162,6 @@ var Data = function(){
         this.actionUsage[action.parent]++;
         this.locationUsage[location.parent]++;
 
-        Game.data.currentStory = 'Forgot';
         //I am not sure if we need this.
 				if((action.risk*action.riskModifier+location.risk*location.riskModifier)*Math.random()>1){
 					//UHOH
