@@ -104,11 +104,7 @@ var Modal = {
   },
 
   showIntroSequence: function() {
-    Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
-      Modal.show('Tutorial?', new Content(Content.TUTORIAL), function() {
-        Modal.hide();
-      });
-    });
+    this.showSplash();
   },
 
   showSecondIntroSequence: function() {
@@ -150,7 +146,7 @@ var Modal = {
       case 'time': type = Content.GAME_OVER_TIME; break;
       case 'money': type = Content.GAME_OVER_MONEY; break;
     }
-    Modal.show('Game Over!', new Content(type), function() {
+    Modal.show('', new Content(type), function() {
       // nop
     });
   },
@@ -158,6 +154,16 @@ var Modal = {
   showNewsStory: function() {
     Modal.show('BREAKING NEWS', new Content(Content.NEWS), function() {
       Modal.hide();
+    });
+  },
+
+  showSplash: function() {
+    Modal.show('Splash', new Content(Content.SPLASH), function() {
+      Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
+        Modal.show('Tutorial?', new Content(Content.TUTORIAL), function() {
+          Modal.hide();
+        });
+      });
     });
   },
 
@@ -460,33 +466,54 @@ Content.TUTORIAL_RISK = function(surface) {
 };
 
 Content.GAME_OVER_AWARENESS = function(surface) {
+  var go = new createjs.Bitmap(Game.data.images['GameOver']);
+  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
   var text = new createjs.Text('Your targets have caught on to your attacks and are now no longer logging in on untrusted computers!', '16px GameFont', '#00FF00')
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = 0;
+  text.y = 50;
   surface.addChild(text);
 };
 
 Content.GAME_OVER_TIME = function(surface) {
-  var text = new createjs.Text('You have been thrown out of your apartment!', '16px GameFont', '#00FF00')
+  var go = new createjs.Bitmap(Game.data.images['GameOver']);
+  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
+  var text = new createjs.Text('You haven\'t paid your rent in time and have been thrown out of your apartment!', '16px GameFont', '#00FF00')
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = 0;
+  text.y = 50;
   surface.addChild(text);
 };
 
 Content.GAME_OVER_MONEY = function(surface) {
-  var text = new createjs.Text('You managed to pay your rent on time, now what to do for next month\'s rent...', '16px GameFont', '#00FF00');
+  var go = new createjs.Bitmap(Game.data.images['Success']);
+  go.x = (Content.WIDTH - Game.data.images['Success'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
+  var text = new createjs.Text('You managed to pay your rent on time before your targets were able to catch on to you! Now what to do for next month\'s rent...', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = 0;
+  text.y = 50;
   surface.addChild(text);
+};
+
+Content.SPLASH = function(surface) {
+  var sp = new createjs.Bitmap(Game.data.images['Splash']);
+  sp.x = -20;
+  sp.y = -80;
+  surface.addChild(sp);
+  Modal.surface.removeChild(Modal.okayButton);
+  Modal.surface.addChild(Modal.okayButton);
 };
 
 Content.withText = function(displayText) {
@@ -525,29 +552,29 @@ Content.NEWSPAPER = function(surface){
 	for(var i=0;i<Game.data.currentActions.length;i++){
 		if(Game.data.currentActions[i].action==="Forgot" && !forgot){
 			var ind = Math.floor(Math.random()*ArticleInfo["Forgot"].length);
-			strleft+= ArticleInfo["Forgot"][ind]+"\n";
+			strleft+= ArticleInfo["Forgot"][ind]+"\n\n";
 			forgot=true;
 			}
 		else if(Game.data.currentActions[i].action==="Keylogger" && !keylog){
 		
 			var ind = Math.floor(Math.random()*ArticleInfo["Keylogger"].length);
-			strleft+= ArticleInfo["Keylogger"][ind]+"\n";
+			strleft+= ArticleInfo["Keylogger"][ind]+"\n\n";
 			keylog=true;
 			}
 		else if(Game.data.currentActions[i].action==="SpoofWebsite" && !spoof){
 			var ind = Math.floor(Math.random()*ArticleInfo["SpoofWebsite"].length);
-			strleft+= ArticleInfo["SpoofWebsite"][ind]+"\n";
+			strleft+= ArticleInfo["SpoofWebsite"][ind]+"\n\n";
 			spoof=true;
 			}
 		else if(Game.data.currentActions[i].action==="Wifi" && !wifi){
 			var ind = Math.floor(Math.random()*ArticleInfo["Wifi"].length);
-			strleft+= ArticleInfo["Wifi"][ind]+"\n";
+			strleft+= ArticleInfo["Wifi"][ind]+"\n\n";
 			wifi=true;
 			}
 		else if(Game.data.currentActions[i].action==="Scam" && !scam ){
 		
 			var ind = Math.floor(Math.random()*ArticleInfo["Scam"].length);
-			strleft+= ArticleInfo["Scam"][ind]+"\n";
+			strleft+= ArticleInfo["Scam"][ind]+"\n\n";
 			scam=true;
 			}
 	}
@@ -556,13 +583,13 @@ Content.NEWSPAPER = function(surface){
 	surface.addChild(txtLeft);
 	
 	var rstr="";
-	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n";
-	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n";
-	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n";
-	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n";
-	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n";
-	rstr+= "Profit: $"+Game.data.profitLastTurn+"\n";
-	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n";
+	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n\n";
+	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n\n";
+	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n\n";
+	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n\n";
+	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n\n";
+	rstr+= "Profit: $"+Game.data.profitLastTurn.toFixed(2)+"\n\n";
+	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n\n";
 	
 	var txtRight = new createjs.Text(rstr,"10px GameFont","#00FF00");
 	txtRight.x = Content.WIDTH/2;

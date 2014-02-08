@@ -240,7 +240,10 @@ var Constants = {
     'BadSsid': 'BadWifi2.png',
     'EmployeeScam': 'EmployeeScam.png',
     'MapSmall': 'MapSmall.png',
-    'Clippy': 'Clippy.png'
+    'Clippy': 'Clippy.png',
+    'Splash': 'splash.png',
+    'GameOver': 'GameOver.png',
+    'Success': 'success.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
