@@ -105,7 +105,14 @@ var Data = function(){
   this.images= {};
   this.currentResources= 0;
   this.currentActions= [];
-  this.stepLogic=function(){
+  this.actionUsage= {
+    'Forgot': 0,
+    'SpoofWebsite': 0,
+    'Keylogger': 0,
+    'Wifi': 0,
+    'Scam': 0,
+  };
+  this.stepLogic=function() {
 		for(var i=0;i<this.currentActions.length;i++){
 			//
 			var action = Constants.ALL_ACTIONS[this.currentActions[i].action];
@@ -116,6 +123,9 @@ var Data = function(){
 				this.money+=action.resources;
 				action.risk+=.02;
 				location.risk+=.02;
+        this.actionUsage[action.parent]++;
+        console.log('Number of actions used for ' + action.parent + ': ' + this.actionUsage[action.parent]);
+
 				if((action.risk*action.riskModifier+location.risk*location.riskModifier)*Math.random()>1){
 					//UHOH
 					Console.log("Gameover?");
@@ -125,7 +135,7 @@ var Data = function(){
 		}
 		
 		
-		
+
 		this.currentActions.length=0;
 	};
 
