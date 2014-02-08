@@ -19,6 +19,7 @@ var Game = {
     Textbox.init();
     Resources.init();
     Dudes.init();
+    RiskMeter.init();
     Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
     createjs.Ticker.setFPS(60);

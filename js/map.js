@@ -37,9 +37,7 @@ var Map = {
 			Textbox.setTitle(action);
 
 			loc = Constants.ALL_LOCATIONS[Map.currLocation];
-			act = Constants.ALL_ACTIONS[action];
-
-			profit = (loc.reward - Game.data.locationUsage[Map.currLocation] / loc.rewardDeath) * Math.sqrt(act.risk);
+			act = Constants.ALL_ACTIONSMath.sqrt(act.risk);
 			risk = act.risk + Game.data.actionUsage[action] / act.riskIncrease;
 
 			Textbox.setBody("Profability: $" + profit.toFixed(2) + '\n\nRisk: ' + risk.toFixed(2));

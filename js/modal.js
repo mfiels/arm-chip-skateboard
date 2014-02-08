@@ -488,4 +488,18 @@ Content.NEWSPAPER = function(surface){
 	var txtLeft = new createjs.Text(strleft,"10px GameFont","#00FF00");
 	txtLeft.maxWidth = Content.WIDTH/2;
 	surface.addChild(txtLeft);
+	
+	var rstr="";
+	rstr+= "Forgotten passwords retrieved: "+Game.data.actionUsage["Forgot"]+"\n";
+	rstr+= "Passwords stolen on Spoofed Websites: "+Game.data.actionUsage["SpoofWebsite"]+"\n";
+	rstr+= "Passwords stolen by Keyloggers: "+Game.data.actionUsage["Keylogger"]+"\n";
+	rstr+= "Passwords stolen by Wifi Snoop: "+Game.data.actionUsage["Wifi"]+"\n";
+	rstr+= "Passwords stolen by Scams: "+Game.data.actionUsage["Scam"]+"\n";
+	rstr+= "Profit: $"+Game.data.profitLastTurn+"\n";
+	rstr+= "Assets Apprehended: "+Game.data.peopleCaughtLastTurn+"\n";
+	
+	var txtRight = new createjs.Text(rstr,"10px GameFont","#00FF00");
+	txtRight.x = Content.WIDTH/2;
+	txtRight.maxWidth=Content.WIDTH/2;
+	surface.addChild(txtRight);
 };
