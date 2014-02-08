@@ -107,7 +107,7 @@ var Resources = {
 		},
 		function (event) {
 		  Textbox.setTitle('');
-		  Textbox.setBody('');
+		  Textbox.setBody(Constants.DEFAULT_TEXTBOX_TEXT);
 		},
 		function(){Game.step()}
 	);
