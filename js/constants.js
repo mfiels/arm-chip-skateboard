@@ -75,10 +75,10 @@ var Constants = {
 	  color: '#ff0000',
     },
   },
-
+  
   LOCK_IMAGES: {
     'SpoofLocked' : 'SpoofLocked.png',
   },
 
-  INTRO_STRING: 'Welcome to the Hackmaster 3000!!1 You think you got it what it takes to be a big shot? I don\'t think you do...'
+  INTRO_STRING: 'Welcome to the Hackmaster 69,000!!! You think you got it what it takes to be a big shot? I don\'t think you do...'
 };
