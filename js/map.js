@@ -5,15 +5,33 @@ var Map = {
   HEIGHT: 350,
   X: 0,
   Y: 0,
-  WIN_WIDTH:500,
+  WIN_WIDTH:120,
   WIN_HEIGHT:100,
   color:"#00ff00",
   boundedArea:{},
   hoverWindow: new createjs.Container(),
   currLocation:"",
+  numLocs:1,
   numActions:0,
+  newLocationUnlocked: function(location){
+	if(this.boundedArea[location]){
+		this.numLocs++;
+		if(this.numLocs>Constants.ALL_LOCATIONS.length)
+			this.numLocs=Constants.ALL_LOCATIONS.length;
+		
+		this.boundedArea[location].lock.visible=false;
+		this.boundedArea[location].area.visible=true;
+		this.boundedArea[location].bound.visible=true;
+	}
+  },
+  resizeWin:function(){
+	this.WIN_WIDTH= Math.ceil((this.numActions+1)/2) * 40;
+	this.WIN_HEIGHT = ((this.numActions+1)>1)?80:40;
+	this.box.graphics.clear().beginFill("#000000").beginStroke("#00ff00").drawRect(0,0,this.WIN_WIDTH,this.WIN_HEIGHT);
+  },
   newActionUnlocked: function(action){
 	var act = Constants.ALL_ACTIONS[action];
+	this.resizeWin();
 	function genHover(action){
 		return function(event){
 			Textbox.setTitle(action);
@@ -40,11 +58,11 @@ var Map = {
 		};
 	}
 	var btn = ButtonHelper.newButtonSpecial(
-		Game.data.images[action],
+		Game.data.images[action+"_sm"],
         action,
         1,
-        10+this.numActions*80,
-        15,
+        5+(Math.floor(this.numActions/2))*35,
+        5+(this.numActions%2)*35,
         genHover(action),
         handleUnhover,
         genClick(action));
@@ -57,13 +75,10 @@ var Map = {
     var background = new createjs.Bitmap(Game.data.images['map']);
 	  this.surface.addChild(background);
 	
-	
-	
-	
 	var hoveron=function(event){
 		Map.hoverWindow.visible=true;
-		Map.hoverWindow.x = event.currentTarget.locx;
-		Map.hoverWindow.y = event.currentTarget.locy;
+		Map.hoverWindow.x = event.currentTarget.locx-Map.WIN_WIDTH/2;
+		Map.hoverWindow.y = event.currentTarget.locy-Map.WIN_HEIGHT/2;
 	}
 	var hoverout =function(event){}
 	var click = function (event){}
@@ -76,23 +91,52 @@ var Map = {
 	for(var key in Constants.ALL_LOCATIONS){
 		var loc = Constants.ALL_LOCATIONS[key];
 		var container = new createjs.Container();
+		
 		container.x=loc.mapx;
 		container.y=loc.mapy;
-		var boundShape = new createjs.Shape();
+		var bound = new createjs.Bitmap(Game.data.images['Unlock']);
+		bound.x=bound.y=-25;
 		var innerShape = new createjs.Shape();
+		function setTextboxFunc(title,body){
+			return function(){
+				Textbox.setTitle(title);
+				Textbox.setBody(body);
+			};
+		}
+		this.boundedArea[key]={};
+		if(Constants.INITIAL_LOCATIONS.indexOf(key)==-1){
+			var lock =  ButtonHelper.newButton(
+				Game.data.images["Lock"],
+				'Scammer',
+				1,
+				-25,
+				-25,
+				setTextboxFunc(key, "Unlock "+Constants.ALL_LOCATIONS[key].unlock+" to use this location."),
+				setTextboxFunc("",""),
+				function(){}
+			);
+			bound.visible=false;
+			this.boundedArea[key].lock = lock;
+			container.addChild(lock);
+			innerShape.visible=false;
+		}
+		
+
 		innerShape.alpha=.01;
-		innerShape.graphics.beginFill(this.color).drawRect(0,0,loc.mapw,loc.maph);
-		boundShape.graphics.beginStroke(this.color).setStrokeStyle(4).drawRect(0,0,loc.mapw,loc.maph);
+		innerShape.graphics.beginFill(this.color).drawCircle(0,0,loc.mapr);
+		//boundShape.graphics.beginStroke(this.color).setStrokeStyle(4).drawCircle(0,0,loc.mapr);
 		ButtonHelper.newButtonObj(innerShape,key,genHoverFunc(key),hoverout,click);
 		innerShape.locx = loc.mapx;
 		innerShape.locy = loc.mapy;
-		container.addChild(boundShape);
+		this.boundedArea[key].bound = bound;
+		this.boundedArea[key].area=innerShape;
+		container.addChild(bound);
 		container.addChild(innerShape);
 		this.surface.addChild(container);
 	}
     
-	var box = new createjs.Shape();
-	box.graphics.beginFill("#000000").beginStroke("#00ff00").drawRect(0,0,this.WIN_WIDTH,this.WIN_HEIGHT);
+	this.box = new createjs.Shape();
+	this.resizeWin();
 	ButtonHelper.newButtonObj(this.hoverWindow,"",function(){},function(evt){
 		var pt=Map.hoverWindow.globalToLocal(evt.stageX,evt.stageY);
 		if(pt.x>0 && pt.y>0 && pt.x<Map.WIN_WIDTH && pt.y < Map.WIN_HEIGHT);
@@ -104,7 +148,7 @@ var Map = {
 	//add action buttons
 	
 	
-	this.hoverWindow.addChild(box);
+	this.hoverWindow.addChild(this.box);
 	this.surface.addChild(this.hoverWindow);
     var icon = new createjs.Bitmap(Game.data.images['Library']);
     icon.x = 200;
