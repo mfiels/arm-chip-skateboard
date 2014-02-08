@@ -6,7 +6,7 @@ var Dudes = {
   X: 600,
   Y: 350,
   UNLOCKED: {
-    'Highschooler'   : false,
+    'Highschooler'    : false,
     'NetCafeOwner'    : false,
     'ApartmentOwner'  : false,
     'AppleGenius'     : false,
@@ -76,30 +76,29 @@ var Dudes = {
     Game.canvas.addChild(this.surface);
     
     function handleHover(event) {
+      var nameNoSpaces =  event.currentTarget.name.replace(/ /g,'');
+
       Textbox.setTitle(event.currentTarget.name);
-      if(Dudes.UNLOCKED.Highschooler == false)
+      if(Dudes.UNLOCKED[nameNoSpaces] == false)
         Textbox.setBody(event.currentTarget.eventID.lockDescription);
       else
         Textbox.setBody(event.currentTarget.eventID.description);
 
+      Game.tempMoney(-event.currentTarget.eventID.cost);
 	    Resources.modifyGhostResource(event.currentTarget.eventID.resourceGain);
     }
     function handleUnhover(event) {
       Textbox.setTitle('');
       Textbox.setBody('');
 	    Resources.modifyGhostResource(0);
+      Game.addMoney(0);
     }
     function handleClick(event) {
-      console.log('STAT: ' + Dudes.UNLOCKED);
       var nameNoSpaces =  event.currentTarget.name.replace(/ /g,'');
-      console.log('Dudes.UNLOCKED.' + nameNoSpaces + ': ' + Dudes.UNLOCKED.nameNoSpaces);
-      console.log('clicked ' + nameNoSpaces);
-      Game.addResources(event.currentTarget.eventID.resourceGain);
-      Dudes.UNLOCKED.nameNoSpaces = true;
+      if(Game.addMoney(-event.currentTarget.eventID.cost)) {
+        Dudes.UNLOCKED[nameNoSpaces] = true;
+        Game.addResources(event.currentTarget.eventID.resourceGain);
+      }
     }
-  },
-
-  purchaseDude: function(dudeType) {
-    console.log("purchaseDude");
   },
 };
