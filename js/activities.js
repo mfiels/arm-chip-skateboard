@@ -47,7 +47,43 @@ var Activities = {
         handleClick
     );
     this.surface.addChild(icon);
-    
+
+    icon = ButtonHelper.newButton(
+        Game.data.images['KeyloggerLocked'],
+        'Keylogger',
+        Constants.ALL_ACTIONS.Keylogger,
+        208,
+        28,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+    this.surface.addChild(icon);
+
+    icon = ButtonHelper.newButton(
+        Game.data.images['WifiLocked'],
+        'Wifi',
+        Constants.ALL_ACTIONS.Wifi,
+        302,
+        28,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+    this.surface.addChild(icon);
+
+    icon = ButtonHelper.newButton(
+        Game.data.images['ScamLocked'],
+        'Scam',
+        Constants.ALL_ACTIONS.Scam,
+        396,
+        28,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+    this.surface.addChild(icon);
+ 
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);
       Textbox.setBody(event.currentTarget.eventID.description);
