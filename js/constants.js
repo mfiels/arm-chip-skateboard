@@ -30,6 +30,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'spoof.png',
       color: '#af0000',
+      modalMethod: 'showSpoofMethod',
     },
     'Keylogger': {
       risk: 0,
@@ -117,7 +118,8 @@ var Constants = {
   LESSON_IMAGES: {
     'ForgotDontSave': 'DontSave.png',
     'ForgotSignOut': 'SignOut.png',
-    'ForgotStaySignedIn': 'StaySignedIn.png'
+    'ForgotStaySignedIn': 'StaySignedIn.png',
+    'SpoofBadUrl': 'Spoofed.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
