@@ -16,8 +16,9 @@ var Game = {
     Activities.init();
     Textbox.init();
     Resources.init();
+    Dudes.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
-  }
+  },
 };
 
 var Data = function(){
