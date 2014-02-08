@@ -6,8 +6,8 @@ var Textbox = {
   X: 0,
   Y: 500,
 
-  titleTextBox: new createjs.Text('Title', '20px GameFont', 'white'),
-  bodyTextBox: new createjs.Text('Body', '16px GameFont', 'white'),
+  titleTextBox: new createjs.Text('Title', '20px GameFont', '#00FF00'),
+  bodyTextBox: new createjs.Text('Body', '16px GameFont', '#00FF00'),
 
   init: function() {
     this.surface.x = this.X;
