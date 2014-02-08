@@ -2,8 +2,8 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50000,
-  INITIAL_RESOURCES: 100,
+  INITIAL_MONEY: 0,
+  INITIAL_RESOURCES: 1,
   INITIAL_DAYS: 30,
 
   MONEY_GOAL: 100000,
@@ -37,7 +37,8 @@ var Constants = {
     'Forgot': {
       parent: 'Forgot',
       risk: 1,
-      riskIncrease: 10,
+      riskIncrease: 1,
+      scoreMult: 1,
 	    riskModifier: 1,
       resources: 1,
       cost: 1,
@@ -48,10 +49,11 @@ var Constants = {
     },
     'SpoofWebsite': {
       parent: 'SpoofWebsite',
-      risk: 5,
-      riskIncrease: 8,
+      risk: 1.2,
+      scoreMult: 1.2,
+      riskIncrease: 1.2,
       resources: 2,
-      cost: 2,
+      cost: 100,
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'spoof.png',
       color: '#af0000',
@@ -59,6 +61,7 @@ var Constants = {
     },
     'Keylogger': {
       parent: 'Keylogger',
+      scoreMult: 1.5,
       risk: 10,
       riskIncrease: 5,
       resources: 3,
@@ -70,6 +73,7 @@ var Constants = {
     },
     'Wifi': {
       parent: 'Wifi',
+      scoreMult: 1.75,
       risk: 20,
       riskIncrease: 2,
       resources: 6,
@@ -81,6 +85,7 @@ var Constants = {
     },
     'Scam': {
       parent: 'Scam',
+      scoreMult: 2.0,
       risk: 40,
       riskIncrease: 2,
       resources: 8,
@@ -95,7 +100,7 @@ var Constants = {
   ALL_DUDES: {
     'Highschooler': {
       resourceGain: 1,
-      cost: 100,
+      cost: 10,
 	  location: "Highschool",
       lockDescription: 'Gain access to the local high school.\n\nThose poor kids...',
       description: 'Shady high school kid',
@@ -156,9 +161,11 @@ var Constants = {
 	  mapr:50,
     },
 	'Highschool': {
+    parent: 'Highschool',
     risk: 0,
 	  riskModiier: .1,
-    reward: 25,
+    reward: 12,
+    rewardDeath: 100,
 	  unlock:"Highschooler",
     description: 'Netcafe',
     image: 'hello.png',
