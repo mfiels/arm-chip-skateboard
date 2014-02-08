@@ -2,13 +2,14 @@
   $(document).keypress(function(e) {
     switch (e.keyCode) {
       case 122:
-        Modal.showGameOver('money');
+        Game.addMoney(100000);
         break;
       case 120:
-        Modal.showGameOver('time');
+        Game.data.days = 2;
         break;
       case 99:
-        Modal.showGameOver('awareness');
+        Game.data.risk = 99;
+        RiskMeter.update();
         break;
       case 109:
         Game.data.money += 100000;
