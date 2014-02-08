@@ -39,6 +39,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'keylogger.png',
       color: '#af0000',
+      modalMethod: 'showKeyLoggerMethod',
     },
     'Wifi': {
       risk: 0,
@@ -47,6 +48,7 @@ var Constants = {
       description: 'Leave a fake website open to lure people into logging in.',
       image: 'wifi.png',
       color: '#af0000',
+      modalMethod: 'showWifiMethod',
     },
     'Scam': {
       risk: 0,
@@ -119,7 +121,10 @@ var Constants = {
     'ForgotDontSave': 'DontSave.png',
     'ForgotSignOut': 'SignOut.png',
     'ForgotStaySignedIn': 'StaySignedIn.png',
-    'SpoofBadUrl': 'Spoofed.png'
+    'SpoofBadUrl': 'Spoofed.png',
+    'KeyLoggingKeyboard': 'KeyLogging.png',
+    'BadWifi': 'BadWifi.png',
+    'BadSsid': 'BadWifi2.png'
   },
 
   INTRO_STRING: 'Thank you for purchasing the Hackmaster 3000!' + 
