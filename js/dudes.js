@@ -89,7 +89,7 @@ var Dudes = {
     }
     function handleUnhover(event) {
       Textbox.setTitle('');
-      Textbox.setBody('');
+      Textbox.setBody(Constants.DEFAULT_TEXTBOX_TEXT);
 	    Resources.modifyGhostResource(0);
       Game.addMoney(0);
     }
