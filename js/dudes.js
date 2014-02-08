@@ -17,12 +17,12 @@ var Dudes = {
     Game.canvas.addChild(this.surface);
 
 
-    //var helper = new createjs.ButtonHelper(background);
-    //background.addEventListener("click", handleClick);
+    var helper = new createjs.ButtonHelper(this.surface);
+    this.surface.addEventListener("click", handleClick);
     
-    /*function handleClick(event) {
+    function handleClick(event) {
        console.log("Button Clicked");
-    }*/
+    }
   },
 
   purchaseDude: function(dudeType) {
