@@ -21,6 +21,14 @@ var Game = {
     Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
   },
+
+  addMoney: function(amount){
+    this.data.money += amount;
+    Activities.moneyCounter.text="$"+this.data.money;
+  },
+  tempMoney: function(amount){
+    Activities.moneyCounter.text="$"+this.data.money+"  ->  "+(this.data.money-amount);
+  },
   addAction: function(action, location){
 	//search model for action and location pair
 	var added=false;
@@ -44,6 +52,14 @@ var Game = {
 	else return;
 	Resources.updateCurrentActions();
   },
+  step: function(){
+  
+  },
+  addResources: function(deltaResources) {
+    this.data.resources += deltaResources;
+	Resources.updateResource();
+	Resources.modifyGhostResource(deltaResources);
+  },
 };
 
 var Pair = function(initialAction,initialLocation){
@@ -61,13 +77,16 @@ var Data = function(){
   this.actions= Constants.INITIAL_ACTIONS;
   this.risk= 0;
   this.images= {};
-
   this.currentResources= 0;
   this.currentActions= [];
+  this.stepLogic=function(){
+	
+	};
 
   this.useResources = function(deltaResources) {
     if(this.resources - deltaResources >= 0) {
       this.resources -= deltaResources;
+	  Resources.updateResource();
       return true;
     }
     else {
@@ -75,9 +94,6 @@ var Data = function(){
     }
   };
 
-  this.addResources = function(deltaResources) {
-    this.resources += deltaResources;
-  };
 }
 
 var ButtonHelper = {
