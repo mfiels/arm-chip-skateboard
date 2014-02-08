@@ -22,7 +22,7 @@ var Constants = {
   },
 
   ALL_DUDES: {
-    'Highscooler': {
+    'Highschooler': {
       risk: 0,
       count: 0,
       description: 'Shady High School Kid',

@@ -4,6 +4,10 @@ var Loader = {
     var q = this.queue;
     q.on("fileload", this.handleFileLoad, this);
     q.on("complete", this.handleComplete, this);
+    $.each(Constants.ALL_DUDES, function(key,val){
+      console.log("Loading Dude");
+      q.loadFile({id: key, src: "images/"+val.image});
+    });
     $.each(Constants.ALL_ACTIONS, function(key,val){
       q.loadFile({id: key, src: "images/"+val.image});
     });
