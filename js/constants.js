@@ -66,6 +66,9 @@ var Constants = {
   MISC_IMAGES: {
     'ModalClose': {
       image: 'hello.png'
+    },
+    'ModalOkay': {
+      image: 'hello.png'
     }
   }
 };
