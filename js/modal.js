@@ -1,12 +1,16 @@
 var Modal = {
   underlay: new createjs.Container(),
   surface: new createjs.Container(),
+  content: new createjs.Container(),
   title: new createjs.Text('Title', '20px GameFont', 'white'),
 
   WIDTH: 600,
   HEIGHT: 400,
   X: 100,
   Y: 100,
+
+  CONTENT_PADDING_HORIZONTAL: 10,
+  CONTENT_PADDING_VERTICAL: 30,
 
   init: function() {
     this.surface.x = this.X;
@@ -35,6 +39,10 @@ var Modal = {
     closeButton.addEventListener('click', function() {
       Modal.hide();
     });
+
+    this.content.x = this.CONTENT_PADDING_HORIZONTAL;
+    this.content.y = this.CONTENT_PADDING_VERTICAL;
+    this.surface.addChild(this.content);
   },
 
   hide: function() {
@@ -49,5 +57,10 @@ var Modal = {
 
   setTitle: function(text) {
     this.title.text = text;
+  },
+
+  setContent: function(displayObject) {
+    this.content.removeAllChildren();
+    this.content.addChild(displayObject);
   }
 };
