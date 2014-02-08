@@ -7,7 +7,7 @@ var Modal = {
 
   WIDTH: 600,
   HEIGHT: 400,
-  X: 100,
+  X: 140,
   Y: 100,
 
   CONTENT_PADDING_HORIZONTAL: 10,

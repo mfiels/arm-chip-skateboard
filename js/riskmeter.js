@@ -3,7 +3,7 @@ var RiskMeter = {
 
   WIDTH: 80,
   HEIGHT: 650,
-  X: 800,
+  X: 0,
   Y: 0,
 
   risk: new createjs.Shape(),
