@@ -107,14 +107,13 @@ var Activities = {
         } else {
           Game.tempMoney(-event.currentTarget.eventID.cost);
         }
+      }
+      if (Modal[event.currentTarget.eventID.modalMethod]) {
+        // deal with it
+        Modal[event.currentTarget.eventID.modalMethod]();
       } else {
-        if (Modal[event.currentTarget.eventID.modalMethod]) {
-          // deal with it
-          Modal[event.currentTarget.eventID.modalMethod]();
-        } else {
-          console.log('need to implement a modal for this');
-        }
-      } 
+        console.log('need to implement a modal for this');
+      }
     }
 
     Game.canvas.addChild(this.surface);
