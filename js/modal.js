@@ -139,7 +139,12 @@ var Modal = {
     Modal.show('Method 5: Scams', new Content(Content.SCAM), function() {
       Modal.hide();
     });
-  }
+  },
+  showNewsBlurb: function(){
+	Modal.show("DAILY TIMES", new Content(Content.NEWSPAPER),function(){
+		Modal.hide();
+	});
+  },
 };
 
 var Content = function(render) {
@@ -392,4 +397,8 @@ Content.withText = function(displayText) {
       surface.addChild(text);
     }
   );
+};
+
+Content.NEWSPAPER = function(surface){
+
 };
