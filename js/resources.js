@@ -12,6 +12,7 @@ var Resources = {
   color:"#00FF00",
   textcolor:"#00FF00",
   resourceArrow: new createjs.Shape(),
+  resourceArrowRed: new createjs.Shape(),
   iconContainer: new createjs.Container(),
   updateResource: function(){
 	this.resourceText.text = Game.data.resources.toString();
@@ -19,12 +20,21 @@ var Resources = {
   modifyGhostResource: function(num){
 	if(num==0){
 		this.resourceArrow.visible=false;
+		this.resourceArrowRed.visible=false;
 		this.resourceText2.visible=false;
 	}
 	else{
-		this.resourceArrow.visible=true;
 		this.resourceText2.visible=true;
-		this.resourceText2.text = (Game.data.resources+num).toString();
+		var val =Game.data.resources+num;
+		if(val<0){
+			this.resourceArrowRed.visible=true;
+			this.resourceText2.color="#ff0000";
+		}
+		else{
+			this.resourceText2.color="#00ff00";
+			this.resourceArrow.visible=true;
+		}
+		this.resourceText2.text = (val).toString();
 	}
   },
   
@@ -79,6 +89,10 @@ var Resources = {
 	this.resourceArrow.graphics.beginFill(this.color).moveTo(0,60).lineTo(60,60).lineTo(30,80);
 	this.resourceArrow.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
 	this.resourceArrow.y = 80;
+	this.resourceArrowRed.graphics.beginFill("#ff0000").drawRect(25,0,10,60);
+	this.resourceArrowRed.graphics.beginFill("#ff0000").moveTo(0,60).lineTo(60,60).lineTo(30,80);
+	this.resourceArrowRed.x = this.ICONCOLS*this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
+	this.resourceArrowRed.y = 80;
 	
 	//Load play button
 	this.playBtn=ButtonHelper.newButton(
@@ -107,6 +121,7 @@ var Resources = {
 	this.surface.addChild(this.resourceText);
 	this.surface.addChild(this.resourceText2);
 	this.surface.addChild(this.resourceArrow);
+	this.surface.addChild(this.resourceArrowRed);
 	this.surface.addChild(this.iconContainer);
 	this.surface.addChild(this.playBtn);
 	this.updateResource();

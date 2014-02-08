@@ -57,10 +57,7 @@ var Game = {
 			this.data.currentActions.push(new Pair(action,location));
 		Resources.updateCurrentActions();
 		Resources.updateResource();
-		if(this.data.resources-act.resources<0)
-			Resources.modifyGhostResource(0);
-		else
-			Resources.modifyGhostResource(-act.resources);
+		Resources.modifyGhostResource(-act.resources);
 	}
   },
   removeAction: function(index){
