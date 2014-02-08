@@ -25,7 +25,9 @@ var Game = {
 		Map.newActionUnlocked(Constants.INITIAL_ACTIONS[key]);
 	}
   },
-
+  updateDays: function(){
+    Activities.dayCounter.text = this.data.days + " days left";
+  },
   addMoney: function(amount){
     Activities.moneyCounter.color='#00FF00'
     if (this.data.money + amount >= 0) {
@@ -95,7 +97,7 @@ var Pair = function(initialAction,initialLocation){
 var Data = function(){
   this.money= Constants.INITIAL_MONEY;
   this.resources= Constants.INITIAL_RESOURCES;
-  this.days= 0;
+  this.days= Constants.INITIAL_DAYS;
   this.locations= Constants.INITIAL_LOCATIONS;
   this.actions= Constants.INITIAL_ACTIONS;
   this.risk= 0;
@@ -136,6 +138,8 @@ var Data = function(){
 				}
 			}
 		}
+    this.data.days-=1;
+    this.updateDays();
 		
 		
 
