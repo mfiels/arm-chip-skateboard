@@ -15,5 +15,5 @@ var Resources = {
     this.surface.addChild(background);
 
     Game.canvas.addChild(this.surface);
-  }
+  },
 };
