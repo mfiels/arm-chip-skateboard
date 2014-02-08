@@ -122,6 +122,9 @@ var Data = function(){
   this.peopleCaughtLastTurn = 0,
   this.stepLogic=function() {
     this.days-=1;
+    this.profitLastTurn = 0;
+    this.peopleCaughtLastTurn = 0;
+
     Game.updateDays();
 		for(var i=0;i<this.currentActions.length;i++){
 			//
@@ -131,16 +134,20 @@ var Data = function(){
 			for(var j =0;j<count;j++) {
 				this.resources+=action.resources;
         profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * Math.sqrt(action.risk);
-        risk = action.risk + Game.data.actionUsage[action] / action.riskIncrease;
+        risk = action.risk + Game.data.actionUsage[action.parent] / action.riskIncrease;
 				
-        if(Math.random()*100 < risk) {
+        r = Math.random() * 100;
+        console.log('R = ' + r + 'RISK: ' + risk);
+        if(r < risk) {
           //shit hit the fan and this guy got screwed!
           this.risk++;
           console.log('Go to jail and do not collect 200 dollars!');
+          this.peopleCaughtLastTurn++
         }
         else {
           //got away clean!!!
           this.money+=profit;
+          this.profitLastTurn += profit;
         }
 
 				action.risk+=.02;
@@ -157,6 +164,10 @@ var Data = function(){
 				}
 			}
 		}
+
+    console.log("profitLastTurn: " + this.profitLastTurn);
+    console.log("peopleCaughtLastTurn: " + this.peopleCaughtLastTurn);
+
     if (this.days==0 && this.money<Constants.MONEY_GOAL) {
       console.log("Gameover?");
     }
