@@ -33,7 +33,6 @@ var Game = {
   },
   tempMoney: function(amount){
     if (this.data.money + amount < 0) {
-      console.log(this.data.money, amount);
       Activities.moneyCounter.color='#FF0000';
     }
     Activities.moneyCounter.text="$"+this.data.money+"  ->  $"+(this.data.money+amount);

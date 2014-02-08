@@ -2,7 +2,7 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 1,
+  INITIAL_MONEY: 3,
   INITIAL_RESOURCES: 3,
 
   INITIAL_LOCATIONS: [
@@ -74,6 +74,10 @@ var Constants = {
       image: 'hello.png',
 	  color: '#ff0000',
     },
+  },
+  
+  LOCK_IMAGES: {
+    'SpoofLocked' : 'SpoofLocked.png',
   },
 
   INTRO_STRING: 'Welcome to the Hackmaster 69,000!!! You think you got it what it takes to be a big shot? I don\'t think you do...'
