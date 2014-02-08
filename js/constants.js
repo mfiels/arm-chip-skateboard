@@ -14,18 +14,28 @@ var Constants = {
 
   ALL_ACTIONS: {
     'Forgot': {
+      risk: 0,
+      resources: 1,
+      description: 'Someone forgot to log off!',
+      image: 'hello.png',
+    },
+  },
+
+  ALL_DUDES: {
+    'Highscooler': {
       Risk: 0,
       Resources: 1,
-      Description: 'Someone forgot to log off!',
+      Description: 'Shady High School Kid',
       Image: 0,
     },
   },
+  
   ALL_LOCATIONS: {
     'Library': {
-      Risk: 0,
-      Reward: 0,
-      Description: 'Library',
-      Image: 0,
+      risk: 0,
+      reward: 0,
+      description: 'Library',
+      image: 'hello.png',
     },
   },
 };

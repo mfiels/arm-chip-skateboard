@@ -55,5 +55,5 @@ var Resources = {
 	this.updateResource();
 	this.decrementResource(0);
     Game.canvas.addChild(this.surface);
-  }
+  },
 };
