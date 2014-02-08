@@ -45,7 +45,7 @@ var Resources = {
 			Game.removeAction(index);
 		};
 	}
-	for(var i=0;i<Game.data.currentActions.length;i++){
+	for(var i=0;i<0;i++){//Game.data.currentActions.length;i++){
 		var container = new createjs.Container();
 		container.x =10 + (Math.floor(i/this.ICONROWS)*(this.ICONWIDTH+5));
 		container.y = 10+ ((i%this.ICONROWS)*(this.ICONWIDTH+5));
