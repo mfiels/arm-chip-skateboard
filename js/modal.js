@@ -33,12 +33,19 @@ var Modal = {
     this.title.x = this.WIDTH / 2;
     this.surface.addChild(this.title);
 
-    var closeButton = new createjs.Bitmap(Game.data.images['ModalClose']);
+    var closeButton = ButtonHelper.newButton(
+      Game.data.images['ModalClose'],
+      'ModalClose',
+      0,
+      this.WIDTH - Game.data.images['ModalClose'].width,
+      0,
+      function() {},
+      function() {},
+      function() {
+        Modal.hide();
+      }
+    );
     this.surface.addChild(closeButton);
-    closeButton.x = this.WIDTH - Game.data.images['ModalClose'].width;
-    closeButton.addEventListener('click', function() {
-      Modal.hide();
-    });
 
     this.content.x = this.CONTENT_PADDING_HORIZONTAL;
     this.content.y = this.CONTENT_PADDING_VERTICAL;
