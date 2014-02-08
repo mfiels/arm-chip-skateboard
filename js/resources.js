@@ -2,7 +2,7 @@ var Resources = {
   surface: new createjs.Container(),
 
   WIDTH: 200,
-  HEIGHT: 500,
+  HEIGHT: 350,
   X: 600,
   Y: 0,
   color:"#ff7700",
