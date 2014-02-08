@@ -6,10 +6,10 @@ var Dudes = {
   X: 600,
   Y: 350,
   UNLOCKED: {
-    Highschooler    : false,
-    NetCafeOwner    : false,
-    ApartmentOwner  : false,
-    AppleGenius     : false,
+    'Highschooler'   : false,
+    'NetCafeOwner'    : false,
+    'ApartmentOwner'  : false,
+    'AppleGenius'     : false,
   },
 
   init: function() {
@@ -90,9 +90,12 @@ var Dudes = {
 	    Resources.modifyGhostResource(0);
     }
     function handleClick(event) {
-      console.log('clicked' + event.currentTarget.name);
+      console.log('STAT: ' + Dudes.UNLOCKED);
+      var nameNoSpaces =  event.currentTarget.name.replace(/ /g,'');
+      console.log('Dudes.UNLOCKED.' + nameNoSpaces + ': ' + Dudes.UNLOCKED.nameNoSpaces);
+      console.log('clicked ' + nameNoSpaces);
       Game.addResources(event.currentTarget.eventID.resourceGain);
-      Dudes.UNLOCKED[event.currentTarget.name] = true;
+      Dudes.UNLOCKED.nameNoSpaces = true;
     }
   },
 
