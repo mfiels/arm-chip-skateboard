@@ -12,6 +12,10 @@ var Constants = {
     'Forgot',
   ],
 
+  MAP_IMAGE: 'map.png',
+
+  DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
+
   ALL_ACTIONS: {
     'Forgot': {
       risk: 0,
@@ -98,16 +102,15 @@ var Constants = {
   
   ALL_LOCATIONS: {
     'Library': {
-    awarness: 0,
-	  riskModifier: .1,
-    reward: 0,
-    description: 'Library',
-    image: 'hello.png',
-	  color: '#ff0000',
-	  mapx:50,
-	  mapy:50,
-	  mapw:80,
-	  maph:80,
+      awarness: 0,
+  	  riskModifier: .1,
+      reward: 0,
+      description: 'Library',
+      image: 'hello.png',
+  	  mapx:50,
+  	  mapy:50,
+  	  mapw:80,
+  	  maph:80,
     },
 	'Netcafe': {
       risk: 0,

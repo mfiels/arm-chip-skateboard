@@ -11,15 +11,13 @@ var Loader = {
     $.each(Constants.ALL_ACTIONS, function(key,val){
       q.loadFile({id: key, src: "images/"+val.image});
     });
-    $.each(Constants.ALL_LOCATIONS, function(key,val){
-      q.loadFile({id: key, src: "images/"+val.image});
-    });
     $.each(Constants.LOCK_IMAGES, function(key,val){
       q.loadFile({id: key, src: "images/"+val});
     });
     $.each(Constants.LESSON_IMAGES, function(key,val){
       q.loadFile({id: key, src: "images/"+val});
     });
+    q.loadFile({id: 'map', src: "images/"+Constants.MAP_IMAGE});
     q.load();
 
   },
