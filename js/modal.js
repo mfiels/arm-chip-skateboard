@@ -45,7 +45,7 @@ var Modal = {
     this.content.y = this.CONTENT_PADDING_VERTICAL;
     this.surface.addChild(this.content);
 
-    //Modal.showIntroSequence();
+    Modal.showIntroSequence();
   },
 
   makeTextButton: function(text, width) {
@@ -314,21 +314,36 @@ Content.TUTORIAL = function(surface) {
 
   yesButton.addEventListener('click', function() {
     Modal.surface.addChild(Modal.okayButton);
-    Modal.show('The Town', new Content(Content.TUTORIAL_2), function() {
+    Modal.show('The Town', new Content(Content.TUTORIAL_MAP), function() {
       Modal.hide();
     });
   });
 };
 
-Content.TUTORIAL_2 = function(surface) {
-  var text = new createjs.Text('Hey there...', '16px GameFont', '#00FF00');
+Content.TUTORIAL_MAP = function(surface) {
+  var text = new createjs.Text('In the upper left is a map of the town. The Library is our first target. You can mouse over buildings to see how we can attack them.', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
   text.y = 0;
   surface.addChild(text);
+
+  var map = new createjs.Bitmap(Game.data.images['MapSmall']);
+  map.x = Content.WIDTH / 2 - Game.data.images['MapSmall'].width / 2;
+  map.y = 100;
+  surface.addChild(map);
 }
+
+Content.TUTORIAL_ACTIVITIES = function(surface) {
+  var text = new createjs.Text('There are different types of attacks we can deploy, mouse over them to learn more.', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 0;
+  surface.addChild(text);
+};
 
 Content.withText = function(displayText) {
   return new Content(
