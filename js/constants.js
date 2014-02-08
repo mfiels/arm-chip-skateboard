@@ -23,10 +23,10 @@ var Constants = {
 
   ALL_DUDES: {
     'Highscooler': {
-      Risk: 0,
-      Resources: 1,
-      Description: 'Shady High School Kid',
-      Image: 0,
+      risk: 0,
+      count: 1,
+      description: 'Shady High School Kid',
+      image: 0,
     },
   },
   
