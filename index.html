@@ -7,12 +7,19 @@
                 src: url(fonts/pixelmix.ttf);
             }
             body {
-                background: #222222;
+                background: #000000;
+            }
+            #canvas {
+                position: absolute;
+                top: 50%; left: 50%;
+                width: 800px;
+                height: 650px;
+                margin: -325px 0 0 -400px;
             }
         </style>
 	</head>
 	<body>
-        <div id="wrapper" style="text-align: center;">
+        <div id="wrapper">
     		<canvas id="canvas" width="800" height="650"></canvas>
         </div>
 

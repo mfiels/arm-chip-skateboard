@@ -21,6 +21,7 @@ var Game = {
     Dudes.init();
     Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
+    createjs.Ticker.setFPS(60);
 	for(var key in Constants.INITIAL_ACTIONS){
 		Map.newActionUnlocked(Constants.INITIAL_ACTIONS[key]);
 	}
@@ -117,6 +118,8 @@ var Data = function(){
     'Apartment': 0,
     'Computer Store': 0,
   };
+  this.profitLastTurn = 0,
+  this.peopleCaughtLastTurn = 0,
   this.stepLogic=function() {
     this.days-=1;
     Game.updateDays();
@@ -127,12 +130,26 @@ var Data = function(){
 			var count = this.currentActions[i].count;
 			for(var j =0;j<count;j++) {
 				this.resources+=action.resources;
-        profit = location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath;
-				this.money+=profit;
+        profit = (location.reward - Game.data.locationUsage[Map.currLocation] / location.rewardDeath) * Math.sqrt(action.risk);
+        risk = action.risk + Game.data.actionUsage[action] / action.riskIncrease;
+				
+        if(Math.random()*100 < risk) {
+          //shit hit the fan and this guy got screwed!
+          this.risk++;
+          console.log('Go to jail and do not collect 200 dollars!');
+        }
+        else {
+          //got away clean!!!
+          this.money+=profit;
+        }
+
 				action.risk+=.02;
 				location.risk+=.02;
         this.actionUsage[action.parent]++;
         this.locationUsage[location.parent]++;
+
+
+        //I am not sure if we need this.
 				if((action.risk*action.riskModifier+location.risk*location.riskModifier)*Math.random()>1){
 					//UHOH
 					console.log("Gameover?");
