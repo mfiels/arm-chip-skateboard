@@ -105,6 +105,12 @@ var Modal = {
     Modal.show('Method 1: Forgetfulness', new Content(Content.FORGOT), function() {
       Modal.hide();
     });
+  },
+
+  showSpoofMethod: function() {
+    Modal.show('Method 2: Spoofing', new Content(Content.SPOOF), function() {
+      Modal.hide();
+    });
   }
 };
 
@@ -153,6 +159,28 @@ Content.FORGOT = function(surface) {
   surface.addChild(text);
 
   text = new createjs.Text('And even worse, they save their passwords on a public computer!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 120;
+  surface.addChild(text);
+};
+
+Content.SPOOF = function(surface) {
+  var spoofImage = new createjs.Bitmap(Game.data.images['SpoofBadUrl']);
+  spoofImage.x = Content.WIDTH / 2.0 - Game.data.images['SpoofBadUrl'].width / 2.0;
+  spoofImage.y = 60;
+  surface.addChild(spoofImage);
+
+  var text = new createjs.Text('Let\'s try to get even more user data, by leaving a browser window open with a spoofed URL...', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  surface.addChild(text);
+
+  text = new createjs.Text('These users don\'t know any better and when they \'log in\' on this spoofed page their passwords get sent directly to us!', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
