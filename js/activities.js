@@ -105,6 +105,13 @@ var Activities = {
         } else {
           Game.tempMoney(-event.currentTarget.eventID.cost);
         }
+      } else {
+        if (Modal[event.currentTarget.eventID.modalMethod]) {
+          // deal with it
+          Modal[event.currentTarget.eventID.modalMethod]();
+        } else {
+          console.log('need to implement a modal for this');
+        }
       } 
     }
 

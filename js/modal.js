@@ -36,17 +36,19 @@ var Modal = {
     this.title.y = 30;
     this.surface.addChild(this.title);
 
+    var OKAY_BUTTON_WIDTH = 150;
+
     var okayButton = new createjs.Container();
     var okayButtonBackground = new createjs.Shape();
     okayButtonBackground.graphics
       .beginFill('#000000')
       .beginStroke('#00FF00')
-      .drawRect(0, 0, 75, 30);
+      .drawRect(0, 0, OKAY_BUTTON_WIDTH, 30);
     var okayButtonText = new createjs.Text('OK', '20px GameFont', '#00FF00');
     okayButtonText.textAlign = 'center';
-    okayButtonText.x = 75 / 2.0;
+    okayButtonText.x = OKAY_BUTTON_WIDTH / 2.0;
     okayButtonText.y = 3;
-    this.okayButton.x = this.WIDTH / 2 - 75 / 2;
+    this.okayButton.x = this.WIDTH / 2 - OKAY_BUTTON_WIDTH / 2;
     this.okayButton.y = this.HEIGHT - 80;
     this.okayButton.addChild(okayButtonBackground);
     this.okayButton.addChild(okayButtonText);
@@ -57,9 +59,10 @@ var Modal = {
     this.content.y = this.CONTENT_PADDING_VERTICAL;
     this.surface.addChild(this.content);
 
-    Modal.show('Omg!!!', new Content(Content.INTRO), function() {
-      Modal.hide();
-    });
+    // Modal.show('Welcome!', Content.withText(Constants.INTRO_STRING), function() {
+    //   Modal.hide();
+    //   Modal.showForgotMethod();
+    // });
   },
 
   hide: function() {
@@ -96,6 +99,12 @@ var Modal = {
   setContent: function(content) {
     this.content.removeAllChildren();
     this.content.addChild(content.surface);
+  },
+
+  showForgotMethod: function() {
+    Modal.show('Method 1: Forgetfulness', new Content(Content.FORGOT), function() {
+      Modal.hide();
+    });
   }
 };
 
@@ -120,19 +129,41 @@ Content.RESULTS = function(surface) {
   // Render stuff for the results screen here...
 };
 
-Content.INTRO = function(surface) {
-  var text = new createjs.Text(Constants.INTRO_STRING, '16px GameFont', '#00FF00');
+Content.FORGOT = function(surface) {
+  var signOutImage = new createjs.Bitmap(Game.data.images['ForgotSignOut']);
+  signOutImage.x = Content.WIDTH / 2.0 - Game.data.images['ForgotSignOut'].width / 2.0 - 60;
+  signOutImage.y = 60;
+  surface.addChild(signOutImage);
+
+  var staySignedIn = new createjs.Bitmap(Game.data.images['ForgotStaySignedIn']);
+  staySignedIn.x = Content.WIDTH / 2.0 - Game.data.images['ForgotStaySignedIn'].width / 2.0 + 60;
+  staySignedIn.y = 64;
+  surface.addChild(staySignedIn);
+
+  var dontSaveImage = new createjs.Bitmap(Game.data.images['ForgotDontSave']);
+  dontSaveImage.x = Content.WIDTH / 2.0 - Game.data.images['ForgotDontSave'].width / 2.0;
+  dontSaveImage.y = 180;
+  surface.addChild(dontSaveImage);
+
+  var text = new createjs.Text('These people often forget to sign out of their accounts when they are finished...', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
+  surface.addChild(text);
+
+  text = new createjs.Text('And even worse, they save their passwords on a public computer!', '16px GameFont', '#00FF00');
+  text.lineWidth = Content.WIDTH;
+  text.lineHeight = 30;
+  text.textAlign = 'center';
+  text.x = Content.WIDTH / 2.0;
+  text.y = 120;
   surface.addChild(text);
 };
 
 Content.withText = function(displayText) {
   return new Content(
     function(surface) {
-      console.log(text);
       var text = new createjs.Text(displayText, '16px GameFont', '#00FF00');
       text.lineWidth = Content.WIDTH;
       text.lineHeight = 30;
