@@ -2,7 +2,7 @@ var Constants = {
   CANVAS_WIDTH: 800,    // NOTE: These need to be changed in index.html on the canvas tag too!
   CANVAS_HEIGHT: 650,    // NOTE: Same as above
 
-  INITIAL_MONEY: 50,
+  INITIAL_MONEY: 50000,
   INITIAL_RESOURCES: 100,
 
   INITIAL_LOCATIONS: [
@@ -14,12 +14,25 @@ var Constants = {
 
   MISC_IMAGES: {
     'map': 'map.png',
+<<<<<<< HEAD
     'Forgot_sm': 'forgot_sm.png',
     'SpoofWebsite_sm': 'spoof_sm.png',
     'Keylogger_sm': 'keylogger_sm.png',
     'Wifi_sm': 'wifi_sm.png',
     'Scam_sm': 'scam_sm.png',
 	'Lock' : 'LockIcon.png',
+=======
+    'dudes': 'dudes.png',
+    'activities': 'activities.png',
+    'text_bg': 'text_bg.png',
+    'resources': 'resources.png',
+    'Play': 'PlayButton.png',
+    'Forgot_sm': 'forgot_sm.png',
+    'Spoof_sm': 'spoof_sm.png',
+    'Keylogger_sm': 'keylogger_sm.png',
+    'Wifi_sm': 'wifi_sm.png',
+    'Scam_sm': 'scam_sm.png',
+>>>>>>> 85af9766b6638c1985ca5d1cdc70a98eab4a12eb
   },
 
   DEFAULT_TEXTBOX_TEXT: 'Welcome to Hackmaster 3000!',
@@ -28,7 +41,8 @@ var Constants = {
     'Forgot': {
       parent: 'Forgot',
       risk: 0,
-	  riskModifier: 1,
+      riskDeath: 100,
+	    riskModifier: 1,
       resources: 1,
       cost: 1,
       description: 'Someone forgot to log off!',
@@ -39,6 +53,7 @@ var Constants = {
     'SpoofWebsite': {
       parent: 'SpoofWebsite',
       risk: 0,
+      riskDeath: 200,
       resources: 2,
       cost: 2,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -49,6 +64,7 @@ var Constants = {
     'Keylogger': {
       parent: 'Keylogger',
       risk: 0,
+      riskDeath: 300,
       resources: 3,
       cost: 10,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -59,6 +75,7 @@ var Constants = {
     'Wifi': {
       parent: 'Wifi',
       risk: 0,
+      riskDeath: 400,
       resources: 6,
       cost: 20,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -69,6 +86,7 @@ var Constants = {
     'Scam': {
       parent: 'Scam',
       risk: 0,
+      riskDeath: 500,
       resources: 8,
       cost: 30,
       description: 'Leave a fake website open to lure people into logging in.',
@@ -80,7 +98,6 @@ var Constants = {
 
   ALL_DUDES: {
     'Highschooler': {
-      risk: 0,
       resourceGain: 1,
       cost: 100,
 	  location: "Highschool",
@@ -89,7 +106,6 @@ var Constants = {
       image: 'highschooler.png',
     },
     'NetCafeOwner': {
-      risk: 0,
       cost: 500,
 	  location: "Netcafe",
       resourceGain: 5,
@@ -98,7 +114,6 @@ var Constants = {
       image: 'netcafe.png',
     },
     'ApartmentOwner': {
-      risk: 0,
       cost: 2000,
 	  location: "Apartment",
       resourceGain: 10,
@@ -107,7 +122,6 @@ var Constants = {
       image: 'apartmentowner.png',
     },
     'Scammer': {
-      risk: 0,
       cost: 5000,
 	  location: "Computer Store",
       resourceGain: 20,
@@ -119,10 +133,12 @@ var Constants = {
   
   ALL_LOCATIONS: {
     'Library': {
+      parent: 'Library',
       awarness: 0,
   	  riskModifier: .1,
-      reward: 0,
 	  unlock:"none",
+      rewardDeath: 100,
+      reward: 10,
       description: 'Library',
       image: 'hello.png',
   	  mapx:105,
@@ -130,12 +146,14 @@ var Constants = {
 	  mapr:70,
     },
 	'Netcafe': {
-      risk: 0,
+    parent: 'Netcafe',
+    risk: 0,
 	  riskModifier: .1,
-      reward: 0,
 	  unlock:"NetCafeOwner",
-      description: 'Netcafe',
-      image: 'hello.png',
+    rewardDeath: 100,
+    reward: 20,
+    description: 'Netcafe',
+    image: 'hello.png',
 	  color: '#ff0000',
 	  mapx:510,
 	  mapy:175,
@@ -154,24 +172,28 @@ var Constants = {
 	  mapr:50,
     },
 	'Apartment': {
-      risk: 0,
+    parent: 'Apartment',
+    risk: 0,
 	  riskModifier: .1,
-      reward: 0,
 	  unlock:"ApartmentOwner",
-      description: 'Apartment',
-      image: 'hello.png',
+    rewardDeath: 100,
+    reward: 30,
+    description: 'Apartment',
+    image: 'hello.png',
 	  color: '#ff0000',
 	  mapx:30,
 	  mapy:210,
 	  mapr:50,
     },
 	'Computer Store': {
-      risk: 0,
+    parent: 'Computer Store',
+    risk: 0,
 	  riskModifier: .1,
-      reward: 0,
 	  unlock:"Scammer",
-      description: 'Computer Store',
-      image: 'hello.png',
+    rewardDeath: 100,
+    reward: 50,
+    description: 'Computer Store',
+    image: 'hello.png',
 	  color: '#ff0000',
 	  mapx:320,
 	  mapy:230,

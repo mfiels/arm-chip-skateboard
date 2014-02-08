@@ -12,11 +12,7 @@ var Activities = {
     this.surface.x = this.X;
     this.surface.y = this.Y;
 
-    var background = new createjs.Shape();
-    background.graphics
-      .beginFill("#000000")
-      .beginStroke('#00FF00')
-      .drawRect(0, 0, this.WIDTH, this.HEIGHT);
+    var background = new createjs.Bitmap(Game.data.images['activities']);
     this.surface.addChild(background);
 
     this.moneyCounter.x=30;
