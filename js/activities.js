@@ -6,6 +6,8 @@ var Activities = {
   X: 0,
   Y: 350,
 
+  moneyCounter: new createjs.Text('$', '16px GameFont', '#00FF00'),
+
   init: function() {
     this.surface.x = this.X;
     this.surface.y = this.Y;
@@ -14,12 +16,17 @@ var Activities = {
     background.graphics.beginFill("#0000FF").drawRect(0, 0, this.WIDTH, this.HEIGHT);
     this.surface.addChild(background);
 
+    this.moneyCounter.x=20;
+    this.moneyCounter.y=6;
+    this.surface.addChild(this.moneyCounter);
+    Game.addMoney(0);
+
     var icon = ButtonHelper.newButton(
         Game.data.images['Forgot'],
         'Forgot',
         Constants.ALL_ACTIONS.Forgot,
         22,
-        22,
+        28,
         handleHover,
         handleUnhover,
         handleClick
@@ -31,19 +38,19 @@ var Activities = {
         'Forgot',
         Constants.ALL_ACTIONS.Forgot,
         114,
-        22,
+        28,
         handleHover,
         handleUnhover,
         handleClick
     );
     this.surface.addChild(icon);
 
-    var icon = ButtonHelper.newButton(
+    icon = ButtonHelper.newButton(
         Game.data.images['Forgot'],
         'Forgot',
         Constants.ALL_ACTIONS.Forgot,
         208,
-        22,
+        28,
         handleHover,
         handleUnhover,
         handleClick
@@ -53,10 +60,12 @@ var Activities = {
     function handleHover(event) {
       Textbox.setTitle(event.currentTarget.name);
       Textbox.setBody(event.currentTarget.eventID.description);
+      Game.tempMoney(event.currentTarget.eventID.cost);
     }
     function handleUnhover(event) {
       Textbox.setTitle('');
       Textbox.setBody('');
+      Game.addMoney(0);
     }
     function handleClick(event) {
       console.log('clicked' + event.currentTarget.eventID);

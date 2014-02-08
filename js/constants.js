@@ -16,6 +16,7 @@ var Constants = {
     'Forgot': {
       risk: 0,
       resources: 1,
+      cost: 1,
       description: 'Someone forgot to log off!',
       image: 'forgot.png',
 	  color: '#af0000',

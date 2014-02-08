@@ -21,6 +21,14 @@ var Game = {
     Modal.init();
     createjs.Ticker.addEventListener('tick', this.canvas);
   },
+
+  addMoney: function(amount){
+    this.data.money += amount;
+    Activities.moneyCounter.text="$"+this.data.money;
+  },
+  tempMoney: function(amount){
+    Activities.moneyCounter.text="$"+this.data.money+"  ->  "+(this.data.money-amount);
+  },
   addAction: function(action, location){
 	//search model for action and location pair
 	var added=false;
