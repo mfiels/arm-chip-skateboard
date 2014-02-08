@@ -2,7 +2,7 @@ var Activities = {
   surface: new createjs.Container(),
 
   WIDTH: 600,
-  HEIGHT: 150,
+  HEIGHT: 200,
   X: 0,
   Y: 350,
 
@@ -15,11 +15,11 @@ var Activities = {
     this.surface.addChild(background);
 
     var icon = ButtonHelper.newButton(
-        Game.data.images['Library'],
+        Game.data.images['Forgot'],
         'Forgot',
         Constants.ALL_ACTIONS.Forgot,
-        10,
-        20,
+        22,
+        22,
         handleHover,
         handleUnhover,
         handleClick
@@ -27,11 +27,11 @@ var Activities = {
     this.surface.addChild(icon);
     
     icon = ButtonHelper.newButton(
-        Game.data.images['Library'],
+        Game.data.images['Forgot'],
         'Forgot',
         Constants.ALL_ACTIONS.Forgot,
-        40,
-        20,
+        114,
+        22,
         handleHover,
         handleUnhover,
         handleClick
@@ -39,11 +39,11 @@ var Activities = {
     this.surface.addChild(icon);
 
     var icon = ButtonHelper.newButton(
-        Game.data.images['Library'],
+        Game.data.images['Forgot'],
         'Forgot',
         Constants.ALL_ACTIONS.Forgot,
-        70,
-        20,
+        208,
+        22,
         handleHover,
         handleUnhover,
         handleClick

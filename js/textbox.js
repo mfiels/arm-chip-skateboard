@@ -4,7 +4,7 @@ var Textbox = {
   WIDTH: 800,
   HEIGHT: 100,
   X: 0,
-  Y: 500,
+  Y: 550,
 
   titleTextBox: new createjs.Text('Title', '20px GameFont', 'white'),
   bodyTextBox: new createjs.Text('Body', '16px GameFont', 'white'),

@@ -2,7 +2,7 @@ var Dudes = {
   surface: new createjs.Container(),
 
   WIDTH: 200,
-  HEIGHT: 150,
+  HEIGHT: 200,
   X: 600,
   Y: 350,
 
