@@ -9,7 +9,7 @@ var Dudes = {
     'Highschooler'    : false,
     'NetCafeOwner'    : false,
     'ApartmentOwner'  : false,
-    'AppleGenius'     : false,
+    'Scammer'         : false,
   },
 
   init: function() {
@@ -27,8 +27,8 @@ var Dudes = {
         Game.data.images['Highschooler'],
         'Highschooler',
         Constants.ALL_DUDES.Highschooler,
-        10,
-        10,
+        17,
+        17,
         handleHover,
         handleUnhover,
         handleClick
@@ -39,8 +39,8 @@ var Dudes = {
         Game.data.images['NetCafeOwner'],
         'Net Cafe Owner',
         Constants.ALL_DUDES.NetCafeOwner,
-        105,
-        10,
+        111,
+        17,
         handleHover,
         handleUnhover,
         handleClick
@@ -50,19 +50,19 @@ var Dudes = {
         Game.data.images['ApartmentOwner'],
         'Apartment Owner',
         Constants.ALL_DUDES.ApartmentOwner,
-        10,
-        105,
+        17,
+        111,
         handleHover,
         handleUnhover,
         handleClick
     );
 
     targetEmployee = ButtonHelper.newButton(
-        Game.data.images['AppleGenius'],
-        'Apple Genius',
-        Constants.ALL_DUDES.AppleGenius,
-        105,
-        105,
+        Game.data.images['Scammer'],
+        'Scammer',
+        Constants.ALL_DUDES.Scammer,
+        111,
+        111,
         handleHover,
         handleUnhover,
         handleClick
