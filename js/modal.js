@@ -150,7 +150,7 @@ var Modal = {
       case 'time': type = Content.GAME_OVER_TIME; break;
       case 'money': type = Content.GAME_OVER_MONEY; break;
     }
-    Modal.show('Game Over!', new Content(type), function() {
+    Modal.show('', new Content(type), function() {
       // nop
     });
   },
@@ -454,32 +454,44 @@ Content.TUTORIAL_RISK = function(surface) {
 };
 
 Content.GAME_OVER_AWARENESS = function(surface) {
+  var go = new createjs.Bitmap(Game.data.images['GameOver']);
+  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
   var text = new createjs.Text('Your targets have caught on to your attacks and are now no longer logging in on untrusted computers!', '16px GameFont', '#00FF00')
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = 0;
+  text.y = 50;
   surface.addChild(text);
 };
 
 Content.GAME_OVER_TIME = function(surface) {
-  var text = new createjs.Text('You have been thrown out of your apartment!', '16px GameFont', '#00FF00')
+  var go = new createjs.Bitmap(Game.data.images['GameOver']);
+  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
+  var text = new createjs.Text('You haven\'t paid your rent in time and have been thrown out of your apartment!', '16px GameFont', '#00FF00')
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = 0;
+  text.y = 50;
   surface.addChild(text);
 };
 
 Content.GAME_OVER_MONEY = function(surface) {
+  var go = new createjs.Bitmap(Game.data.images['GameOver']);
+  go.x = (Content.WIDTH - Game.data.images['GameOver'].width) / 2.0;
+  go.y = -50;
+  surface.addChild(go);
   var text = new createjs.Text('You managed to pay your rent on time, now what to do for next month\'s rent...', '16px GameFont', '#00FF00');
   text.lineWidth = Content.WIDTH;
   text.lineHeight = 30;
   text.textAlign = 'center';
   text.x = Content.WIDTH / 2.0;
-  text.y = 0;
+  text.y = 50;
   surface.addChild(text);
 };
 
