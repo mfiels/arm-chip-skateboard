@@ -14,30 +14,40 @@ var Activities = {
     background.graphics.beginFill("#0000FF").drawRect(0, 0, this.WIDTH, this.HEIGHT);
     this.surface.addChild(background);
 
-    var icon = new createjs.Bitmap(Game.data.images['Library']);
-    icon.name = 'Forgot';
-    icon.eventID = Constants.ALL_ACTIONS.Forgot;
-    icon.x = 10;
-    icon.y = 20;
-    icon.addEventListener("mouseover", handleHover);
-    icon.addEventListener("mouseout", handleUnhover);
-    icon.addEventListener("click", handleClick);
+    var icon = ButtonHelper.newButton(
+        Game.data.images['Library'],
+        'Forgot',
+        Constants.ALL_ACTIONS.Forgot,
+        10,
+        20,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
+    this.surface.addChild(icon);
+    
+    icon = ButtonHelper.newButton(
+        Game.data.images['Library'],
+        'Forgot',
+        Constants.ALL_ACTIONS.Forgot,
+        40,
+        20,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
     this.surface.addChild(icon);
 
-    icon = new createjs.Bitmap(Game.data.images['Library']);
-    icon.name = 'Forgot';
-    icon.eventID = Constants.ALL_ACTIONS.Forgot;
-    icon.x = 40;
-    icon.y = 20;
-    icon.addEventListener("click", handleClick);
-    this.surface.addChild(icon);
-
-    icon = new createjs.Bitmap(Game.data.images['Library']);
-    icon.name = 'Forgot';
-    icon.eventID = Constants.ALL_ACTIONS.Forgot;
-    icon.x = 70;
-    icon.y = 20;
-    icon.addEventListener("click", handleClick);
+    var icon = ButtonHelper.newButton(
+        Game.data.images['Library'],
+        'Forgot',
+        Constants.ALL_ACTIONS.Forgot,
+        70,
+        20,
+        handleHover,
+        handleUnhover,
+        handleClick
+    );
     this.surface.addChild(icon);
     
     function handleHover(event) {
@@ -47,10 +57,9 @@ var Activities = {
     function handleUnhover(event) {
       Textbox.setTitle('');
       Textbox.setBody('');
-      console.log('hovering over' + event.currentTarget.eventID);
     }
     function handleClick(event) {
-      console.log(event.currentTarget.eventID);
+      console.log('clicked' + event.currentTarget.eventID);
     }
 
     Game.canvas.addChild(this.surface);
