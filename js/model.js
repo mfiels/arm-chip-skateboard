@@ -44,6 +44,9 @@ var Game = {
 	else return;
 	Resources.updateCurrentActions();
   },
+  step: function(){
+  
+  },
 };
 
 var Pair = function(initialAction,initialLocation){
@@ -61,9 +64,11 @@ var Data = function(){
   this.actions= Constants.INITIAL_ACTIONS;
   this.risk= 0;
   this.images= {};
-
   this.currentResources= 0;
   this.currentActions= [];
+  this.stepLogic=function(){
+	
+  };
 }
 
 var ButtonHelper = {

@@ -11,7 +11,6 @@ var Resources = {
   textcolor:"#ff7700",
   resourceArrow: new createjs.Shape(),
   iconContainer: new createjs.Container(),
-  
   updateResource: function(){
 	this.resourceText.text = Game.data.resources.toString();
   },
@@ -79,6 +78,24 @@ var Resources = {
 	this.resourceArrow.x = this.ICONWIDTH+this.RESOURCEWIDTH/2 - 30;
 	this.resourceArrow.y = 80;
 	
+	//Load play button
+	this.playBtn=ButtonHelper.newButton(
+		Game.data.images['TargetEmployee'],
+		'Play',
+		1,
+		this.ICONWIDTH+this.RESOURCEWIDTH/2,
+		220,
+		function(event){
+				Textbox.setTitle("Advance Day");
+				Textbox.setBody("Performs all actions queued up.");
+		},
+		function (event) {
+		  Textbox.setTitle('');
+		  Textbox.setBody('');
+		},
+		function(){Game.step()}
+	);
+	
 	//load background
     var background = new createjs.Shape();
     background.graphics.beginFill("#00FF00").drawRect(0, 0, this.WIDTH, this.HEIGHT);
@@ -87,6 +104,7 @@ var Resources = {
 	this.surface.addChild(this.resourceText2);
 	this.surface.addChild(this.resourceArrow);
 	this.surface.addChild(this.iconContainer);
+	this.surface.addChild(this.playBtn);
 	this.updateResource();
 	this.decrementResource(0);
     Game.canvas.addChild(this.surface);
