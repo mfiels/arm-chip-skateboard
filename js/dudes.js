@@ -50,9 +50,9 @@ var Dudes = {
     );
 
     targetEmployee = ButtonHelper.newButton(
-        Game.data.images['TargetEmployee'],
-        'Target Employee',
-        Constants.ALL_DUDES.TargetEmployee,
+        Game.data.images['AppleGenius'],
+        'Apple Genius',
+        Constants.ALL_DUDES.AppleGenius,
         105,
         105,
         handleHover,
@@ -77,6 +77,7 @@ var Dudes = {
     }
     function handleClick(event) {
       console.log('clicked' + event.currentTarget.eventID);
+      Game.data.addResources(event.currentTarget.eventID.resourceGain);
     }
   },
 
