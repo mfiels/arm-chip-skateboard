@@ -6,7 +6,7 @@ var Activities = {
   X: 0,
   Y: 350,
 
-  moneyCounter: new createjs.Text('$', '16px GameFont', '#00FF00'),
+  moneyCounter: new createjs.Text('$', '22px GameFont', '#00FF00'),
 
   init: function() {
     this.surface.x = this.X;
@@ -19,8 +19,8 @@ var Activities = {
       .drawRect(0, 0, this.WIDTH, this.HEIGHT);
     this.surface.addChild(background);
 
-    this.moneyCounter.x=20;
-    this.moneyCounter.y=6;
+    this.moneyCounter.x=30;
+    this.moneyCounter.y=18;
     this.surface.addChild(this.moneyCounter);
     Game.addMoney(0);
 
@@ -28,8 +28,8 @@ var Activities = {
         Game.data.images['Forgot'],
         'Forgot',
         Constants.ALL_ACTIONS.Forgot,
-        22,
-        28,
+        52,
+        64,
         handleHover,
         handleUnhover,
         handleClick
@@ -40,8 +40,8 @@ var Activities = {
         Game.data.images['SpoofLocked'],
         'Spoof Website',
         Constants.ALL_ACTIONS.SpoofWebsite,
-        114,
-        28,
+        158,
+        64,
         handleHover,
         handleUnhover,
         handleClick
@@ -52,8 +52,8 @@ var Activities = {
         Game.data.images['KeyloggerLocked'],
         'Keylogger',
         Constants.ALL_ACTIONS.Keylogger,
-        208,
-        28,
+        264,
+        64,
         handleHover,
         handleUnhover,
         handleClick
@@ -64,8 +64,8 @@ var Activities = {
         Game.data.images['WifiLocked'],
         'Wifi',
         Constants.ALL_ACTIONS.Wifi,
-        302,
-        28,
+        370,
+        64,
         handleHover,
         handleUnhover,
         handleClick
@@ -76,8 +76,8 @@ var Activities = {
         Game.data.images['ScamLocked'],
         'Scam',
         Constants.ALL_ACTIONS.Scam,
-        396,
-        28,
+        478,
+        64,
         handleHover,
         handleUnhover,
         handleClick
