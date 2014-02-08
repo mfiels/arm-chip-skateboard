@@ -103,14 +103,18 @@ var Activities = {
           Game.data.actions.push(event.currentTarget.name.replace(/ /g,''));
           Map.newActionUnlocked(event.currentTarget.name.replace(/ /g,''));
 		  event.currentTarget.image = Game.data.images[event.currentTarget.name.replace(/ /g,'')]
-		  
+		      showActivityModal(event.currentTarget.eventID);
         } else {
           Game.tempMoney(-event.currentTarget.eventID.cost);
         }
+      } else {
+        showActivityModal(event.currentTarget.eventID); 
       }
-      if (Modal[event.currentTarget.eventID.modalMethod]) {
+    }
+    function showActivityModal(eventID) {
+      if (Modal[eventID.modalMethod]) {
         // deal with it
-        Modal[event.currentTarget.eventID.modalMethod]();
+        Modal[eventID.modalMethod]();
       } else {
         console.log('need to implement a modal for this');
       }
