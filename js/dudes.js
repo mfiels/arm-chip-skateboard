@@ -17,8 +17,9 @@ var Dudes = {
     Game.canvas.addChild(this.surface);
 
 
-    var helper = new createjs.ButtonHelper(background, "out", "over", "down", false);
-    this.surface.addEventListener("click", handleClick);
+    var helper = new createjs.ButtonHelper(background, "out", "over", "down", false, background, "Hit");
+    background.addEventListener("click", handleClick);
+    this.surface.addChild(helper);
     function handleClick(event) {
        console.log("Button Clicked");
     }
